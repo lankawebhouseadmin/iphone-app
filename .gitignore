@@ -1,0 +1,9 @@
+Be24there/.DS_Store
+Be24there/*.xcworkspace
+Be24there/*.xcuserdatad
+Be24there/*.xcuserstate
+Be24there/build-*/
+Be24there/.build/*
+Be24there/build/*
+Be24there/*.bridgesupport
+Be24there/Pods/*
