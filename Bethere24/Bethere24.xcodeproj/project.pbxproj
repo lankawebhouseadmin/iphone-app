@@ -1,0 +1,773 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		361397B9C1DC1C2FC9E4028A /* Pods_Bethere24UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B596DDDD494E9A7721BAE0 /* Pods_Bethere24UITests.framework */; };
+		8808F2171E859A372E4FD6C6 /* Pods_Bethere24Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */; };
+		B18C845D776739F51B44EE34 /* Pods_Bethere24.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2451088EBEBA0A39BD02C3 /* Pods_Bethere24.framework */; };
+		E146756D1D97A788000567AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146756C1D97A788000567AC /* AppDelegate.swift */; };
+		E14675721D97A788000567AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E14675701D97A788000567AC /* Main.storyboard */; };
+		E14675751D97A788000567AC /* Bethere24.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E14675731D97A788000567AC /* Bethere24.xcdatamodeld */; };
+		E14675771D97A788000567AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14675761D97A788000567AC /* Assets.xcassets */; };
+		E146757A1D97A788000567AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E14675781D97A788000567AC /* LaunchScreen.storyboard */; };
+		E14675851D97A788000567AC /* Bethere24Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675841D97A788000567AC /* Bethere24Tests.swift */; };
+		E14675901D97A788000567AC /* Bethere24UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146758F1D97A788000567AC /* Bethere24UITests.swift */; };
+		E14675A41D97A94A000567AC /* BE24NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675A31D97A94A000567AC /* BE24NavigationController.swift */; };
+		E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675A51D97A95D000567AC /* BE24ViewController.swift */; };
+		E14675A81D97A972000567AC /* BE24TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675A71D97A972000567AC /* BE24TableViewController.swift */; };
+		E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675A91D97A980000567AC /* BE24AppManager.swift */; };
+		E14675AC1D97A988000567AC /* BE24Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675AB1D97A988000567AC /* BE24Model.swift */; };
+		E14675AE1D97A991000567AC /* BE24View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675AD1D97A991000567AC /* BE24View.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E14675811D97A788000567AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E14675611D97A788000567AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E14675681D97A788000567AC;
+			remoteInfo = Bethere24;
+		};
+		E146758C1D97A788000567AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E14675611D97A788000567AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E14675681D97A788000567AC;
+			remoteInfo = Bethere24;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0D2451088EBEBA0A39BD02C3 /* Pods_Bethere24.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11B596DDDD494E9A7721BAE0 /* Pods_Bethere24UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F715F8D611F5C7712E6FA9 /* Pods-Bethere24UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.release.xcconfig"; sourceTree = "<group>"; };
+		308D79025FED7D427F0E767C /* Pods-Bethere24Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24Tests/Pods-Bethere24Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		346989408296261C8A3B45A2 /* Pods-Bethere24.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24/Pods-Bethere24.debug.xcconfig"; sourceTree = "<group>"; };
+		3F4E749A86CFA4C83E99DFE7 /* Pods-Bethere24Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24Tests/Pods-Bethere24Tests.release.xcconfig"; sourceTree = "<group>"; };
+		8081768BF3EDDAD52C2E25C5 /* Pods-Bethere24.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24/Pods-Bethere24.release.xcconfig"; sourceTree = "<group>"; };
+		E14675691D97A788000567AC /* Bethere24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bethere24.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E146756C1D97A788000567AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E14675711D97A788000567AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E14675741D97A788000567AC /* Bethere24.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bethere24.xcdatamodel; sourceTree = "<group>"; };
+		E14675761D97A788000567AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E14675791D97A788000567AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E146757B1D97A788000567AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E14675801D97A788000567AC /* Bethere24Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bethere24Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E14675841D97A788000567AC /* Bethere24Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bethere24Tests.swift; sourceTree = "<group>"; };
+		E14675861D97A788000567AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E146758B1D97A788000567AC /* Bethere24UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Bethere24UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E146758F1D97A788000567AC /* Bethere24UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bethere24UITests.swift; sourceTree = "<group>"; };
+		E14675911D97A788000567AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E14675A31D97A94A000567AC /* BE24NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24NavigationController.swift; sourceTree = "<group>"; };
+		E14675A51D97A95D000567AC /* BE24ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24ViewController.swift; sourceTree = "<group>"; };
+		E14675A71D97A972000567AC /* BE24TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24TableViewController.swift; sourceTree = "<group>"; };
+		E14675A91D97A980000567AC /* BE24AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AppManager.swift; sourceTree = "<group>"; };
+		E14675AB1D97A988000567AC /* BE24Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24Model.swift; sourceTree = "<group>"; };
+		E14675AD1D97A991000567AC /* BE24View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24View.swift; sourceTree = "<group>"; };
+		ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E14675661D97A788000567AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B18C845D776739F51B44EE34 /* Pods_Bethere24.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E146757D1D97A788000567AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8808F2171E859A372E4FD6C6 /* Pods_Bethere24Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E14675881D97A788000567AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361397B9C1DC1C2FC9E4028A /* Pods_Bethere24UITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		619820E2C16995337FD6B37C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D2451088EBEBA0A39BD02C3 /* Pods_Bethere24.framework */,
+				F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */,
+				11B596DDDD494E9A7721BAE0 /* Pods_Bethere24UITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8FF080972E8E94A99C9101B8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				346989408296261C8A3B45A2 /* Pods-Bethere24.debug.xcconfig */,
+				8081768BF3EDDAD52C2E25C5 /* Pods-Bethere24.release.xcconfig */,
+				308D79025FED7D427F0E767C /* Pods-Bethere24Tests.debug.xcconfig */,
+				3F4E749A86CFA4C83E99DFE7 /* Pods-Bethere24Tests.release.xcconfig */,
+				ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */,
+				23F715F8D611F5C7712E6FA9 /* Pods-Bethere24UITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E14675601D97A788000567AC = {
+			isa = PBXGroup;
+			children = (
+				E146756B1D97A788000567AC /* Bethere24 */,
+				E14675831D97A788000567AC /* Bethere24Tests */,
+				E146758E1D97A788000567AC /* Bethere24UITests */,
+				E146756A1D97A788000567AC /* Products */,
+				8FF080972E8E94A99C9101B8 /* Pods */,
+				619820E2C16995337FD6B37C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E146756A1D97A788000567AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E14675691D97A788000567AC /* Bethere24.app */,
+				E14675801D97A788000567AC /* Bethere24Tests.xctest */,
+				E146758B1D97A788000567AC /* Bethere24UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E146756B1D97A788000567AC /* Bethere24 */ = {
+			isa = PBXGroup;
+			children = (
+				E146756C1D97A788000567AC /* AppDelegate.swift */,
+				E14675701D97A788000567AC /* Main.storyboard */,
+				E14675761D97A788000567AC /* Assets.xcassets */,
+				E14675781D97A788000567AC /* LaunchScreen.storyboard */,
+				E146757B1D97A788000567AC /* Info.plist */,
+				E14675731D97A788000567AC /* Bethere24.xcdatamodeld */,
+				E146759D1D97A82D000567AC /* Classes */,
+			);
+			path = Bethere24;
+			sourceTree = "<group>";
+		};
+		E14675831D97A788000567AC /* Bethere24Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E14675841D97A788000567AC /* Bethere24Tests.swift */,
+				E14675861D97A788000567AC /* Info.plist */,
+			);
+			path = Bethere24Tests;
+			sourceTree = "<group>";
+		};
+		E146758E1D97A788000567AC /* Bethere24UITests */ = {
+			isa = PBXGroup;
+			children = (
+				E146758F1D97A788000567AC /* Bethere24UITests.swift */,
+				E14675911D97A788000567AC /* Info.plist */,
+			);
+			path = Bethere24UITests;
+			sourceTree = "<group>";
+		};
+		E146759D1D97A82D000567AC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E146759E1D97A82D000567AC /* Controller */,
+				E146759F1D97A82D000567AC /* Global */,
+				E14675A01D97A82D000567AC /* Library */,
+				E14675A11D97A82D000567AC /* Model */,
+				E14675A21D97A82D000567AC /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E146759E1D97A82D000567AC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E14675A31D97A94A000567AC /* BE24NavigationController.swift */,
+				E14675A51D97A95D000567AC /* BE24ViewController.swift */,
+				E14675A71D97A972000567AC /* BE24TableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E146759F1D97A82D000567AC /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				E14675A91D97A980000567AC /* BE24AppManager.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		E14675A01D97A82D000567AC /* Library */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		E14675A11D97A82D000567AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E14675AB1D97A988000567AC /* BE24Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E14675A21D97A82D000567AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E14675AD1D97A991000567AC /* BE24View.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E14675681D97A788000567AC /* Bethere24 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E14675941D97A788000567AC /* Build configuration list for PBXNativeTarget "Bethere24" */;
+			buildPhases = (
+				7A291B5B82D7E69A2D73DCCA /* [CP] Check Pods Manifest.lock */,
+				E14675651D97A788000567AC /* Sources */,
+				E14675661D97A788000567AC /* Frameworks */,
+				E14675671D97A788000567AC /* Resources */,
+				C0372AC11676D85FB7E786F1 /* [CP] Embed Pods Frameworks */,
+				C0EDFE075863C29BA996C7F9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bethere24;
+			productName = Bethere24;
+			productReference = E14675691D97A788000567AC /* Bethere24.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E146757F1D97A788000567AC /* Bethere24Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E14675971D97A788000567AC /* Build configuration list for PBXNativeTarget "Bethere24Tests" */;
+			buildPhases = (
+				C81BB5C9383AF5E9DF474651 /* [CP] Check Pods Manifest.lock */,
+				E146757C1D97A788000567AC /* Sources */,
+				E146757D1D97A788000567AC /* Frameworks */,
+				E146757E1D97A788000567AC /* Resources */,
+				721D8ED22617F8F1604A2DB1 /* [CP] Embed Pods Frameworks */,
+				2F28BABBF4BB1CFCE8CFDCAF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E14675821D97A788000567AC /* PBXTargetDependency */,
+			);
+			name = Bethere24Tests;
+			productName = Bethere24Tests;
+			productReference = E14675801D97A788000567AC /* Bethere24Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E146758A1D97A788000567AC /* Bethere24UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E146759A1D97A788000567AC /* Build configuration list for PBXNativeTarget "Bethere24UITests" */;
+			buildPhases = (
+				B2E75874D836DA4B09378EE6 /* [CP] Check Pods Manifest.lock */,
+				E14675871D97A788000567AC /* Sources */,
+				E14675881D97A788000567AC /* Frameworks */,
+				E14675891D97A788000567AC /* Resources */,
+				19D6EFEE02808DF12BC1089C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E146758D1D97A788000567AC /* PBXTargetDependency */,
+			);
+			name = Bethere24UITests;
+			productName = Bethere24UITests;
+			productReference = E146758B1D97A788000567AC /* Bethere24UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E14675611D97A788000567AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BE24;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = LankaWebHouse;
+				TargetAttributes = {
+					E14675681D97A788000567AC = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					E146757F1D97A788000567AC = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = E14675681D97A788000567AC;
+					};
+					E146758A1D97A788000567AC = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = E14675681D97A788000567AC;
+					};
+				};
+			};
+			buildConfigurationList = E14675641D97A788000567AC /* Build configuration list for PBXProject "Bethere24" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E14675601D97A788000567AC;
+			productRefGroup = E146756A1D97A788000567AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E14675681D97A788000567AC /* Bethere24 */,
+				E146757F1D97A788000567AC /* Bethere24Tests */,
+				E146758A1D97A788000567AC /* Bethere24UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E14675671D97A788000567AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E146757A1D97A788000567AC /* LaunchScreen.storyboard in Resources */,
+				E14675771D97A788000567AC /* Assets.xcassets in Resources */,
+				E14675721D97A788000567AC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E146757E1D97A788000567AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E14675891D97A788000567AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19D6EFEE02808DF12BC1089C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F28BABBF4BB1CFCE8CFDCAF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bethere24Tests/Pods-Bethere24Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		721D8ED22617F8F1604A2DB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bethere24Tests/Pods-Bethere24Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A291B5B82D7E69A2D73DCCA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B2E75874D836DA4B09378EE6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C0372AC11676D85FB7E786F1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bethere24/Pods-Bethere24-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0EDFE075863C29BA996C7F9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bethere24/Pods-Bethere24-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C81BB5C9383AF5E9DF474651 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E14675651D97A788000567AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E146756D1D97A788000567AC /* AppDelegate.swift in Sources */,
+				E14675AE1D97A991000567AC /* BE24View.swift in Sources */,
+				E14675AC1D97A988000567AC /* BE24Model.swift in Sources */,
+				E14675751D97A788000567AC /* Bethere24.xcdatamodeld in Sources */,
+				E14675A81D97A972000567AC /* BE24TableViewController.swift in Sources */,
+				E14675A41D97A94A000567AC /* BE24NavigationController.swift in Sources */,
+				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
+				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E146757C1D97A788000567AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14675851D97A788000567AC /* Bethere24Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E14675871D97A788000567AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E14675901D97A788000567AC /* Bethere24UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E14675821D97A788000567AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E14675681D97A788000567AC /* Bethere24 */;
+			targetProxy = E14675811D97A788000567AC /* PBXContainerItemProxy */;
+		};
+		E146758D1D97A788000567AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E14675681D97A788000567AC /* Bethere24 */;
+			targetProxy = E146758C1D97A788000567AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E14675701D97A788000567AC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E14675711D97A788000567AC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E14675781D97A788000567AC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E14675791D97A788000567AC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E14675921D97A788000567AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E14675931D97A788000567AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E14675951D97A788000567AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 346989408296261C8A3B45A2 /* Pods-Bethere24.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Bethere24/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E14675961D97A788000567AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8081768BF3EDDAD52C2E25C5 /* Pods-Bethere24.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Bethere24/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E14675981D97A788000567AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 308D79025FED7D427F0E767C /* Pods-Bethere24Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Bethere24Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bethere24.app/Bethere24";
+			};
+			name = Debug;
+		};
+		E14675991D97A788000567AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F4E749A86CFA4C83E99DFE7 /* Pods-Bethere24Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Bethere24Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bethere24.app/Bethere24";
+			};
+			name = Release;
+		};
+		E146759B1D97A788000567AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = Bethere24UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Bethere24;
+			};
+			name = Debug;
+		};
+		E146759C1D97A788000567AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23F715F8D611F5C7712E6FA9 /* Pods-Bethere24UITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = Bethere24UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Bethere24;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E14675641D97A788000567AC /* Build configuration list for PBXProject "Bethere24" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E14675921D97A788000567AC /* Debug */,
+				E14675931D97A788000567AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E14675941D97A788000567AC /* Build configuration list for PBXNativeTarget "Bethere24" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E14675951D97A788000567AC /* Debug */,
+				E14675961D97A788000567AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E14675971D97A788000567AC /* Build configuration list for PBXNativeTarget "Bethere24Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E14675981D97A788000567AC /* Debug */,
+				E14675991D97A788000567AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E146759A1D97A788000567AC /* Build configuration list for PBXNativeTarget "Bethere24UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E146759B1D97A788000567AC /* Debug */,
+				E146759C1D97A788000567AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E14675731D97A788000567AC /* Bethere24.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E14675741D97A788000567AC /* Bethere24.xcdatamodel */,
+			);
+			currentVersion = E14675741D97A788000567AC /* Bethere24.xcdatamodel */;
+			path = Bethere24.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = E14675611D97A788000567AC /* Project object */;
+}
