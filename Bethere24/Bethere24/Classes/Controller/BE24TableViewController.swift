@@ -6,8 +6,14 @@
 //  Copyright © 2016 LankaWebHouse. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class BE24TableViewController: UITableViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setupLayout()
+    }
 
 }

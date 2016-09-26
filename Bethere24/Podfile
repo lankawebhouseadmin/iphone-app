@@ -7,6 +7,10 @@ target 'Bethere24' do
 
 pod 'Alamofire'
 pod 'SVProgressHUD'
+pod 'SwiftyJSON'
+pod 'SideMenuController', '~> 0.1.6'
+pod 'UIColor_Hex_Swift', '~> 2.1'
+# pod 'KMPlaceholderTextView', '~> 1.2.2'
 
   # Pods for Bethere24
 

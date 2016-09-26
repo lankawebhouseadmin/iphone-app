@@ -23,6 +23,15 @@
 		E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675A91D97A980000567AC /* BE24AppManager.swift */; };
 		E14675AC1D97A988000567AC /* BE24Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675AB1D97A988000567AC /* BE24Model.swift */; };
 		E14675AE1D97A991000567AC /* BE24View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675AD1D97A991000567AC /* BE24View.swift */; };
+		E14675B11D97B841000567AC /* BE24LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675B01D97B841000567AC /* BE24LoginVC.swift */; };
+		E14675B31D97F689000567AC /* UIViewController+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675B21D97F689000567AC /* UIViewController+BE24.swift */; };
+		E14675B71D97F6FC000567AC /* UIButton+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675B41D97F6FC000567AC /* UIButton+BE24.swift */; };
+		E14675B81D97F6FC000567AC /* UITextField+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675B51D97F6FC000567AC /* UITextField+BE24.swift */; };
+		E14675B91D97F6FC000567AC /* UIView+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675B61D97F6FC000567AC /* UIView+BE24.swift */; };
+		E14675BB1D9811F1000567AC /* BE24RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675BA1D9811F1000567AC /* BE24RequestManager.swift */; };
+		E14675BD1D98A840000567AC /* BE24SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675BC1D98A840000567AC /* BE24SideMenuController.swift */; };
+		E177E6FC1D98B84F00570B1D /* BE24MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */; };
+		E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +78,15 @@
 		E14675A91D97A980000567AC /* BE24AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AppManager.swift; sourceTree = "<group>"; };
 		E14675AB1D97A988000567AC /* BE24Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24Model.swift; sourceTree = "<group>"; };
 		E14675AD1D97A991000567AC /* BE24View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24View.swift; sourceTree = "<group>"; };
+		E14675B01D97B841000567AC /* BE24LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24LoginVC.swift; sourceTree = "<group>"; };
+		E14675B21D97F689000567AC /* UIViewController+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+BE24.swift"; sourceTree = "<group>"; };
+		E14675B41D97F6FC000567AC /* UIButton+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+BE24.swift"; sourceTree = "<group>"; };
+		E14675B51D97F6FC000567AC /* UITextField+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+BE24.swift"; sourceTree = "<group>"; };
+		E14675B61D97F6FC000567AC /* UIView+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BE24.swift"; sourceTree = "<group>"; };
+		E14675BA1D9811F1000567AC /* BE24RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24RequestManager.swift; sourceTree = "<group>"; };
+		E14675BC1D98A840000567AC /* BE24SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24SideMenuController.swift; sourceTree = "<group>"; };
+		E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MenuVC.swift; sourceTree = "<group>"; };
+		E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MenuCell.swift; sourceTree = "<group>"; };
 		ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -193,9 +211,10 @@
 		E146759E1D97A82D000567AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E14675A31D97A94A000567AC /* BE24NavigationController.swift */,
-				E14675A51D97A95D000567AC /* BE24ViewController.swift */,
-				E14675A71D97A972000567AC /* BE24TableViewController.swift */,
+				E14675AF1D97B830000567AC /* Base */,
+				E14675B01D97B841000567AC /* BE24LoginVC.swift */,
+				E14675BC1D98A840000567AC /* BE24SideMenuController.swift */,
+				E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -204,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				E14675A91D97A980000567AC /* BE24AppManager.swift */,
+				E14675BA1D9811F1000567AC /* BE24RequestManager.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -226,9 +246,32 @@
 		E14675A21D97A82D000567AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E14675AD1D97A991000567AC /* BE24View.swift */,
+				E177E6FD1D98B9C000570B1D /* Base */,
+				E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E14675AF1D97B830000567AC /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E14675B21D97F689000567AC /* UIViewController+BE24.swift */,
+				E14675A31D97A94A000567AC /* BE24NavigationController.swift */,
+				E14675A51D97A95D000567AC /* BE24ViewController.swift */,
+				E14675A71D97A972000567AC /* BE24TableViewController.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		E177E6FD1D98B9C000570B1D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E14675B41D97F6FC000567AC /* UIButton+BE24.swift */,
+				E14675B51D97F6FC000567AC /* UITextField+BE24.swift */,
+				E14675B61D97F6FC000567AC /* UIView+BE24.swift */,
+				E14675AD1D97A991000567AC /* BE24View.swift */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -494,12 +537,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E14675B31D97F689000567AC /* UIViewController+BE24.swift in Sources */,
 				E146756D1D97A788000567AC /* AppDelegate.swift in Sources */,
+				E14675B91D97F6FC000567AC /* UIView+BE24.swift in Sources */,
+				E14675BD1D98A840000567AC /* BE24SideMenuController.swift in Sources */,
+				E14675B11D97B841000567AC /* BE24LoginVC.swift in Sources */,
 				E14675AE1D97A991000567AC /* BE24View.swift in Sources */,
+				E177E6FC1D98B84F00570B1D /* BE24MenuVC.swift in Sources */,
 				E14675AC1D97A988000567AC /* BE24Model.swift in Sources */,
+				E14675BB1D9811F1000567AC /* BE24RequestManager.swift in Sources */,
 				E14675751D97A788000567AC /* Bethere24.xcdatamodeld in Sources */,
 				E14675A81D97A972000567AC /* BE24TableViewController.swift in Sources */,
+				E14675B81D97F6FC000567AC /* UITextField+BE24.swift in Sources */,
 				E14675A41D97A94A000567AC /* BE24NavigationController.swift in Sources */,
+				E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */,
+				E14675B71D97F6FC000567AC /* UIButton+BE24.swift in Sources */,
 				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,
 			);

@@ -1,3 +1,24 @@
-PODFILE CHECKSUM: 50a3382495d2de7ad17b98442436f667c34a1c32
+PODS:
+  - Alamofire (3.4.2)
+  - SideMenuController (0.1.6)
+  - SVProgressHUD (2.0.3)
+  - SwiftyJSON (2.3.2)
+  - UIColor_Hex_Swift (2.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - SideMenuController (~> 0.1.6)
+  - SVProgressHUD
+  - SwiftyJSON
+  - UIColor_Hex_Swift (~> 2.1)
+
+SPEC CHECKSUMS:
+  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
+  SideMenuController: 442d67af6d5892934065d42d5c1c3b7d5be4953e
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
+
+PODFILE CHECKSUM: c81eb3507524c48ece76c27c0cbcef63ad643950
 
 COCOAPODS: 1.0.1

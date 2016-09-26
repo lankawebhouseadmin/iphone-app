@@ -10,4 +10,9 @@ import UIKit
 
 class BE24ViewController: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setupLayout()
+    }
 }
