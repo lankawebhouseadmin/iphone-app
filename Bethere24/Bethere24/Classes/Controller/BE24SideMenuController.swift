@@ -22,6 +22,8 @@ class BE24SideMenuController: SideMenuController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.performSegueWithIdentifier(APPSEGUE_gotoMenuVC, sender: self)
+        self.performSegueWithIdentifier(APPSEGUE_gotoHealthSummaryVC, sender: self)
     }
     
     override func viewDidAppear(animated: Bool) {

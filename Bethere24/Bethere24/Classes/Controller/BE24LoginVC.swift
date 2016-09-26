@@ -18,9 +18,10 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSignin: UIButton!
     
     @IBAction func onPressSign(sender: AnyObject) {
-        if vaildUserInfo() {
-            
-        }
+//        if vaildUserInfo() {
+        
+//        }
+        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
     }
     
     private func vaildUserInfo() -> Bool {

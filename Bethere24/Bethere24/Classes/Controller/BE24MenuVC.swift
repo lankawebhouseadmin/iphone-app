@@ -10,32 +10,12 @@ import UIKit
 
 class BE24MenuVC: BE24TableViewController {
 
-    lazy var menuItems: [[String: String]] = {
-        var _menuItems = [
-            [
-                kMenuIconKeyName : "iconMenuHeart",
-                kMenuTitleKeyName : "Health Summary"
-            ],
-            [
-                kMenuIconKeyName : "iconMenuHealth",
-                kMenuTitleKeyName : "Health Score Details"
-            ],
-            [
-                kMenuIconKeyName : "iconMenuAlert",
-                kMenuTitleKeyName : "Alert Summary"
-            ],
-            [
-                kMenuIconKeyName : "iconMenuGraph",
-                kMenuTitleKeyName : "Historical Graphs"
-            ],
-            [
-                kMenuIconKeyName : "iconMenuContact",
-                kMenuTitleKeyName : "Contact Information"
-            ],
-
-        ]
-        return _menuItems
-    }()
+    private var menuItems: [[String: String]] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        menuItems = appManager().menuItems
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -48,5 +28,9 @@ class BE24MenuVC: BE24TableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.sideMenuController?.performSegueWithIdentifier(menuItems[indexPath.row][kMenuSegueKeyName]!, sender: self)
+    }
     
 }

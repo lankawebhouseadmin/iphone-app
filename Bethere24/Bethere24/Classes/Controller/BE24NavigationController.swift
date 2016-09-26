@@ -10,4 +10,9 @@ import UIKit
 
 class BE24NavigationController: UINavigationController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationBar.barTintColor = APPCOLOR.BACKGROUND_BLACK
+    }
 }
