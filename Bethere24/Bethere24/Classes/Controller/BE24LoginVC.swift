@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
+import SwiftyJSON
+import DKChainableAnimationKit
 
 class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
 
@@ -17,11 +20,35 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     @IBOutlet weak var btnForgotPassword: UIButton!
     @IBOutlet weak var btnSignin: UIButton!
     
-    @IBAction func onPressSign(sender: AnyObject) {
-//        if vaildUserInfo() {
+    override func setupLayout() {
+        super.setupLayout()
         
-//        }
-        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+        
+    }
+    
+    @IBAction func onPressSign(sender: AnyObject) {
+        if vaildUserInfo() {
+            SVProgressHUD.show()
+            requestManager().login(self.txtUsername.text!, password: self.txtPassword.text!, result: { (result: AnyObject?, error: NSError?) in
+                if result != nil {
+                    let json = JSON(result!)
+                    let message = json["message"].stringValue
+                    let success = json["success"].stringValue
+                    if success == "true" {
+                        let appManager = self.appManager()
+                        appManager.currentUser = BE24UserModel(data: json["data"])
+                        appManager.token = json["token"].stringValue
+                        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                    } else {
+                        self.showSimpleAlert("Error", Message: message, CloseButton: "Close", Completion: nil)
+                    }
+                } else {
+                    self.showSimpleAlert("Error", Message: error?.localizedDescription, CloseButton: "Close", Completion: nil)
+                }
+                SVProgressHUD.dismiss()
+            })
+        }
+//        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
     }
     
     private func vaildUserInfo() -> Bool {

@@ -10,4 +10,8 @@ import UIKit
 
 class BE24HealthSummaryVC: BE24MainBaseVC {
 
+    override func setupLayout() {
+        super.setupLayout()
+        self.pageType = .HealthSummary
+    }
 }

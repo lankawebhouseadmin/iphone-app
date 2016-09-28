@@ -52,6 +52,9 @@ class BE24AppManager: NSObject {
             ]
         return _menuItems
     }()
+    
+    var token: String?
+    var currentUser: BE24UserModel?
 
 }
 

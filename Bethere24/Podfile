@@ -5,12 +5,13 @@ target 'Bethere24' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-pod 'Alamofire'
+pod 'Alamofire', '~> 3.5.0'
 pod 'SVProgressHUD'
 pod 'SwiftyJSON'
 pod 'SideMenuController', '~> 0.1.6'
 pod 'UIColor_Hex_Swift', '~> 2.1'
 # pod 'KMPlaceholderTextView', '~> 1.2.2'
+pod 'DKChainableAnimationKit', '~> 1.6.1'
 
   # Pods for Bethere24
 

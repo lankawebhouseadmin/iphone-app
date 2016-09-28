@@ -32,6 +32,28 @@
 		E14675BD1D98A840000567AC /* BE24SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675BC1D98A840000567AC /* BE24SideMenuController.swift */; };
 		E177E6FC1D98B84F00570B1D /* BE24MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */; };
 		E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */; };
+		E177E7011D98CEF800570B1D /* BE24MainBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */; };
+		E177E7091D98D99600570B1D /* ENMBadgedBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7081D98D99600570B1D /* ENMBadgedBarButtonItem.swift */; };
+		E177E70B1D98DF7400570B1D /* BE24HealthSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E70A1D98DF7400570B1D /* BE24HealthSummaryVC.swift */; };
+		E177E70F1D98F0BE00570B1D /* BE24HealthScoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E70E1D98F0BE00570B1D /* BE24HealthScoreVC.swift */; };
+		E177E7111D98F0D500570B1D /* BE24AlertSummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7101D98F0D500570B1D /* BE24AlertSummaryVC.swift */; };
+		E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7121D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift */; };
+		E177E7151D98F0F600570B1D /* BE24ContactInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7141D98F0F600570B1D /* BE24ContactInfoVC.swift */; };
+		E177E7251D99083E00570B1D /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7171D99083E00570B1D /* Constraint.swift */; };
+		E177E7261D99083E00570B1D /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7181D99083E00570B1D /* ConstraintAttributes.swift */; };
+		E177E7271D99083E00570B1D /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7191D99083E00570B1D /* ConstraintDescription.swift */; };
+		E177E7281D99083E00570B1D /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E71A1D99083E00570B1D /* ConstraintItem.swift */; };
+		E177E7291D99083E00570B1D /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E71B1D99083E00570B1D /* ConstraintMaker.swift */; };
+		E177E72A1D99083E00570B1D /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E71C1D99083E00570B1D /* ConstraintRelation.swift */; };
+		E177E72B1D99083E00570B1D /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E71D1D99083E00570B1D /* Debugging.swift */; };
+		E177E72C1D99083E00570B1D /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E71E1D99083E00570B1D /* EdgeInsets.swift */; };
+		E177E72D1D99083E00570B1D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E177E71F1D99083E00570B1D /* Info.plist */; };
+		E177E72E1D99083E00570B1D /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7201D99083E00570B1D /* LayoutConstraint.swift */; };
+		E177E72F1D99083E00570B1D /* SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7221D99083E00570B1D /* SnapKit.swift */; };
+		E177E7301D99083E00570B1D /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7231D99083E00570B1D /* View+SnapKit.swift */; };
+		E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */; };
+		E182837B1D9AD74600E8363D /* BE24UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E182837A1D9AD74600E8363D /* BE24UserModel.swift */; };
+		E182837D1D9AE22300E8363D /* JSON+DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E182837C1D9AE22300E8363D /* JSON+DateTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +109,29 @@
 		E14675BC1D98A840000567AC /* BE24SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24SideMenuController.swift; sourceTree = "<group>"; };
 		E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MenuVC.swift; sourceTree = "<group>"; };
 		E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MenuCell.swift; sourceTree = "<group>"; };
+		E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MainBaseVC.swift; sourceTree = "<group>"; };
+		E177E7081D98D99600570B1D /* ENMBadgedBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENMBadgedBarButtonItem.swift; sourceTree = "<group>"; };
+		E177E70A1D98DF7400570B1D /* BE24HealthSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthSummaryVC.swift; sourceTree = "<group>"; };
+		E177E70E1D98F0BE00570B1D /* BE24HealthScoreVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthScoreVC.swift; sourceTree = "<group>"; };
+		E177E7101D98F0D500570B1D /* BE24AlertSummaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AlertSummaryVC.swift; sourceTree = "<group>"; };
+		E177E7121D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HistoricalGraphsVC.swift; sourceTree = "<group>"; };
+		E177E7141D98F0F600570B1D /* BE24ContactInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24ContactInfoVC.swift; sourceTree = "<group>"; };
+		E177E7171D99083E00570B1D /* Constraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		E177E7181D99083E00570B1D /* ConstraintAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAttributes.swift; sourceTree = "<group>"; };
+		E177E7191D99083E00570B1D /* ConstraintDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintDescription.swift; sourceTree = "<group>"; };
+		E177E71A1D99083E00570B1D /* ConstraintItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintItem.swift; sourceTree = "<group>"; };
+		E177E71B1D99083E00570B1D /* ConstraintMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
+		E177E71C1D99083E00570B1D /* ConstraintRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintRelation.swift; sourceTree = "<group>"; };
+		E177E71D1D99083E00570B1D /* Debugging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debugging.swift; sourceTree = "<group>"; };
+		E177E71E1D99083E00570B1D /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
+		E177E71F1D99083E00570B1D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E177E7201D99083E00570B1D /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
+		E177E7211D99083E00570B1D /* SnapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapKit.h; sourceTree = "<group>"; };
+		E177E7221D99083E00570B1D /* SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapKit.swift; sourceTree = "<group>"; };
+		E177E7231D99083E00570B1D /* View+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+SnapKit.swift"; sourceTree = "<group>"; };
+		E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
+		E182837A1D9AD74600E8363D /* BE24UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24UserModel.swift; sourceTree = "<group>"; };
+		E182837C1D9AE22300E8363D /* JSON+DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+DateTime.swift"; sourceTree = "<group>"; };
 		ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -212,9 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				E14675AF1D97B830000567AC /* Base */,
-				E14675B01D97B841000567AC /* BE24LoginVC.swift */,
-				E14675BC1D98A840000567AC /* BE24SideMenuController.swift */,
-				E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */,
+				E177E70C1D98F08C00570B1D /* Basic */,
+				E177E70D1D98F09900570B1D /* Main */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,6 +275,9 @@
 		E14675A01D97A82D000567AC /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E177E7161D99083E00570B1D /* Snapkit */,
+				E177E7081D98D99600570B1D /* ENMBadgedBarButtonItem.swift */,
+				E182837C1D9AE22300E8363D /* JSON+DateTime.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -239,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				E14675AB1D97A988000567AC /* BE24Model.swift */,
+				E182837A1D9AD74600E8363D /* BE24UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +320,50 @@
 				E14675AD1D97A991000567AC /* BE24View.swift */,
 			);
 			name = Base;
+			sourceTree = "<group>";
+		};
+		E177E70C1D98F08C00570B1D /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				E14675B01D97B841000567AC /* BE24LoginVC.swift */,
+				E14675BC1D98A840000567AC /* BE24SideMenuController.swift */,
+				E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */,
+			);
+			name = Basic;
+			sourceTree = "<group>";
+		};
+		E177E70D1D98F09900570B1D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */,
+				E177E70A1D98DF7400570B1D /* BE24HealthSummaryVC.swift */,
+				E177E70E1D98F0BE00570B1D /* BE24HealthScoreVC.swift */,
+				E177E7101D98F0D500570B1D /* BE24AlertSummaryVC.swift */,
+				E177E7121D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift */,
+				E177E7141D98F0F600570B1D /* BE24ContactInfoVC.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		E177E7161D99083E00570B1D /* Snapkit */ = {
+			isa = PBXGroup;
+			children = (
+				E177E7171D99083E00570B1D /* Constraint.swift */,
+				E177E7181D99083E00570B1D /* ConstraintAttributes.swift */,
+				E177E7191D99083E00570B1D /* ConstraintDescription.swift */,
+				E177E71A1D99083E00570B1D /* ConstraintItem.swift */,
+				E177E71B1D99083E00570B1D /* ConstraintMaker.swift */,
+				E177E71C1D99083E00570B1D /* ConstraintRelation.swift */,
+				E177E71D1D99083E00570B1D /* Debugging.swift */,
+				E177E71E1D99083E00570B1D /* EdgeInsets.swift */,
+				E177E71F1D99083E00570B1D /* Info.plist */,
+				E177E7201D99083E00570B1D /* LayoutConstraint.swift */,
+				E177E7211D99083E00570B1D /* SnapKit.h */,
+				E177E7221D99083E00570B1D /* SnapKit.swift */,
+				E177E7231D99083E00570B1D /* View+SnapKit.swift */,
+				E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */,
+			);
+			path = Snapkit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +479,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E177E72D1D99083E00570B1D /* Info.plist in Resources */,
 				E146757A1D97A788000567AC /* LaunchScreen.storyboard in Resources */,
 				E14675771D97A788000567AC /* Assets.xcassets in Resources */,
 				E14675721D97A788000567AC /* Main.storyboard in Resources */,
@@ -539,20 +632,41 @@
 			files = (
 				E14675B31D97F689000567AC /* UIViewController+BE24.swift in Sources */,
 				E146756D1D97A788000567AC /* AppDelegate.swift in Sources */,
+				E182837D1D9AE22300E8363D /* JSON+DateTime.swift in Sources */,
+				E177E7291D99083E00570B1D /* ConstraintMaker.swift in Sources */,
+				E177E70F1D98F0BE00570B1D /* BE24HealthScoreVC.swift in Sources */,
+				E177E70B1D98DF7400570B1D /* BE24HealthSummaryVC.swift in Sources */,
 				E14675B91D97F6FC000567AC /* UIView+BE24.swift in Sources */,
 				E14675BD1D98A840000567AC /* BE24SideMenuController.swift in Sources */,
+				E182837B1D9AD74600E8363D /* BE24UserModel.swift in Sources */,
 				E14675B11D97B841000567AC /* BE24LoginVC.swift in Sources */,
+				E177E7281D99083E00570B1D /* ConstraintItem.swift in Sources */,
 				E14675AE1D97A991000567AC /* BE24View.swift in Sources */,
+				E177E7151D98F0F600570B1D /* BE24ContactInfoVC.swift in Sources */,
 				E177E6FC1D98B84F00570B1D /* BE24MenuVC.swift in Sources */,
 				E14675AC1D97A988000567AC /* BE24Model.swift in Sources */,
+				E177E7261D99083E00570B1D /* ConstraintAttributes.swift in Sources */,
 				E14675BB1D9811F1000567AC /* BE24RequestManager.swift in Sources */,
 				E14675751D97A788000567AC /* Bethere24.xcdatamodeld in Sources */,
+				E177E72A1D99083E00570B1D /* ConstraintRelation.swift in Sources */,
 				E14675A81D97A972000567AC /* BE24TableViewController.swift in Sources */,
+				E177E72F1D99083E00570B1D /* SnapKit.swift in Sources */,
+				E177E7011D98CEF800570B1D /* BE24MainBaseVC.swift in Sources */,
 				E14675B81D97F6FC000567AC /* UITextField+BE24.swift in Sources */,
+				E177E7271D99083E00570B1D /* ConstraintDescription.swift in Sources */,
 				E14675A41D97A94A000567AC /* BE24NavigationController.swift in Sources */,
+				E177E72C1D99083E00570B1D /* EdgeInsets.swift in Sources */,
+				E177E72E1D99083E00570B1D /* LayoutConstraint.swift in Sources */,
+				E177E7091D98D99600570B1D /* ENMBadgedBarButtonItem.swift in Sources */,
+				E177E7301D99083E00570B1D /* View+SnapKit.swift in Sources */,
+				E177E72B1D99083E00570B1D /* Debugging.swift in Sources */,
+				E177E7111D98F0D500570B1D /* BE24AlertSummaryVC.swift in Sources */,
 				E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */,
 				E14675B71D97F6FC000567AC /* UIButton+BE24.swift in Sources */,
+				E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */,
 				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
+				E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */,
+				E177E7251D99083E00570B1D /* Constraint.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

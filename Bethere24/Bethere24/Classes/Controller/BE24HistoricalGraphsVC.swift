@@ -15,6 +15,13 @@ class BE24HistoricalGraphsVC: BE24MainBaseVC {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func setupLayout() {
+        super.setupLayout()
+        self.pageType = .HistoricalGraphs
+    }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

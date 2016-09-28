@@ -17,6 +17,12 @@ class BE24AlertSummaryVC: BE24MainBaseVC {
         // Do any additional setup after loading the view.
     }
 
+    override func setupLayout() {
+        super.setupLayout()
+        self.pageType = .AlertSummary
+    }
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

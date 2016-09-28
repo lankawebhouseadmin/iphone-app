@@ -10,47 +10,27 @@ import UIKit
 
 class BE24MainBaseVC: BE24TableViewController {
     
-    weak var titleView: BE24View!
     weak var lblTitle: UILabel!
     weak var imgPageIcon: UIImageView!
     
-    var pageType: PageType?
+    var pageType: PageType? {
+        didSet {
+            self.setPageTitle()
+        }
+    }
     
     override func setupLayout() {
         super.setupLayout()
         
         addCustomNavigationBar()
+        addCustomTitleView()
         
         self.tableView.allowsSelection = false
         self.tableView.backgroundColor = APPCOLOR.BACKGROUND_BLACK
         self.tableView.separatorStyle = .None
         
-        let _titleView = BE24View(frame: CGRectMake(0, 0, self.tableView.frame.size.width, 40))
         
-        let _lblTitle = UILabel()
-        _lblTitle.text = "Health Summary"
-        _lblTitle.font = UIFont.boldSystemFontOfSize(14)
-        _lblTitle.textColor = APPCOLOR.TEXTCOLOR_DARK
-        _titleView.addSubview(_lblTitle)
-        _lblTitle.snp_makeConstraints { (make) in
-            make.centerX.equalTo(30)
-            make.centerY.equalTo(0)
-        }
-        
-        let _imgPageIcon = UIImageView()
-        _titleView.addSubview(_imgPageIcon)
-        _imgPageIcon.snp_makeConstraints { (make) in
-            make.width.equalTo(_titleView.snp_height).offset(-10)
-            make.height.equalTo(_imgPageIcon.snp_width).offset(0)
-            make.centerY.equalTo(0)
-            make.right.equalTo(_titleView.snp_left).offset(15)
-        }
-        
-        self.titleView = _titleView
-        self.lblTitle = _lblTitle
-        self.imgPageIcon = _imgPageIcon
-        
-        self.setPageTitle()
+        //self.setPageTitle()
     }
     
     internal func addCustomNavigationBar() {
@@ -92,6 +72,36 @@ class BE24MainBaseVC: BE24TableViewController {
         self.navigationItem.rightBarButtonItems = [btnNotification, btnRefresh]
     }
     
+    internal func addCustomTitleView() {
+        let _titleView = BE24View(frame: CGRectMake(0, 0, self.tableView.frame.size.width, 40))
+        _titleView.backgroundColor = UIColor.whiteColor()
+        
+        let _lblTitle = UILabel()
+        _lblTitle.text = "Health Summary"
+        _lblTitle.font = UIFont.boldSystemFontOfSize(14)
+        _lblTitle.textColor = APPCOLOR.TEXTCOLOR_DARK
+        _titleView.addSubview(_lblTitle)
+        _lblTitle.snp_makeConstraints { (make) in
+            make.centerX.equalTo(20)
+            make.centerY.equalTo(0)
+        }
+        
+        let _imgPageIcon = UIImageView()
+        _titleView.addSubview(_imgPageIcon)
+        _imgPageIcon.snp_makeConstraints { (make) in
+            make.width.equalTo(_titleView.snp_height).offset(-10)
+            make.height.equalTo(_imgPageIcon.snp_width).offset(0)
+            make.centerY.equalTo(0)
+            make.right.equalTo(_lblTitle.snp_left).offset(-15)
+        }
+        
+        self.tableView.tableHeaderView = _titleView
+        
+        self.lblTitle = _lblTitle
+        self.imgPageIcon = _imgPageIcon
+
+    }
+    
     private func setPageTitle() {
         var pageInfo: [String: String]?
         switch pageType! {
@@ -125,6 +135,8 @@ class BE24MainBaseVC: BE24TableViewController {
     
     func onPressRefresh(sender: AnyObject) -> Void {
         print (#function)
+        print(self.imgPageIcon)
+        print (self.lblTitle)
     }
     
     func onPressNotification(sender: AnyObject) -> Void {

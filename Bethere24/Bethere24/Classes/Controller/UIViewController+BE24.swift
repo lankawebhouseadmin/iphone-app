@@ -42,7 +42,10 @@ extension UIViewController {
         return BE24AppManager.sharedManager
     }
     
-    
+    func requestManager() -> BE24RequestManager {
+        return BE24RequestManager.sharedManager
+    }
+
     func enableButton(button: UIButton) -> Void {
         button.enabled = true
         button.alpha = 1
