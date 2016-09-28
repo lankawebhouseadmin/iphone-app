@@ -14,16 +14,89 @@ import DKChainableAnimationKit
 class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
 
     @IBOutlet weak var imgLogo: UIImageView!
+//    var imgLogo: UIImageView!
     @IBOutlet weak var viewLogin: UIView!
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var btnForgotPassword: UIButton!
     @IBOutlet weak var btnSignin: UIButton!
     
+    /// Constraint
+    @IBOutlet weak var constraintHeightOfLogo: NSLayoutConstraint!
+    @IBOutlet weak var constraintTopOfLogo: NSLayoutConstraint!
+    @IBOutlet weak var constraintBottomSpaceForKeyboard: NSLayoutConstraint!
+    
+    private var didSetFrameOfLogo = false
+    
     override func setupLayout() {
         super.setupLayout()
         
+        let screenSize = UIScreen.mainScreen().bounds.size
+        self.constraintTopOfLogo.constant = -(screenSize.height * 0.5 * 0.3)
+        self.constraintHeightOfLogo.constant = 1
         
+        self.imgLogo.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        
+        self.viewLogin.alpha = 0
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animateLogo()
+    }
+    
+    private func animateLogo() {
+//        let screenSize = UIScreen.mainScreen().bounds.size
+//        let logoSize   = self.imgLogo.frame.size
+//        self.updateConstraintWithAnimate(true)
+        
+        self.constraintTopOfLogo.constant = 0
+        self.constraintHeightOfLogo.constant = 180
+
+        self.view.setNeedsUpdateConstraints()
+        UIView.animateWithDuration(1, animations: {
+            self.view.layoutIfNeeded()
+            self.imgLogo.transform = CGAffineTransformMakeScale(1, 1)
+
+        }) { (success: Bool) in
+            UIView.animateWithDuration(0.5, animations: {
+                self.viewLogin.alpha = 1
+            })
+
+        }
+//        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .CurveEaseOut, animations: {
+//            }, completion: { (complete) in
+//        })
+
+        /*
+        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseOut, animations: {
+            self.constraintTopOfLogo.constant = 0
+            self.constraintHeightOfLogo.constant = 180
+
+        }) { (success: Bool) in
+            UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseOut, animations: {
+                self.viewLogin.alpha = 1
+                
+            }) { (success: Bool) in
+                
+            }
+        } */
+    }
+    
+    override func keyboardWillShowRect(keyboardSize: CGSize) {
+        let bottomTextField = self.viewLogin.frame.origin.y + CGRectGetMaxY(self.txtPassword.frame) + 5
+        if bottomTextField > self.view.bounds.size.height - keyboardSize.height {
+            let dy = bottomTextField - (self.view.bounds.size.height - keyboardSize.height)
+            self.constraintBottomSpaceForKeyboard.constant = 40 + dy
+            self.updateConstraintWithAnimate(true)
+        }
+    }
+    
+    override func keyboardWillHideRect() {
+        self.constraintBottomSpaceForKeyboard.constant = 40
+        self.updateConstraintWithAnimate(true)
     }
     
     @IBAction func onPressSign(sender: AnyObject) {
@@ -69,7 +142,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     // MARK: UITextField delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.txtUsername {
-            self.btnForgotPassword.becomeFirstResponder()
+            self.txtPassword.becomeFirstResponder()
         } else if textField == self.txtPassword {
             self.txtPassword.resignFirstResponder()
             

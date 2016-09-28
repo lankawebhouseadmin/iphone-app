@@ -14,16 +14,9 @@ extension UIViewController {
 
 
     func setupLayout() -> Void {
-
-    }
-    
-    func keyboardWillShowRect(keyboardSize : CGSize) -> Void {
         
     }
     
-    func keyboardWillHideRect() -> Void {
-        
-    }
     
     func updateConstraintWithAnimate(animate: Bool) -> Void {
         if animate == true {
