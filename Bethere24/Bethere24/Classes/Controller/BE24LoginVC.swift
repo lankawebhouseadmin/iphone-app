@@ -28,6 +28,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     
     private var didSetFrameOfLogo = false
     
+    // MARK: - Life cycle
     override func setupLayout() {
         super.setupLayout()
         
@@ -48,9 +49,6 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     }
     
     private func animateLogo() {
-//        let screenSize = UIScreen.mainScreen().bounds.size
-//        let logoSize   = self.imgLogo.frame.size
-//        self.updateConstraintWithAnimate(true)
         
         self.constraintTopOfLogo.constant = 0
         self.constraintHeightOfLogo.constant = 180
@@ -66,23 +64,12 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
             })
 
         }
-//        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .CurveEaseOut, animations: {
-//            }, completion: { (complete) in
-//        })
-
-        /*
-        UIView.animateWithDuration(1, delay: 0, options: .CurveEaseOut, animations: {
-            self.constraintTopOfLogo.constant = 0
-            self.constraintHeightOfLogo.constant = 180
-
-        }) { (success: Bool) in
-            UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseOut, animations: {
-                self.viewLogin.alpha = 1
-                
-            }) { (success: Bool) in
-                
-            }
-        } */
+    }
+    
+    // MARK: - Override 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        self.view.endEditing(true)
     }
     
     override func keyboardWillShowRect(keyboardSize: CGSize) {
@@ -99,6 +86,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         self.updateConstraintWithAnimate(true)
     }
     
+    // MARK: - Login
     @IBAction func onPressSign(sender: AnyObject) {
         if vaildUserInfo() {
             SVProgressHUD.show()
@@ -139,13 +127,13 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         return true
     }
     
-    // MARK: UITextField delegate
+    // MARK: - UITextField delegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.txtUsername {
             self.txtPassword.becomeFirstResponder()
         } else if textField == self.txtPassword {
             self.txtPassword.resignFirstResponder()
-            
+            self.onPressSign(self.btnSignin)
         }
         return true
     }
