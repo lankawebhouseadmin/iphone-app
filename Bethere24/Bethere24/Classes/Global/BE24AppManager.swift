@@ -83,7 +83,7 @@ class BE24AppManager: NSObject {
             ],
             [
                 kMenuTitleKeyName : "Away From Home",
-                kMenuIconKeyName  : "iconAeayFromHome",
+                kMenuIconKeyName  : "iconAwayFromHome",
                 kMenuColorKeyName : "#da521d",
             ],
             [

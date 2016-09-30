@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BE24HealthSummaryVC: BE24HealthBaseVC {
+class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
 
     @IBOutlet weak var viewMainPieCircle: BE24PieCircleView!
     @IBOutlet weak var btnHealthScoreDetail: UIButton!
@@ -18,7 +18,15 @@ class BE24HealthSummaryVC: BE24HealthBaseVC {
     override func setupLayout() {
         super.setupLayout()
         self.pageType = .HealthSummary
-        
+        self.viewMainPieCircle.delegate = self
     }
     
+    // MARK: - BE24PieCirlceView delegate
+    func pieCircleView(view: BE24PieCircleView, selectedIndex: Int) {
+        print (selectedIndex)
+    }
+    
+    func pieCircleView(view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int {
+        return random() % 11
+    }
 }
