@@ -61,7 +61,7 @@ class BE24MainBaseVC: BE24TableViewController {
         
         let btnNotificationBody = UIButton(type: .Custom)
         btnNotificationBody.setImage(UIImage(named: "iconAlert"), forState: .Normal)
-        btnNotificationBody.frame = CGRectMake(0, 0, 40, 40)
+        btnNotificationBody.frame = CGRectMake(0, 0, 30, 40)
         btnNotificationBody.addTarget(self, action: #selector(self.onPressNotification(_:)), forControlEvents: .TouchUpInside)
         
         let btnNotification = ENMBadgedBarButtonItem(customView: btnNotificationBody, value: "3")
@@ -69,6 +69,7 @@ class BE24MainBaseVC: BE24TableViewController {
         btnNotification.badgeTextColor = UIColor.whiteColor()
         btnNotification.badgeValue = "2"
 //        btnNotificationBody.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
+        
         self.navigationItem.rightBarButtonItems = [btnNotification, btnRefresh]
     }
     

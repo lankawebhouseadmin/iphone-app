@@ -54,6 +54,8 @@
 		E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */; };
 		E182837B1D9AD74600E8363D /* BE24UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E182837A1D9AD74600E8363D /* BE24UserModel.swift */; };
 		E182837D1D9AE22300E8363D /* JSON+DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E182837C1D9AE22300E8363D /* JSON+DateTime.swift */; };
+		E186EFA41D9DEAFB0038207B /* BE24PieCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */; };
+		E186EFA61D9E02FA0038207B /* BE24HealthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		E182837A1D9AD74600E8363D /* BE24UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24UserModel.swift; sourceTree = "<group>"; };
 		E182837C1D9AE22300E8363D /* JSON+DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+DateTime.swift"; sourceTree = "<group>"; };
+		E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieCircleView.swift; sourceTree = "<group>"; };
+		E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthBaseVC.swift; sourceTree = "<group>"; };
 		ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -296,6 +300,7 @@
 			children = (
 				E177E6FD1D98B9C000570B1D /* Base */,
 				E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */,
+				E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */,
+				E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */,
 				E177E70A1D98DF7400570B1D /* BE24HealthSummaryVC.swift */,
 				E177E70E1D98F0BE00570B1D /* BE24HealthScoreVC.swift */,
 				E177E7101D98F0D500570B1D /* BE24AlertSummaryVC.swift */,
@@ -638,6 +644,7 @@
 				E177E70B1D98DF7400570B1D /* BE24HealthSummaryVC.swift in Sources */,
 				E14675B91D97F6FC000567AC /* UIView+BE24.swift in Sources */,
 				E14675BD1D98A840000567AC /* BE24SideMenuController.swift in Sources */,
+				E186EFA61D9E02FA0038207B /* BE24HealthBaseVC.swift in Sources */,
 				E182837B1D9AD74600E8363D /* BE24UserModel.swift in Sources */,
 				E14675B11D97B841000567AC /* BE24LoginVC.swift in Sources */,
 				E177E7281D99083E00570B1D /* ConstraintItem.swift in Sources */,
@@ -651,6 +658,7 @@
 				E177E72A1D99083E00570B1D /* ConstraintRelation.swift in Sources */,
 				E14675A81D97A972000567AC /* BE24TableViewController.swift in Sources */,
 				E177E72F1D99083E00570B1D /* SnapKit.swift in Sources */,
+				E186EFA41D9DEAFB0038207B /* BE24PieCircleView.swift in Sources */,
 				E177E7011D98CEF800570B1D /* BE24MainBaseVC.swift in Sources */,
 				E14675B81D97F6FC000567AC /* UITextField+BE24.swift in Sources */,
 				E177E7271D99083E00570B1D /* ConstraintDescription.swift in Sources */,

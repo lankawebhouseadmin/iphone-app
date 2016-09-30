@@ -8,10 +8,17 @@
 
 import UIKit
 
-class BE24HealthSummaryVC: BE24MainBaseVC {
+class BE24HealthSummaryVC: BE24HealthBaseVC {
 
+    @IBOutlet weak var viewMainPieCircle: BE24PieCircleView!
+    @IBOutlet weak var btnHealthScoreDetail: UIButton!
+    @IBOutlet weak var btnHistoricalGraphs: UIButton!
+    @IBOutlet weak var btnAlert: UIButton!
+    
     override func setupLayout() {
         super.setupLayout()
         self.pageType = .HealthSummary
+        
     }
+    
 }
