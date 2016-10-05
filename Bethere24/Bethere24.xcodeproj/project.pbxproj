@@ -57,6 +57,8 @@
 		E186EFA41D9DEAFB0038207B /* BE24PieCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */; };
 		E186EFA61D9E02FA0038207B /* BE24HealthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */; };
 		E186EFA81D9E38410038207B /* Math+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA71D9E38410038207B /* Math+BE24.swift */; };
+		E1F1FBC91DA35F40007AA0A0 /* BE24PieBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBC81DA35F40007AA0A0 /* BE24PieBaseView.swift */; };
+		E1F1FBCE1DA50DAC007AA0A0 /* BE24PieClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBCD1DA50DAC007AA0A0 /* BE24PieClockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,8 @@
 		E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieCircleView.swift; sourceTree = "<group>"; };
 		E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthBaseVC.swift; sourceTree = "<group>"; };
 		E186EFA71D9E38410038207B /* Math+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math+BE24.swift"; sourceTree = "<group>"; };
+		E1F1FBC81DA35F40007AA0A0 /* BE24PieBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieBaseView.swift; sourceTree = "<group>"; };
+		E1F1FBCD1DA50DAC007AA0A0 /* BE24PieClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieClockView.swift; sourceTree = "<group>"; };
 		ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -303,7 +307,7 @@
 			children = (
 				E177E6FD1D98B9C000570B1D /* Base */,
 				E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */,
-				E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */,
+				E1F1FBCF1DA50DB7007AA0A0 /* Pie */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +377,16 @@
 				E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */,
 			);
 			path = Snapkit;
+			sourceTree = "<group>";
+		};
+		E1F1FBCF1DA50DB7007AA0A0 /* Pie */ = {
+			isa = PBXGroup;
+			children = (
+				E1F1FBC81DA35F40007AA0A0 /* BE24PieBaseView.swift */,
+				E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */,
+				E1F1FBCD1DA50DAC007AA0A0 /* BE24PieClockView.swift */,
+			);
+			name = Pie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -640,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E14675B31D97F689000567AC /* UIViewController+BE24.swift in Sources */,
+				E1F1FBC91DA35F40007AA0A0 /* BE24PieBaseView.swift in Sources */,
 				E146756D1D97A788000567AC /* AppDelegate.swift in Sources */,
 				E182837D1D9AE22300E8363D /* JSON+DateTime.swift in Sources */,
 				E177E7291D99083E00570B1D /* ConstraintMaker.swift in Sources */,
@@ -675,6 +690,7 @@
 				E177E7111D98F0D500570B1D /* BE24AlertSummaryVC.swift in Sources */,
 				E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */,
 				E14675B71D97F6FC000567AC /* UIButton+BE24.swift in Sources */,
+				E1F1FBCE1DA50DAC007AA0A0 /* BE24PieClockView.swift in Sources */,
 				E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */,
 				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
 				E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */,

@@ -29,4 +29,8 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     func pieCircleView(view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int {
         return random() % 11
     }
+    
+    override func graphCellIndex() -> Int {
+        return 1
+    }
 }

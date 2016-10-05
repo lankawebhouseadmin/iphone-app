@@ -38,13 +38,16 @@ class BE24HealthBaseVC: BE24MainBaseVC {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 1 {
+        if indexPath.row == graphCellIndex() {
             return UIScreen.mainScreen().bounds.size.width
         } else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }
     }
 
+    internal func graphCellIndex() -> Int {
+        return 100
+    }
 
     /*
     // MARK: - Navigation

@@ -143,4 +143,5 @@ class BE24MainBaseVC: BE24TableViewController {
     func onPressNotification(sender: AnyObject) -> Void {
         print (#function)
     }
+    
 }

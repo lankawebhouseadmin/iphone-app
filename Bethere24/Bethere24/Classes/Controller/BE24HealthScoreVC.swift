@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BE24HealthScoreVC: BE24MainBaseVC {
+class BE24HealthScoreVC: BE24HealthBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,9 @@ class BE24HealthScoreVC: BE24MainBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
+    override func graphCellIndex() -> Int {
+        return 2
+    }
 
     /*
     // MARK: - Navigation
