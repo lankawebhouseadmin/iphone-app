@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (3.5.0)
+  - Charts (2.2.5):
+    - Charts/Core (= 2.2.5)
+  - Charts/Core (2.2.5)
   - DKChainableAnimationKit (1.6.1)
   - SideMenuController (0.1.6)
   - SVProgressHUD (2.0.3)
@@ -8,6 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.0)
+  - Charts (~> 2.2.5)
   - DKChainableAnimationKit (~> 1.6.1)
   - SideMenuController (~> 0.1.6)
   - SVProgressHUD
@@ -16,12 +20,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
   DKChainableAnimationKit: e4e605d253ee153cb600efa68f8c97ed118122a7
   SideMenuController: 442d67af6d5892934065d42d5c1c3b7d5be4953e
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UIColor_Hex_Swift: e91dc51f6bf252ec7bf74c8704ceedeeb7640c1c
 
-PODFILE CHECKSUM: a193547f37f8c4423539af9fcf3ab250d2a057e8
+PODFILE CHECKSUM: baf78902ca29b1e104b9193212d9c3ed43aca182
 
 COCOAPODS: 1.0.1
