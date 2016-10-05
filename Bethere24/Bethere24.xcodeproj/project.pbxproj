@@ -59,6 +59,9 @@
 		E186EFA81D9E38410038207B /* Math+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA71D9E38410038207B /* Math+BE24.swift */; };
 		E1F1FBC91DA35F40007AA0A0 /* BE24PieBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBC81DA35F40007AA0A0 /* BE24PieBaseView.swift */; };
 		E1F1FBCE1DA50DAC007AA0A0 /* BE24PieClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBCD1DA50DAC007AA0A0 /* BE24PieClockView.swift */; };
+		E1F1FBD11DA51727007AA0A0 /* BE24TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBD01DA51727007AA0A0 /* BE24TableViewCell.swift */; };
+		E1F1FBD31DA51739007AA0A0 /* BE24AlertHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBD21DA51739007AA0A0 /* BE24AlertHeaderCell.swift */; };
+		E1F1FBD51DA518D2007AA0A0 /* BE24AlertContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1FBD41DA518D2007AA0A0 /* BE24AlertContentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +145,9 @@
 		E186EFA71D9E38410038207B /* Math+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math+BE24.swift"; sourceTree = "<group>"; };
 		E1F1FBC81DA35F40007AA0A0 /* BE24PieBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieBaseView.swift; sourceTree = "<group>"; };
 		E1F1FBCD1DA50DAC007AA0A0 /* BE24PieClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieClockView.swift; sourceTree = "<group>"; };
+		E1F1FBD01DA51727007AA0A0 /* BE24TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24TableViewCell.swift; sourceTree = "<group>"; };
+		E1F1FBD21DA51739007AA0A0 /* BE24AlertHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AlertHeaderCell.swift; sourceTree = "<group>"; };
+		E1F1FBD41DA518D2007AA0A0 /* BE24AlertContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AlertContentCell.swift; sourceTree = "<group>"; };
 		ECAE50F4AA0B22D0308C71A4 /* Pods-Bethere24UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24UITests/Pods-Bethere24UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bethere24Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -308,6 +314,9 @@
 				E177E6FD1D98B9C000570B1D /* Base */,
 				E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */,
 				E1F1FBCF1DA50DB7007AA0A0 /* Pie */,
+				E1F1FBD01DA51727007AA0A0 /* BE24TableViewCell.swift */,
+				E1F1FBD21DA51739007AA0A0 /* BE24AlertHeaderCell.swift */,
+				E1F1FBD41DA518D2007AA0A0 /* BE24AlertContentCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -667,6 +676,8 @@
 				E14675B11D97B841000567AC /* BE24LoginVC.swift in Sources */,
 				E177E7281D99083E00570B1D /* ConstraintItem.swift in Sources */,
 				E14675AE1D97A991000567AC /* BE24View.swift in Sources */,
+				E1F1FBD31DA51739007AA0A0 /* BE24AlertHeaderCell.swift in Sources */,
+				E1F1FBD11DA51727007AA0A0 /* BE24TableViewCell.swift in Sources */,
 				E177E7151D98F0F600570B1D /* BE24ContactInfoVC.swift in Sources */,
 				E186EFA81D9E38410038207B /* Math+BE24.swift in Sources */,
 				E177E6FC1D98B84F00570B1D /* BE24MenuVC.swift in Sources */,
@@ -694,6 +705,7 @@
 				E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */,
 				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
 				E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */,
+				E1F1FBD51DA518D2007AA0A0 /* BE24AlertContentCell.swift in Sources */,
 				E177E7251D99083E00570B1D /* Constraint.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,
 			);
