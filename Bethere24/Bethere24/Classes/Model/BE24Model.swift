@@ -7,7 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class BE24Model: NSObject {
 
+    var id: Int = 0
+    
+    init(data: JSON) {
+        super.init()
+        id = data["id"].intValue
+    }
 }

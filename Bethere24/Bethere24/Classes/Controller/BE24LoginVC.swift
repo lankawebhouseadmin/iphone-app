@@ -99,7 +99,21 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
                         let appManager = self.appManager()
                         appManager.currentUser = BE24UserModel(data: json["data"])
                         appManager.token = json["token"].stringValue
-                        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                        
+                        self.requestManager().getData(appManager.currentUser!.id, token: appManager.token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
+                            if result != nil {
+                                appManager.stateData = result!
+                                
+                                self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                                
+                            } else {
+                                self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: { 
+                                    
+                                })
+                            }
+                            SVProgressHUD.dismiss()
+                        })
+                        return
                     } else {
                         self.showSimpleAlert("Error", Message: message, CloseButton: "Close", Completion: nil)
                     }

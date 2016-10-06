@@ -102,7 +102,8 @@ class BE24AppManager: NSObject {
     
     var token: String?
     var currentUser: BE24UserModel?
-
+    var stateData : [BE24LocationModel]?
+    
 }
 
 enum PageType {

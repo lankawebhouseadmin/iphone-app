@@ -21,8 +21,8 @@ class BE24UserModel: BE24Model {
     var apiKey: String?
     var loginTime: NSDate?
     
-    init(data: JSON) {
-        super.init()
+    override init(data: JSON) {
+        super.init(data: data)
         username    = data["username"].string
         gender      = data["gender"].string
         firstName   = data["firstname"].string
