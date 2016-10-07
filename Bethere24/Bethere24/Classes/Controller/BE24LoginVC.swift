@@ -40,6 +40,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         
         self.viewLogin.alpha = 0
         
+        self.login("rachel_stern", password: "rachel1234")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -89,41 +90,48 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     // MARK: - Login
     @IBAction func onPressSign(sender: AnyObject) {
         if vaildUserInfo() {
-            SVProgressHUD.show()
-            requestManager().login(self.txtUsername.text!, password: self.txtPassword.text!, result: { (result: AnyObject?, error: NSError?) in
-                if result != nil {
-                    let json = JSON(result!)
-                    let message = json["message"].stringValue
-                    let success = json["success"].stringValue
-                    if success == "true" {
-                        let appManager = self.appManager()
-                        appManager.currentUser = BE24UserModel(data: json["data"])
-                        appManager.token = json["token"].stringValue
-                        
-                        self.requestManager().getData(appManager.currentUser!.id, token: appManager.token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
-                            if result != nil {
-                                appManager.stateData = result!
-                                
-                                self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
-                                
-                            } else {
-                                self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: { 
-                                    
-                                })
-                            }
-                            SVProgressHUD.dismiss()
-                        })
-                        return
-                    } else {
-                        self.showSimpleAlert("Error", Message: message, CloseButton: "Close", Completion: nil)
-                    }
-                } else {
-                    self.showSimpleAlert("Error", Message: error?.localizedDescription, CloseButton: "Close", Completion: nil)
-                }
-                SVProgressHUD.dismiss()
-            })
+            login(self.txtUsername.text!, password: self.txtPassword.text!)
         }
 //        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+    }
+    
+    private func login(username: String, password: String) {
+        SVProgressHUD.show()
+        requestManager().login(username, password: password, result: { (result: AnyObject?, error: NSError?) in
+            if result != nil {
+                let json = JSON(result!)
+                let message = json["message"].stringValue
+                let success = json["success"].stringValue
+                if success == "true" {
+                    let appManager = self.appManager()
+                    appManager.currentUser = BE24UserModel(data: json["data"])
+                    appManager.token = json["token"].stringValue
+                    
+                    print ("userID : " + String(appManager.currentUser!.id) + "  <:::>  " + "token : " + appManager.token!)
+                    
+                    self.requestManager().getData(appManager.currentUser!.id, token: appManager.token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
+                        if result != nil {
+                            appManager.stateData = result!
+                            
+                            self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                            
+                        } else {
+                            self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: {
+                                
+                            })
+                        }
+                        SVProgressHUD.dismiss()
+                    })
+                    return
+                } else {
+                    self.showSimpleAlert("Error", Message: message, CloseButton: "Close", Completion: nil)
+                }
+            } else {
+                self.showSimpleAlert("Error", Message: error?.localizedDescription, CloseButton: "Close", Completion: nil)
+            }
+            SVProgressHUD.dismiss()
+        })
+
     }
     
     private func vaildUserInfo() -> Bool {

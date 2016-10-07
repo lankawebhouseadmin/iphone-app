@@ -9,7 +9,7 @@
 
 import UIKit
 
-class BE24AlertSummaryVC: BE24MainBaseVC {
+class BE24AlertSummaryVC: BE24StateBaseVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class BE24HistoricalGraphsVC: BE24MainBaseVC, ChartViewDelegate {
+class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate {
 
     @IBOutlet weak var imgHealthCategory: UIImageView!
     @IBOutlet weak var lblHealthCategory: UILabel!

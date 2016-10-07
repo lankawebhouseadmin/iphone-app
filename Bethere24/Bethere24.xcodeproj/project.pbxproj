@@ -54,6 +54,9 @@
 		E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */; };
 		E182837B1D9AD74600E8363D /* BE24UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E182837A1D9AD74600E8363D /* BE24UserModel.swift */; };
 		E182837D1D9AE22300E8363D /* JSON+DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E182837C1D9AE22300E8363D /* JSON+DateTime.swift */; };
+		E183BCFC1DA7AF1D004B5418 /* BE24BranchFromState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183BCFB1DA7AF1D004B5418 /* BE24BranchFromState.swift */; };
+		E183BCFE1DA7B849004B5418 /* BE24StateGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183BCFD1DA7B849004B5418 /* BE24StateGroupModel.swift */; };
+		E183BD001DA7D3BD004B5418 /* BE24StateBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E183BCFF1DA7D3BD004B5418 /* BE24StateBaseVC.swift */; };
 		E186EFA41D9DEAFB0038207B /* BE24PieCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */; };
 		E186EFA61D9E02FA0038207B /* BE24HealthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */; };
 		E186EFA81D9E38410038207B /* Math+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA71D9E38410038207B /* Math+BE24.swift */; };
@@ -143,6 +146,9 @@
 		E177E7241D99083E00570B1D /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		E182837A1D9AD74600E8363D /* BE24UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24UserModel.swift; sourceTree = "<group>"; };
 		E182837C1D9AE22300E8363D /* JSON+DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+DateTime.swift"; sourceTree = "<group>"; };
+		E183BCFB1DA7AF1D004B5418 /* BE24BranchFromState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24BranchFromState.swift; sourceTree = "<group>"; };
+		E183BCFD1DA7B849004B5418 /* BE24StateGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24StateGroupModel.swift; sourceTree = "<group>"; };
+		E183BCFF1DA7D3BD004B5418 /* BE24StateBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24StateBaseVC.swift; sourceTree = "<group>"; };
 		E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieCircleView.swift; sourceTree = "<group>"; };
 		E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthBaseVC.swift; sourceTree = "<group>"; };
 		E186EFA71D9E38410038207B /* Math+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math+BE24.swift"; sourceTree = "<group>"; };
@@ -311,8 +317,10 @@
 				E14675AB1D97A988000567AC /* BE24Model.swift */,
 				E182837A1D9AD74600E8363D /* BE24UserModel.swift */,
 				E1E52FA51DA6ABD300C2111A /* BE24StateModel.swift */,
+				E183BCFD1DA7B849004B5418 /* BE24StateGroupModel.swift */,
 				E1E52FA71DA6AD2F00C2111A /* BE24AlertModel.swift */,
 				E1E52FA91DA6DA9700C2111A /* BE24LocationModel.swift */,
+				E183BCFB1DA7AF1D004B5418 /* BE24BranchFromState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */,
+				E183BCFF1DA7D3BD004B5418 /* BE24StateBaseVC.swift */,
 				E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */,
 				E177E70A1D98DF7400570B1D /* BE24HealthSummaryVC.swift */,
 				E177E70E1D98F0BE00570B1D /* BE24HealthScoreVC.swift */,
@@ -675,6 +684,7 @@
 				E1F1FBC91DA35F40007AA0A0 /* BE24PieBaseView.swift in Sources */,
 				E146756D1D97A788000567AC /* AppDelegate.swift in Sources */,
 				E182837D1D9AE22300E8363D /* JSON+DateTime.swift in Sources */,
+				E183BCFC1DA7AF1D004B5418 /* BE24BranchFromState.swift in Sources */,
 				E177E7291D99083E00570B1D /* ConstraintMaker.swift in Sources */,
 				E1E52FA81DA6AD2F00C2111A /* BE24AlertModel.swift in Sources */,
 				E177E70F1D98F0BE00570B1D /* BE24HealthScoreVC.swift in Sources */,
@@ -712,6 +722,7 @@
 				E177E72B1D99083E00570B1D /* Debugging.swift in Sources */,
 				E177E7111D98F0D500570B1D /* BE24AlertSummaryVC.swift in Sources */,
 				E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */,
+				E183BCFE1DA7B849004B5418 /* BE24StateGroupModel.swift in Sources */,
 				E14675B71D97F6FC000567AC /* UIButton+BE24.swift in Sources */,
 				E1F1FBCE1DA50DAC007AA0A0 /* BE24PieClockView.swift in Sources */,
 				E177E7311D99083E00570B1D /* ViewController+SnapKit.swift in Sources */,
@@ -719,6 +730,7 @@
 				E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */,
 				E1F1FBD51DA518D2007AA0A0 /* BE24AlertContentCell.swift in Sources */,
 				E177E7251D99083E00570B1D /* Constraint.swift in Sources */,
+				E183BD001DA7D3BD004B5418 /* BE24StateBaseVC.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

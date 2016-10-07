@@ -102,7 +102,15 @@ class BE24AppManager: NSObject {
     
     var token: String?
     var currentUser: BE24UserModel?
-    var stateData : [BE24LocationModel]?
+    var stateData : [BE24LocationModel]? {
+        didSet {
+            
+        }
+    }
+    
+    private func analyticsData() {
+        
+    }
     
 }
 
@@ -113,6 +121,18 @@ enum PageType {
     case HistoricalGraphs
     case ContactInfo
     case None
+}
+
+enum HealthType: String {
+    case InBathroom         = "in_bathroom"
+    case WithVisitors       = "with_visitors"
+    case InDining           = "in_dining"
+    case InMotion           = "in_motion"
+    case InBedroom          = "sleeping"
+    case AwayFromHome       = "away_from_home"
+    case InRecliner         = "in_recliner"
+    case TakingMedication   = "medication"
+    case Other              = "other"
 }
 
 struct APPCOLOR {
@@ -128,6 +148,14 @@ struct APPCOLOR {
     static let TakingMedication = UIColor(rgba: "#3d00a3")
 }
 
+struct DATE_FORMATTER {
+    static let Default: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/d - eee."
+        return dateFormatter
+    }()
+}
+
 let kMenuIconKeyName            = "icon"
 let kMenuTitleKeyName           = "name"
 let kMenuSegueKeyName           = "segue"
@@ -140,3 +168,5 @@ let APPSEGUE_gotoHealthScoreVC      = "gotoHealthScoreVC"
 let APPSEGUE_gotoAlertSummaryVC     = "gotoAlertSummaryVC"
 let APPSEGUE_gotoHistoricalGraphsVC = "gototHistoricalGraphsVC"
 let APPSEGUE_gotoContactInfoVC      = "gotoContactInfoVC"
+
+

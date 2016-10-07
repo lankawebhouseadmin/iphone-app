@@ -50,7 +50,7 @@ class BE24PieCircleView: BE24PieBaseView {
 
         /// Draw border
         var start:CGFloat = -(twoPI / 16 + twoPI / 4);
-        let borderDt: CGFloat = 0.028
+        let borderDt: CGFloat = 0.02
         //starting point for all drawing code is getting the context.
         let context = UIGraphicsGetCurrentContext()
         //set colorspace
@@ -78,7 +78,11 @@ class BE24PieCircleView: BE24PieBaseView {
             }
             CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
             CGContextSetLineWidth(context, arcWidth * 0.8 )
-            CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end + borderDt, 0)
+            if index == 7 {
+                CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end - borderDt, 0)
+            } else {
+                CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end + borderDt, 0)
+            }
             CGContextStrokePath(context)
             
             start = end
@@ -132,6 +136,7 @@ class BE24PieCircleView: BE24PieBaseView {
             
             borderColor = self.colorForScore(score)
             
+            delegate!.pieCircleView(self, selectedIndex: selectedIndex)
         } else {
             borderColor = self.colorForScore(0)
         }
@@ -142,6 +147,7 @@ class BE24PieCircleView: BE24PieBaseView {
         UIView.animateWithDuration(0.3) { 
             self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
         }
+        
     }
     
     func nextSelect(step: Int = 1) -> Void {

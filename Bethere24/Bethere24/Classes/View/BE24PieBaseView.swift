@@ -85,7 +85,7 @@ class BE24PieBaseView: BE24View {
     
     internal func colorForScore(score: Int) -> UIColor {
         var colorValueIndex = 0
-        if 3 < score && score <= 7 {
+        if 2 < score && score <= 7 {
             colorValueIndex = 1
         } else if 7 < score {
             colorValueIndex = 2
@@ -97,9 +97,9 @@ class BE24PieBaseView: BE24View {
     internal func scoreValueAndName(score: Int) -> (String?, String?) {
         if score == 0 {
             return ("-", nil)
-        } else if 0 < score && score <= 3 {
+        } else if 0 < score && score <= 2 {
             return (String(score), "Poor")
-        } else if 3 < score && score <= 7 {
+        } else if 2 < score && score <= 7 {
             return (String(score), "Good")
         } else {
             return (String(score), "Very good")

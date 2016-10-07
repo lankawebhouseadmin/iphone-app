@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class BE24LocationModel: BE24Model {
 
+    /// API result fields
     var personID        : Int!
     var locationType    : String!
     var address         : String?
@@ -21,6 +22,7 @@ class BE24LocationModel: BE24Model {
     var virtualDayStart : String?
     var alert           : [BE24AlertModel]?
     
+
     override init(data: JSON) {
         super.init(data: data)
         personID        = data["person"].intValue
@@ -35,5 +37,11 @@ class BE24LocationModel: BE24Model {
         data["alert"].arrayValue.forEach { (elem: JSON) in
             self.alert?.append(BE24AlertModel(data: elem))
         }
+        
+        branchState()
+    }
+    
+    private func branchState() -> Void {
+        
     }
 }

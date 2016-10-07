@@ -8,22 +8,26 @@
 
 import UIKit
 
-class BE24HealthBaseVC: BE24MainBaseVC {
+class BE24HealthBaseVC: BE24StateBaseVC {
 
-    @IBOutlet weak var btnLeftDate: UIButton!
-    @IBOutlet weak var btnRightDate: UIButton!
-    @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var viewDetailBox: UIView!
-    @IBOutlet weak var imgHealthIcon: UIImageView!
-    @IBOutlet weak var lblHealthTitle: UILabel!
-    @IBOutlet weak var lblTimes: UILabel!
-    @IBOutlet weak var btnLeftHealthCategory: UIButton!
-    @IBOutlet weak var btnRightHealthCategory: UIButton!
+    @IBOutlet weak var lblDate                  : UILabel!
+    @IBOutlet weak var lblHealthTitle           : UILabel!
+    @IBOutlet weak var lblTimes                 : UILabel!
+    @IBOutlet weak var lblHealthDetail          : UILabel!
+    @IBOutlet weak var viewDetailBox            : UIView!
+    @IBOutlet weak var imgHealthIcon            : UIImageView!
+    @IBOutlet weak var btnLeftDate              : UIButton!
+    @IBOutlet weak var btnRightDate             : UIButton!
+    @IBOutlet weak var btnLeftHealthCategory    : UIButton!
+    @IBOutlet weak var btnRightHealthCategory   : UIButton!
 
+    internal var currentDateIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        selectDateIndex(currentDateIndex)
     }
 
     override func setupLayout() {
@@ -49,6 +53,43 @@ class BE24HealthBaseVC: BE24MainBaseVC {
         return 100
     }
 
+    // MARK: - 
+    internal func selectDateIndex(index: Int) {
+        if statesData != nil {
+            
+            if statesData!.state.days.count > 0 {
+                /// Buttons for Select Date
+                self.btnRightDate.hidden = false
+                self.btnLeftDate.hidden = false
+                if index == 0 {
+                    self.btnRightDate.hidden = true
+                }
+                if index >= (statesData!.state.days.count - 1) {
+                    self.btnLeftDate.hidden = true
+                }
+                
+                self.lblDate.text = dateString(statesData!.state.days[index])
+
+            } else {
+                
+                self.lblDate.text = "Today"
+                
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func onPressLeftDate(sender: AnyObject) {
+        currentDateIndex += 1
+        selectDateIndex(currentDateIndex)
+    }
+    
+    @IBAction func onPressRightDate(sender: AnyObject) {
+        currentDateIndex -= 1
+        selectDateIndex(currentDateIndex)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -11,15 +11,15 @@ import SwiftyJSON
 
 class BE24UserModel: BE24Model {
 
-    var username: String?
-    var gender: String?
-    var firstName: String?
-    var lastName: String?
-    var dateOfBirth: NSDate?
-    var recentState: String?
-    var activity: Bool = true
-    var apiKey: String?
-    var loginTime: NSDate?
+    var username    : String?
+    var gender      : String?
+    var firstName   : String?
+    var lastName    : String?
+    var dateOfBirth : NSDate?
+    var recentState : String?
+    var activity    : Bool = true
+    var apiKey      : String?
+    var loginTime   : NSDate?
     
     override init(data: JSON) {
         super.init(data: data)
@@ -32,5 +32,16 @@ class BE24UserModel: BE24Model {
         activity    = data["active"].boolValue
         apiKey      = data["api_key"].string
         loginTime   = data["login_time"].dateTime()
+    }
+    
+    func fullname() -> String {
+        var fullname = ""
+        if firstName != nil {
+            fullname = firstName!
+        }
+        if lastName != nil {
+            fullname = fullname + " " + lastName!
+        }
+        return fullname
     }
 }
