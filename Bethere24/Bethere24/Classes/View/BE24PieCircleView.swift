@@ -113,14 +113,14 @@ class BE24PieCircleView: BE24PieBaseView {
         
     }
     
-    func reloadData() -> Void {
-        setNeedsDisplay()
+    override func reloadData() -> Void {
+        super.reloadData()
         selectCateogryIndex(selectedIndex)
     }
     
-    override func touchedOnAlpha(alpha: Int) -> Void {
+    override func touchedOnAngle(angle: Int) -> Void {
         let categoryCount = 8
-        let tempIndex = (((alpha + 360 / categoryCount / 2) / (360 / categoryCount)) % categoryCount + 2) % categoryCount
+        let tempIndex = (((angle + 360 / categoryCount / 2) / (360 / categoryCount)) % categoryCount + 2) % categoryCount
         selectCateogryIndex(tempIndex)
     }
 

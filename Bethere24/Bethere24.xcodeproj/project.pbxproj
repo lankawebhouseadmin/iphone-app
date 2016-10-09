@@ -60,6 +60,8 @@
 		E186EFA41D9DEAFB0038207B /* BE24PieCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */; };
 		E186EFA61D9E02FA0038207B /* BE24HealthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */; };
 		E186EFA81D9E38410038207B /* Math+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E186EFA71D9E38410038207B /* Math+BE24.swift */; };
+		E1DD98F01DA9F1F4004E234B /* BE24HealthTypeMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD98EF1DA9F1F4004E234B /* BE24HealthTypeMenuVC.swift */; };
+		E1DD98F21DA9F25E004E234B /* BE24HealthTypeMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD98F11DA9F25E004E234B /* BE24HealthTypeMenuCell.swift */; };
 		E1E52FA61DA6ABD300C2111A /* BE24StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E52FA51DA6ABD300C2111A /* BE24StateModel.swift */; };
 		E1E52FA81DA6AD2F00C2111A /* BE24AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E52FA71DA6AD2F00C2111A /* BE24AlertModel.swift */; };
 		E1E52FAA1DA6DA9700C2111A /* BE24LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E52FA91DA6DA9700C2111A /* BE24LocationModel.swift */; };
@@ -152,6 +154,8 @@
 		E186EFA31D9DEAFB0038207B /* BE24PieCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24PieCircleView.swift; sourceTree = "<group>"; };
 		E186EFA51D9E02F90038207B /* BE24HealthBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthBaseVC.swift; sourceTree = "<group>"; };
 		E186EFA71D9E38410038207B /* Math+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Math+BE24.swift"; sourceTree = "<group>"; };
+		E1DD98EF1DA9F1F4004E234B /* BE24HealthTypeMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthTypeMenuVC.swift; sourceTree = "<group>"; };
+		E1DD98F11DA9F25E004E234B /* BE24HealthTypeMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24HealthTypeMenuCell.swift; sourceTree = "<group>"; };
 		E1E52FA51DA6ABD300C2111A /* BE24StateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24StateModel.swift; sourceTree = "<group>"; };
 		E1E52FA71DA6AD2F00C2111A /* BE24AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AlertModel.swift; sourceTree = "<group>"; };
 		E1E52FA91DA6DA9700C2111A /* BE24LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24LocationModel.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				E1F1FBD01DA51727007AA0A0 /* BE24TableViewCell.swift */,
 				E1F1FBD21DA51739007AA0A0 /* BE24AlertHeaderCell.swift */,
 				E1F1FBD41DA518D2007AA0A0 /* BE24AlertContentCell.swift */,
+				E1DD98F11DA9F25E004E234B /* BE24HealthTypeMenuCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				E177E7101D98F0D500570B1D /* BE24AlertSummaryVC.swift */,
 				E177E7121D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift */,
 				E177E7141D98F0F600570B1D /* BE24ContactInfoVC.swift */,
+				E1DD98EF1DA9F1F4004E234B /* BE24HealthTypeMenuVC.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -695,6 +701,7 @@
 				E182837B1D9AD74600E8363D /* BE24UserModel.swift in Sources */,
 				E14675B11D97B841000567AC /* BE24LoginVC.swift in Sources */,
 				E177E7281D99083E00570B1D /* ConstraintItem.swift in Sources */,
+				E1DD98F01DA9F1F4004E234B /* BE24HealthTypeMenuVC.swift in Sources */,
 				E14675AE1D97A991000567AC /* BE24View.swift in Sources */,
 				E1F1FBD31DA51739007AA0A0 /* BE24AlertHeaderCell.swift in Sources */,
 				E1F1FBD11DA51727007AA0A0 /* BE24TableViewCell.swift in Sources */,
@@ -732,6 +739,7 @@
 				E177E7251D99083E00570B1D /* Constraint.swift in Sources */,
 				E183BD001DA7D3BD004B5418 /* BE24StateBaseVC.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,
+				E1DD98F21DA9F25E004E234B /* BE24HealthTypeMenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,8 @@ import UIKit
 
 class BE24StateBaseVC: BE24MainBaseVC {
 
-    var statesData: BE24LocationModel?
+    internal var statesData: BE24LocationModel?
+    internal var currentStateData: [BE24StateModel]?
 
     internal let healthDetailReportTemplete: [HealthType: [String]] = [
         HealthType.InBedroom : [

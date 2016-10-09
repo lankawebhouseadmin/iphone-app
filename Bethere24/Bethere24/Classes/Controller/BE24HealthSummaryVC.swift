@@ -25,7 +25,6 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         .InRecliner,
         .TakingMedication,
     ]
-    private var currentStateData: [BE24StateModel]?
     
     override func setupLayout() {
         super.setupLayout()

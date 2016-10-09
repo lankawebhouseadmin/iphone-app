@@ -110,7 +110,7 @@ class BE24PieBaseView: BE24View {
         var width = UIScreen.mainScreen().bounds.size.width - 16
         let selfBounds = CGRectMake(0, 0, width, width)
         let centerPoint = CGPointMake(CGRectGetMidX(selfBounds), CGRectGetMidY(selfBounds))
-        
+
         width = width * 0.4
         let scoreFrame = CGRectMake(0, 0, width, width)
         self.viewScore.frame = scoreFrame
@@ -160,24 +160,28 @@ class BE24PieBaseView: BE24View {
                 let area3 = CGRectOffset(area1, -area1.width, -area1.height)
                 let area4 = CGRectOffset(area1, 0, -area1.height)
                 
-                var alpha = Int(atanf(ty / tx).radiansToDegrees.double)
+                var angle = Int(atanf(ty / tx).radiansToDegrees.double)
                 
                 if CGRectContainsPoint(area2, position) || CGRectContainsPoint(area3, position){
-                    alpha = 180 + alpha
+                    angle = 180 + angle
                 } else if CGRectContainsPoint(area4, position) {
-                    alpha = 360 + alpha
+                    angle = 360 + angle
                 }
                 
                 
-                touchedOnAlpha(alpha)
+                touchedOnAngle(angle)
 
             }
             
         }
     }
     
-    func touchedOnAlpha(alpha: Int) -> Void {
+    func touchedOnAngle(alpha: Int) -> Void {
         
+    }
+
+    func reloadData() -> Void {
+        setNeedsDisplay()
     }
 
 }
