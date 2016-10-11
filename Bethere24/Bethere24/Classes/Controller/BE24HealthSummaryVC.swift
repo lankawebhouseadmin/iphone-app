@@ -15,16 +15,6 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     @IBOutlet weak var btnHistoricalGraphs: UIButton!
     @IBOutlet weak var btnAlert: UIButton!
     
-    private var healthTypeForIndex: [HealthType] = [
-        .InBathroom,
-        .WithVisitors,
-        .InDining,
-        .InMotion,
-        .InBedroom,
-        .AwayFromHome,
-        .InRecliner,
-        .TakingMedication,
-    ]
     
     override func setupLayout() {
         super.setupLayout()
@@ -68,7 +58,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
                 totalTimes += state.actualTime
             })
             let state = states.first!
-            let isMedication = state.type() == HealthType.TakingMedication
+            let isMedication = (state.type() == HealthType.TakingMedication)
             let normalTitle = "Normal: "
             let totalTitle  = "Total: "
             let detailString = normalTitle + timeString(state.normalTime, isMedication: isMedication) + ",  " +

@@ -23,6 +23,17 @@ class BE24HealthBaseVC: BE24StateBaseVC {
 
     internal var currentDateIndex: Int = 0
     
+    internal var healthTypeForIndex: [HealthType] = [
+            .InBathroom,
+            .WithVisitors,
+            .InDining,
+            .InMotion,
+            .InBedroom,
+            .AwayFromHome,
+            .InRecliner,
+            .TakingMedication,
+        ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

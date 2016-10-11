@@ -661,17 +661,24 @@ sdf</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgClockBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Nrw">
+                                                    <rect key="frame" x="8" y="8" width="398" height="369"/>
+                                                </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cV-NZ-bPe" customClass="BE24PieClockView" customModule="Bethere24" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="398" height="369"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="Ah4-oz-Nrw" firstAttribute="top" secondItem="sPE-3b-dHh" secondAttribute="topMargin" id="85W-zJ-i0C"/>
                                                 <constraint firstItem="4cV-NZ-bPe" firstAttribute="top" secondItem="sPE-3b-dHh" secondAttribute="topMargin" id="Ozi-V7-VWo"/>
+                                                <constraint firstItem="Ah4-oz-Nrw" firstAttribute="trailing" secondItem="sPE-3b-dHh" secondAttribute="trailingMargin" id="kPk-jr-W2j"/>
+                                                <constraint firstItem="Ah4-oz-Nrw" firstAttribute="leading" secondItem="sPE-3b-dHh" secondAttribute="leadingMargin" id="ljd-hn-M45"/>
                                                 <constraint firstItem="4cV-NZ-bPe" firstAttribute="leading" secondItem="sPE-3b-dHh" secondAttribute="leadingMargin" id="r3Q-Fm-GY6"/>
                                                 <constraint firstItem="4cV-NZ-bPe" firstAttribute="trailing" secondItem="sPE-3b-dHh" secondAttribute="trailingMargin" id="tCP-8x-j2o"/>
                                                 <constraint firstItem="4cV-NZ-bPe" firstAttribute="bottom" secondItem="sPE-3b-dHh" secondAttribute="bottomMargin" id="uP2-LY-WJa"/>
+                                                <constraint firstItem="Ah4-oz-Nrw" firstAttribute="bottom" secondItem="sPE-3b-dHh" secondAttribute="bottomMargin" id="v0c-ip-oSZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -744,6 +751,9 @@ sdf</string>
                                                                         <constraint firstAttribute="width" constant="30" id="dvm-Ue-x5u"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconLeftArrow"/>
+                                                                    <connections>
+                                                                        <action selector="onPressLeftState:" destination="4yH-RR-LQc" eventType="touchUpInside" id="FoR-xK-NBg"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aD-Ik-UHX">
                                                                     <rect key="frame" x="368" y="0.0" width="30" height="111"/>
@@ -751,6 +761,9 @@ sdf</string>
                                                                         <constraint firstAttribute="width" constant="30" id="Cpd-oT-lg0"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconRightArrow"/>
+                                                                    <connections>
+                                                                        <action selector="onPressRightState:" destination="4yH-RR-LQc" eventType="touchUpInside" id="BVO-gG-pgA"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhf-ho-ZbX">
                                                                     <rect key="frame" x="241" y="73" width="30" height="30"/>
@@ -848,6 +861,9 @@ sdf</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="2Z5-3e-ICr"/>
                     <connections>
+                        <outlet property="btnAlert" destination="zhf-ho-ZbX" id="jSl-qQ-kh4"/>
+                        <outlet property="btnHealthSummary" destination="dmp-2p-poI" id="UcB-hS-SUR"/>
+                        <outlet property="btnHistoricalGraphs" destination="75o-TY-Juo" id="Qiu-4K-r3a"/>
                         <outlet property="btnLeftDate" destination="hKr-cd-QAe" id="IRN-VQ-q2B"/>
                         <outlet property="btnLeftHealthCategory" destination="fb5-T5-wBj" id="OtC-BL-FmC"/>
                         <outlet property="btnRightDate" destination="qLm-xa-1JF" id="vzh-gh-fKX"/>
@@ -859,7 +875,7 @@ sdf</string>
                         <outlet property="lblHealthTitle" destination="hBG-zz-YzV" id="IHO-bL-C1h"/>
                         <outlet property="lblTimes" destination="g36-7o-7Vl" id="66s-VR-l9I"/>
                         <outlet property="viewDetailBox" destination="lFE-0a-sIm" id="s4w-yR-4D5"/>
-                        <outlet property="viewMainPieCircleView" destination="4cV-NZ-bPe" id="AdR-0f-Ggu"/>
+                        <outlet property="viewMainPieClockView" destination="4cV-NZ-bPe" id="XQO-Hk-Kck"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X6v-Hw-dvH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1392,5 +1408,6 @@ sdf</string>
         <image name="iconRightArrow" width="30" height="30"/>
         <image name="iconTakingMedicationWhite" width="30" height="30"/>
         <image name="imgChartBackground" width="4" height="46"/>
+        <image name="imgClockBackground" width="333" height="333"/>
     </resources>
 </document>
