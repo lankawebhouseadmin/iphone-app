@@ -72,9 +72,9 @@ class BE24PieCircleView: BE24PieBaseView {
             var borderColor: UIColor!
             if delegate != nil {
                 let score = self.delegate!.pieCircleView(self, categoryScoreForIndex: index)
-                borderColor = self.colorForScore(score)
+                borderColor = BE24AppManager.colorForScore(score)
             } else {
-                borderColor = self.colorForScore(0)
+                borderColor = BE24AppManager.colorForScore(0)
             }
             CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
             CGContextSetLineWidth(context, arcWidth * 0.8 )
@@ -134,11 +134,11 @@ class BE24PieCircleView: BE24PieBaseView {
             self.lblScoreNumber.text = scoreValueName.0
             self.lblScoreName.text = scoreValueName.1
             
-            borderColor = self.colorForScore(score)
+            borderColor = BE24AppManager.colorForScore(score)
             
             delegate!.pieCircleView(self, selectedIndex: selectedIndex)
         } else {
-            borderColor = self.colorForScore(0)
+            borderColor = BE24AppManager.colorForScore(0)
         }
         self.viewScore.layer.borderColor = borderColor.CGColor
         

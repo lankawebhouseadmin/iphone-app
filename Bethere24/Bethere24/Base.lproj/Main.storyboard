@@ -766,7 +766,7 @@ sdf</string>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhf-ho-ZbX">
-                                                                    <rect key="frame" x="241" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="266" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="1QR-lo-MW3"/>
                                                                         <constraint firstAttribute="width" constant="30" id="XC2-he-PVW"/>
@@ -774,20 +774,12 @@ sdf</string>
                                                                     <state key="normal" image="iconMenuAlert"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-2p-poI">
-                                                                    <rect key="frame" x="128" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="153" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="LsV-7l-S39"/>
                                                                         <constraint firstAttribute="width" constant="30" id="rHY-cb-YJE"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuHeart"/>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75o-TY-Juo">
-                                                                    <rect key="frame" x="184" y="73" width="30" height="30"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="RSR-ow-idT"/>
-                                                                        <constraint firstAttribute="width" constant="30" id="xNf-l5-jYr"/>
-                                                                    </constraints>
-                                                                    <state key="normal" image="iconMenuGraph"/>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2H-4T-Lnk">
                                                                     <rect key="frame" x="38" y="6" width="322" height="59"/>
@@ -798,6 +790,14 @@ sdf</string>
                                                                     <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75o-TY-Juo">
+                                                                    <rect key="frame" x="209" y="73" width="30" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="30" id="RSR-ow-idT"/>
+                                                                        <constraint firstAttribute="width" constant="30" id="xNf-l5-jYr"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="iconMenuGraph"/>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -805,7 +805,7 @@ sdf</string>
                                                                 <constraint firstItem="75o-TY-Juo" firstAttribute="leading" secondItem="dmp-2p-poI" secondAttribute="trailing" constant="26" id="3vE-cn-Ey6"/>
                                                                 <constraint firstAttribute="trailing" secondItem="1aD-Ik-UHX" secondAttribute="trailing" id="7m3-Bm-QXX"/>
                                                                 <constraint firstAttribute="bottom" secondItem="75o-TY-Juo" secondAttribute="bottom" constant="8" id="9Kr-fb-s9l"/>
-                                                                <constraint firstItem="75o-TY-Juo" firstAttribute="centerX" secondItem="lPi-iS-CXG" secondAttribute="centerX" id="EWa-lP-uW1"/>
+                                                                <constraint firstItem="75o-TY-Juo" firstAttribute="centerX" secondItem="lPi-iS-CXG" secondAttribute="centerX" constant="25" id="EWa-lP-uW1"/>
                                                                 <constraint firstItem="1aD-Ik-UHX" firstAttribute="leading" secondItem="b2H-4T-Lnk" secondAttribute="trailing" constant="8" id="HQu-4z-PgZ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="b2H-4T-Lnk" secondAttribute="bottom" constant="8" id="LYA-oV-oTJ"/>
                                                                 <constraint firstItem="zhf-ho-ZbX" firstAttribute="centerY" secondItem="75o-TY-Juo" secondAttribute="centerY" id="SOD-AT-qxE"/>
@@ -1047,6 +1047,18 @@ sdf</string>
                                                 <constraint firstAttribute="width" secondItem="jcU-Po-m5M" secondAttribute="height" multiplier="1:1" id="ebo-xa-j1r"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="may not have taken medication as expected" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-hb-nuz">
+                                            <rect key="frame" x="79" y="36" width="327" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taking Medication" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiW-Ak-uct">
+                                            <rect key="frame" x="79" y="12" width="254" height="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <color key="textColor" red="0.2274509804" green="0.34509803919999998" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8y-cI-PIL">
                                             <rect key="frame" x="341" y="8" width="65" height="25"/>
                                             <constraints>
@@ -1059,58 +1071,28 @@ sdf</string>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal : 3 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxR-ui-VkU">
-                                            <rect key="frame" x="79" y="31" width="99" height="15"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual : 2 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5W6-rd-Na9">
-                                            <rect key="frame" x="206" y="31" width="94" height="15"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                            <color key="textColor" red="0.82745098039999998" green="0.65098039220000004" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="may not have taken medication as expected" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-hb-nuz">
-                                            <rect key="frame" x="79" y="48" width="327" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taking Medication" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiW-Ak-uct">
-                                            <rect key="frame" x="79" y="8" width="254" height="20"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" red="0.2274509804" green="0.34509803919999998" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="HlF-rm-pln" secondAttribute="bottom" constant="-8" id="0DH-Tx-plR"/>
                                         <constraint firstItem="w8y-cI-PIL" firstAttribute="top" secondItem="I1h-h8-1d2" secondAttribute="topMargin" id="0rA-GG-RP5"/>
-                                        <constraint firstItem="vxR-ui-VkU" firstAttribute="leading" secondItem="jcU-Po-m5M" secondAttribute="trailing" constant="8" id="2gu-3s-EA9"/>
                                         <constraint firstItem="wiW-Ak-uct" firstAttribute="leading" secondItem="jcU-Po-m5M" secondAttribute="trailing" constant="8" id="4xl-w3-Kyg"/>
                                         <constraint firstItem="5G8-hb-nuz" firstAttribute="trailing" secondItem="I1h-h8-1d2" secondAttribute="trailingMargin" id="7Bf-Ia-BbG"/>
-                                        <constraint firstItem="5G8-hb-nuz" firstAttribute="top" secondItem="5W6-rd-Na9" secondAttribute="bottom" constant="2" id="7xm-r7-yab"/>
-                                        <constraint firstItem="vxR-ui-VkU" firstAttribute="top" secondItem="wiW-Ak-uct" secondAttribute="bottom" constant="3" id="AiO-fS-UbX"/>
-                                        <constraint firstItem="5W6-rd-Na9" firstAttribute="leading" secondItem="vxR-ui-VkU" secondAttribute="trailing" constant="28" id="Ljr-EL-koh"/>
                                         <constraint firstItem="jcU-Po-m5M" firstAttribute="leading" secondItem="I1h-h8-1d2" secondAttribute="leadingMargin" id="OtX-M6-UMn"/>
                                         <constraint firstItem="w8y-cI-PIL" firstAttribute="trailing" secondItem="I1h-h8-1d2" secondAttribute="trailingMargin" id="Qon-bE-oQe"/>
                                         <constraint firstItem="5G8-hb-nuz" firstAttribute="leading" secondItem="jcU-Po-m5M" secondAttribute="trailing" constant="8" id="VLz-2k-apZ"/>
                                         <constraint firstItem="jcU-Po-m5M" firstAttribute="top" secondItem="I1h-h8-1d2" secondAttribute="topMargin" id="Vg3-V8-75l"/>
+                                        <constraint firstItem="5G8-hb-nuz" firstAttribute="top" secondItem="wiW-Ak-uct" secondAttribute="bottom" constant="4" id="Wjb-46-90V"/>
                                         <constraint firstItem="HlF-rm-pln" firstAttribute="leading" secondItem="I1h-h8-1d2" secondAttribute="leadingMargin" constant="10" id="cet-JU-GX0"/>
-                                        <constraint firstItem="5W6-rd-Na9" firstAttribute="top" secondItem="vxR-ui-VkU" secondAttribute="top" id="lPJ-Tg-DYf"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="HlF-rm-pln" secondAttribute="trailing" constant="10" id="lSL-8Q-zBX"/>
                                         <constraint firstItem="jcU-Po-m5M" firstAttribute="bottom" secondItem="I1h-h8-1d2" secondAttribute="bottomMargin" id="me3-S5-mVd"/>
                                         <constraint firstItem="w8y-cI-PIL" firstAttribute="leading" secondItem="wiW-Ak-uct" secondAttribute="trailing" constant="8" id="pci-3s-hud"/>
-                                        <constraint firstItem="wiW-Ak-uct" firstAttribute="top" secondItem="I1h-h8-1d2" secondAttribute="topMargin" id="rFV-RN-m85"/>
+                                        <constraint firstItem="wiW-Ak-uct" firstAttribute="top" secondItem="I1h-h8-1d2" secondAttribute="topMargin" constant="4" id="rFV-RN-m85"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imgviewHealthCategory" destination="jcU-Po-m5M" id="q0K-Dv-daQ"/>
-                                    <outlet property="lblActualTimes" destination="5W6-rd-Na9" id="mTb-5t-Ybb"/>
                                     <outlet property="lblAlertContent" destination="5G8-hb-nuz" id="GRx-x6-jrq"/>
                                     <outlet property="lblCategoryType" destination="wiW-Ak-uct" id="Fb3-Lm-ilW"/>
-                                    <outlet property="lblNormalTimes" destination="vxR-ui-VkU" id="2wY-X5-rzH"/>
                                     <outlet property="lblTime" destination="w8y-cI-PIL" id="Q8M-ea-nBL"/>
                                 </connections>
                             </tableViewCell>
@@ -1169,28 +1151,29 @@ sdf</string>
                                                         <constraint firstAttribute="height" constant="2" id="aUG-SS-COw"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Bedroom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SW5-SM-9PB">
-                                                    <rect key="frame" x="181" y="11" width="93" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qEU-rE-yv3">
-                                                    <rect key="frame" x="141" y="6" width="32" height="32"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ct1-vI-Kfn">
+                                                    <rect key="frame" x="107" y="7" width="200" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="32" id="S9Q-ew-3Y7"/>
-                                                        <constraint firstAttribute="width" secondItem="qEU-rE-yv3" secondAttribute="height" multiplier="1:1" id="tUi-NX-3sA"/>
+                                                        <constraint firstAttribute="width" constant="200" id="bL3-oc-Brs"/>
                                                     </constraints>
-                                                </imageView>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                                    <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                                    <state key="normal" title="In Bedroom" image="iconInBedroom">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onPressSelectHealthType:" destination="RFR-ig-BS6" eventType="touchUpInside" id="N0E-2s-fHh"/>
+                                                        <action selector="onPressSelectHealthType:" destination="4yH-RR-LQc" eventType="touchUpInside" id="OMs-S3-BNJ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uCW-b5-qbM" secondAttribute="trailing" constant="-8" id="41l-JA-nVK"/>
                                                 <constraint firstItem="uCW-b5-qbM" firstAttribute="top" secondItem="71N-oJ-WNR" secondAttribute="topMargin" constant="-8" id="7np-E9-p9p"/>
-                                                <constraint firstItem="SW5-SM-9PB" firstAttribute="leading" secondItem="qEU-rE-yv3" secondAttribute="trailing" constant="8" id="Fj7-wy-raS"/>
-                                                <constraint firstItem="qEU-rE-yv3" firstAttribute="centerY" secondItem="71N-oJ-WNR" secondAttribute="centerY" id="TJz-gY-kMH"/>
-                                                <constraint firstItem="SW5-SM-9PB" firstAttribute="centerY" secondItem="qEU-rE-yv3" secondAttribute="centerY" id="lhB-ih-4Rn"/>
+                                                <constraint firstItem="Ct1-vI-Kfn" firstAttribute="centerY" secondItem="71N-oJ-WNR" secondAttribute="centerY" id="OA6-FA-iXi"/>
+                                                <constraint firstItem="Ct1-vI-Kfn" firstAttribute="centerX" secondItem="71N-oJ-WNR" secondAttribute="centerX" id="huw-Bj-3iX"/>
                                                 <constraint firstItem="uCW-b5-qbM" firstAttribute="leading" secondItem="71N-oJ-WNR" secondAttribute="leadingMargin" constant="-8" id="lmQ-jk-A5U"/>
-                                                <constraint firstItem="qEU-rE-yv3" firstAttribute="centerX" secondItem="71N-oJ-WNR" secondAttribute="centerX" constant="-50" id="nBc-Vg-1gl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1302,9 +1285,8 @@ sdf</string>
                         <outlet property="btnAlert" destination="hLy-Mm-cl1" id="GZB-UT-Ngb"/>
                         <outlet property="btnHealthScore" destination="bYn-Qv-hHl" id="Mpe-uv-uNj"/>
                         <outlet property="btnHealthSummary" destination="NCY-GM-izv" id="0co-4c-J0g"/>
+                        <outlet property="btnSelectHealthType" destination="Ct1-vI-Kfn" id="E9P-Wk-zLm"/>
                         <outlet property="chart" destination="qfD-94-tTC" id="x5Z-RI-BGO"/>
-                        <outlet property="imgHealthCategory" destination="qEU-rE-yv3" id="ETq-Zf-I42"/>
-                        <outlet property="lblHealthCategory" destination="SW5-SM-9PB" id="b9f-28-QzR"/>
                         <outlet property="lblMonthName" destination="ezs-PO-wws" id="dud-yv-E8f"/>
                         <outlet property="viewChartContainer" destination="4Ij-s2-ywk" id="cOq-XU-Nqt"/>
                     </connections>

@@ -162,11 +162,11 @@ class BE24PieClockView: BE24PieBaseView {
                     self.lblScoreNumber.text = scoreValueName.0
                     self.lblScoreName.text = scoreValueName.1
                     
-                    borderColor = self.colorForScore(score)
+                    borderColor = BE24AppManager.colorForScore(score)
                     
                     delegate!.pieClockView(self, selectedStateIndex: index)
                 } else {
-                    borderColor = self.colorForScore(0)
+                    borderColor = BE24AppManager.colorForScore(0)
                 }
                 self.viewScore.layer.borderColor = borderColor.CGColor
                 

@@ -112,6 +112,22 @@ class BE24AppManager: NSObject {
         
     }
     
+    class func colorForScore(score: Int) -> UIColor {
+        var colorValueIndex = 0
+        if 2 < score && score <= 7 {
+            colorValueIndex = 1
+        } else if 7 < score {
+            colorValueIndex = 2
+        }
+        let stateColor = [
+            "#ff0000",
+            "#ffc800",
+            "#68ff00",
+            ]
+        let colorValue = stateColor[colorValueIndex]
+        return UIColor(rgba: colorValue)
+    }
+    
 }
 
 enum PageType {
@@ -152,6 +168,11 @@ struct DATE_FORMATTER {
     static let Default: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "M/d - eee."
+        return dateFormatter
+    }()
+    static let ForAlert: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/d/yyyy\nh:m a"
         return dateFormatter
     }()
 }

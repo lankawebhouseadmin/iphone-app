@@ -12,6 +12,7 @@ class BE24MainBaseVC: BE24TableViewController {
     
     weak var lblTitle: UILabel!
     weak var imgPageIcon: UIImageView!
+    var btnNotification: ENMBadgedBarButtonItem!
     
     var pageType: PageType? {
         didSet {
@@ -67,7 +68,8 @@ class BE24MainBaseVC: BE24TableViewController {
         let btnNotification = ENMBadgedBarButtonItem(customView: btnNotificationBody, value: "3")
         btnNotification.badgeBackgroundColor = UIColor.redColor()
         btnNotification.badgeTextColor = UIColor.whiteColor()
-        btnNotification.badgeValue = "2"
+        self.btnNotification = btnNotification
+        updateAlertBadgeCount()
 //        btnNotificationBody.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
         
         self.navigationItem.rightBarButtonItems = [btnNotification, btnRefresh]
@@ -144,4 +146,17 @@ class BE24MainBaseVC: BE24TableViewController {
         print (#function)
     }
     
+    func updateAlertBadgeCount(count: Int? = nil) -> Void {
+        if count == nil {
+            if let stateData = appManager().stateData {
+                if let alerts = stateData.first!.alert {
+                    btnNotification.badgeValue = String(alerts.count)
+                    return
+                }
+            }
+            btnNotification.badgeValue = ""
+        } else {
+            btnNotification.badgeValue = String(count!)
+        }
+    }
 }

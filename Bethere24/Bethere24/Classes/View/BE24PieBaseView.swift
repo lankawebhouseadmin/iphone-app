@@ -12,12 +12,6 @@ class BE24PieBaseView: BE24View {
     
     let arcWidth:CGFloat = 10.0
 
-    internal let stateColor = [
-        "#ff0000",
-        "#ffc800",
-        "#68ff00",
-        ]
-
     internal var lblScoreNumber: UILabel!
     internal var lblScoreName: UILabel!
     internal var viewScore: UIView!
@@ -81,17 +75,6 @@ class BE24PieBaseView: BE24View {
         //        lblScoreTitle.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         viewScore.addSubview(lblScoreTitle)
 
-    }
-    
-    internal func colorForScore(score: Int) -> UIColor {
-        var colorValueIndex = 0
-        if 2 < score && score <= 7 {
-            colorValueIndex = 1
-        } else if 7 < score {
-            colorValueIndex = 2
-        }
-        let colorValue = stateColor[colorValueIndex]
-        return UIColor(rgba: colorValue)
     }
     
     internal func scoreValueAndName(score: Int) -> (String?, String?) {

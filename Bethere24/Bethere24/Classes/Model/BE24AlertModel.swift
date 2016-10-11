@@ -27,4 +27,32 @@ class BE24AlertModel: BE24Model {
         score      = data["score"].intValue
         alertTime  = NSDate(timeIntervalSince1970: data["alert_time"].doubleValue)
     }
+    
+    func dateString() -> String {
+        return DATE_FORMATTER.Default.stringFromDate(alertTime)
+    }
+
+    func type() -> HealthType {
+        switch stateType {
+        case 1, 8:
+            return .InBedroom
+        case 2:
+            return .InRecliner
+        case 7:
+            return .InBathroom
+        case 5:
+            return .InDining
+        case 9:
+            return .InMotion
+        case 10:
+            return .TakingMedication
+        case 11:
+            return .AwayFromHome
+        case 12:
+            return .WithVisitors
+        default:
+            return .Other
+        }
+    }
+
 }

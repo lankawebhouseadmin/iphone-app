@@ -17,9 +17,20 @@ class BE24AlertContentCell: BE24TableViewCell {
     @IBOutlet weak var imgviewHealthCategory: UIImageView!
     @IBOutlet weak var lblCategoryType: UILabel!
     @IBOutlet weak var lblTime: UILabel!
-    @IBOutlet weak var lblNormalTimes: UILabel!
-    @IBOutlet weak var lblActualTimes: UILabel!
+//    @IBOutlet weak var lblNormalTimes: UILabel!
+//    @IBOutlet weak var lblActualTimes: UILabel!
     @IBOutlet weak var lblAlertContent: UILabel!
+    
+    private var _alert: BE24AlertModel!
+    var alert: BE24AlertModel {
+        get {
+            return _alert
+        }
+        set {
+            _alert = newValue
+            
+        }
+    }
     
     /*
     // Only override drawRect: if you perform custom drawing.

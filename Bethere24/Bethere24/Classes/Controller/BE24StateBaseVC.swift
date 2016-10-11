@@ -13,6 +13,17 @@ class BE24StateBaseVC: BE24MainBaseVC {
     internal var statesData: BE24LocationModel?
     internal var currentStateData: [BE24StateModel]?
 
+    internal var healthTypeForIndex: [HealthType] = [
+        .InBathroom,
+        .WithVisitors,
+        .InDining,
+        .InMotion,
+        .InBedroom,
+        .AwayFromHome,
+        .InRecliner,
+        .TakingMedication,
+        ]
+
     internal let healthDetailReportTemplete: [HealthType: [String]] = [
         HealthType.InBedroom : [
             "had a good night sleep",
