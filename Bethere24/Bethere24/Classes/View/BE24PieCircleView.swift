@@ -160,6 +160,10 @@ class BE24PieCircleView: BE24PieBaseView {
         }
         self.selectCateogryIndex((selectedIndex - step) % 8)
     }
+    
+    func selectCategoryType(type: HealthType) -> Void {
+        self.selectCateogryIndex(BE24AppManager.sharedManager.healthTypeForIndex.indexOf(type)!)
+    }
 }
 
 protocol BE24PieCircleViewDelegate {

@@ -138,8 +138,7 @@ class BE24MainBaseVC: BE24TableViewController {
     
     func onPressRefresh(sender: AnyObject) -> Void {
         print (#function)
-        print(self.imgPageIcon)
-        print (self.lblTitle)
+        
     }
     
     func onPressNotification(sender: AnyObject) -> Void {

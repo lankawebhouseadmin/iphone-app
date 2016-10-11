@@ -22,7 +22,8 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     @IBOutlet weak var btnRightHealthCategory   : UIButton!
 
     internal var currentDateIndex: Int = 0
-    
+    internal var selectedHealthType: HealthType = .InBathroom
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     // MARK: - 
     internal func selectDateIndex(index: Int) {
         if statesData != nil {
-            
+            currentDateIndex = index
             if statesData!.state.days.count > 0 {
                 
                 /// Buttons for Select Date
@@ -90,6 +91,12 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     @IBAction func onPressRightDate(sender: AnyObject) {
         currentDateIndex -= 1
         selectDateIndex(currentDateIndex)
+    }
+    
+    @IBAction func onPressAlert(sender: AnyObject) {
+        appManager().selectedHealthType = selectedHealthType
+        appManager().selectedDayIndex   = currentDateIndex
+        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHistoricalGraphsVC, sender: self)
     }
     
     /*

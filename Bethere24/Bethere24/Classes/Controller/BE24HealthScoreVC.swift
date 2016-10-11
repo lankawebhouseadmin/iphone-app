@@ -20,8 +20,8 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     private var categories: [[String: String]]!
     
-    private var currentSelectedDateIndex: Int = 0
-    private var currentSelectedHealthTypeIndex: HealthType = .InBathroom
+//    private var currentDateIndex: Int = 0
+//    private var selectedHealthType: HealthType = .InBathroom
 
     private var currentStatesForHealtyType: [BE24StateModel] = []
     
@@ -29,10 +29,19 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         super.viewDidLoad()
 
         categories = appManager().categories
-
-        selectHealthType(currentSelectedHealthTypeIndex, dateIndex: currentSelectedDateIndex)
         
-        showStateInfo(nil)
+        if appManager().selectedDayIndex != nil && appManager().selectedHealthType != nil {
+            selectedHealthType = appManager().selectedHealthType!
+            currentDateIndex = appManager().selectedDayIndex!
+            self.selectDateIndex(currentDateIndex)
+//            selectHealthType(appManager().selectedHealthType!, dateIndex: appManager().selectedDayIndex!)
+        } else {
+            selectHealthType(.InBathroom, dateIndex: 0)
+        }
+
+        
+        
+//        showStateInfo(nil)
     }
 
     override func setupLayout() {
@@ -74,7 +83,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     }
 
     func healthTypeSelected(index: Int) {
-        self.selectHealthType(healthTypeForIndex[index], dateIndex: currentSelectedDateIndex)
+        self.selectHealthType(healthTypeForIndex[index], dateIndex: currentDateIndex)
     }
     
     @IBAction func onPressLeftState(sender: AnyObject) {
@@ -83,6 +92,20 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     @IBAction func onPressRightState(sender: AnyObject) {
         self.viewMainPieClockView.prevSelect()
+    }
+    
+    @IBAction func onPressHealthSummaryButton(sender: AnyObject) {
+        appManager().selectedHealthType = selectedHealthType
+        appManager().selectedDayIndex   = currentDateIndex
+        var segueName: String!
+        if sender as? UIButton == self.btnHealthSummary {
+            segueName = APPSEGUE_gotoHealthSummaryVC
+        } else {
+            segueName = APPSEGUE_gotoHistoricalGraphsVC
+        }
+        sideMenuController?.performSegueWithIdentifier(segueName, sender: self)
+
+//        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHealthSummaryVC, sender: self)
     }
     
     // MARK: - Select Date and health type
@@ -94,7 +117,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
                 let dateString = statesData!.state.days[index]
                 currentStateData = statesData!.state.statesByDay[dateString]
                 
-                self.selectHealthType(currentSelectedHealthTypeIndex, dateIndex: index)
+                self.selectHealthType(selectedHealthType, dateIndex: index)
                 
 //                viewMainPieCircleView.reloadData()
             }
@@ -104,8 +127,8 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     func selectHealthType(type: HealthType, dateIndex: Int) -> Void {
         
-        currentSelectedHealthTypeIndex = type
-        currentSelectedDateIndex       = dateIndex
+        selectedHealthType  = type
+        currentDateIndex    = dateIndex
         
         let healthTypeData = appManager().categories[healthTypeForIndex.indexOf(type)!]
         self.lblHealthTitle.text = healthTypeData[kMenuTitleKeyName]
@@ -118,7 +141,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         
         currentStatesForHealtyType.removeAll()
         
-        let dateString = statesData!.state.days[currentSelectedDateIndex]
+        let dateString = statesData!.state.days[currentDateIndex]
         currentStateData!.forEach { (state: BE24StateModel) in
             let stateDateString = DATE_FORMATTER.Default.stringFromDate(state.startTime)
             if (state.type() == type) && (stateDateString == dateString) {

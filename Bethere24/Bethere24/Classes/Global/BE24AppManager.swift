@@ -100,6 +100,17 @@ class BE24AppManager: NSObject {
         return _categories
     }()
     
+    let healthTypeForIndex: [HealthType] = [
+        .InBathroom,
+        .WithVisitors,
+        .InDining,
+        .InMotion,
+        .InBedroom,
+        .AwayFromHome,
+        .InRecliner,
+        .TakingMedication,
+        ]
+    
     var token: String?
     var currentUser: BE24UserModel?
     var stateData : [BE24LocationModel]? {
@@ -107,6 +118,9 @@ class BE24AppManager: NSObject {
             
         }
     }
+    
+    var selectedHealthType: HealthType?
+    var selectedDayIndex: Int?
     
     private func analyticsData() {
         

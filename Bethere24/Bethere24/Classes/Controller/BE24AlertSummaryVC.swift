@@ -14,6 +14,7 @@ class BE24AlertSummaryVC: BE24StateBaseVC {
     var alertModels: [BE24AlertModel] = []
     var currentSelectedDateIndex: Int?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

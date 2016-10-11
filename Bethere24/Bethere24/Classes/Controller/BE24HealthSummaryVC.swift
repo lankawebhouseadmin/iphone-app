@@ -15,6 +15,15 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     @IBOutlet weak var btnHistoricalGraphs: UIButton!
     @IBOutlet weak var btnAlert: UIButton!
     
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if appManager().selectedDayIndex != nil && appManager().selectedHealthType != nil {
+            selectDateIndex(appManager().selectedDayIndex!)
+            viewMainPieCircle.selectCategoryType(appManager().selectedHealthType!)
+        }
+    }
     
     override func setupLayout() {
         super.setupLayout()
@@ -94,16 +103,29 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         viewMainPieCircle.nextSelect()
     }
     
+    @IBAction func onPressHealthScoreButton(sender: AnyObject) {
+        appManager().selectedHealthType = selectedHealthType
+        appManager().selectedDayIndex   = currentDateIndex
+        var segueName: String!
+        if sender as? UIButton == self.btnHealthScoreDetail {
+            segueName = APPSEGUE_gotoHealthScoreVC
+        } else {
+            segueName = APPSEGUE_gotoHistoricalGraphsVC
+        }
+        sideMenuController?.performSegueWithIdentifier(segueName, sender: self)
+
+//        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHealthScoreVC, sender: self)
+    }
     
     // MARK: - BE24PieCirlceView delegate
     func pieCircleView(view: BE24PieCircleView, selectedIndex: Int) {
 //        print (selectedIndex)
-        let healthType = healthTypeForIndex[selectedIndex]
+        selectedHealthType = healthTypeForIndex[selectedIndex]
         
         var selectedStates: [BE24StateModel] = []
         if currentStateData != nil {
             currentStateData!.forEach({ (state: BE24StateModel) in
-                if state.type() == healthType {
+                if state.type() == selectedHealthType {
                     selectedStates.append(state)
                 }
             })

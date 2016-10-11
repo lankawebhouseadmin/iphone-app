@@ -30,6 +30,8 @@ class BE24MenuVC: BE24TableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        appManager().selectedHealthType = nil
+        appManager().selectedDayIndex   = nil
         self.sideMenuController?.performSegueWithIdentifier(menuItems[indexPath.row][kMenuSegueKeyName]!, sender: self)
     }
     

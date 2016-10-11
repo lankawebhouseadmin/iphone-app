@@ -28,19 +28,25 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if appManager().selectedHealthType != nil {
+//            selectedHealthType = appManager().selectedHealthType!
+            self.healthTypeSelected(healthTypeForIndex.indexOf(appManager().selectedHealthType!)!)
+        } else {
+            setData()
+        }
         
-        setData()
     }
     
     override func setupLayout() {
         super.setupLayout()
+        
         self.pageType = .HistoricalGraphs
         
         self.viewChartContainer.makeRoundView()
         
         initChart()
         
-        
+        self.btnAlert.hidden = true
     }
     
     private func initChart() {
@@ -176,6 +182,23 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
         self.btnSelectHealthType.setTitleColor(UIColor(rgba: healthTypeData[kMenuColorKeyName]!), forState: .Normal)
 
         setData()
+    }
+    
+    @IBAction func onPressHealthSummaryAndScore(sender: AnyObject) {
+        appManager().selectedHealthType = selectedHealthType
+        appManager().selectedDayIndex = nil
+        if statesData != nil {
+            if statesData!.state.days.count > 0 {
+                appManager().selectedDayIndex = 0
+            }
+        }
+        var segueName: String!
+        if sender as? UIButton == self.btnHealthSummary {
+            segueName = APPSEGUE_gotoHealthSummaryVC
+        } else {
+            segueName = APPSEGUE_gotoHealthScoreVC
+        }
+        sideMenuController?.performSegueWithIdentifier(segueName, sender: self)
     }
 
     // MARK: - UITableView datasource

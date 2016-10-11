@@ -317,6 +317,9 @@ sdf</string>
                                                                         <constraint firstAttribute="height" constant="30" id="kGO-rr-gSS"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuHealth"/>
+                                                                    <connections>
+                                                                        <action selector="onPressHealthScoreButton:" destination="x8U-AY-QPn" eventType="touchUpInside" id="iKH-Tu-MzK"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2v-uF-ZOC">
                                                                     <rect key="frame" x="266" y="73" width="30" height="30"/>
@@ -333,6 +336,10 @@ sdf</string>
                                                                         <constraint firstAttribute="height" constant="30" id="tYc-Ac-0qM"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuGraph"/>
+                                                                    <connections>
+                                                                        <action selector="onPressAlert:" destination="x8U-AY-QPn" eventType="touchUpInside" id="Jyw-gH-dgf"/>
+                                                                        <action selector="onPressHealthScoreButton:" destination="x8U-AY-QPn" eventType="touchUpInside" id="Os0-hz-isj"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -780,6 +787,9 @@ sdf</string>
                                                                         <constraint firstAttribute="width" constant="30" id="rHY-cb-YJE"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuHeart"/>
+                                                                    <connections>
+                                                                        <action selector="onPressHealthSummaryButton:" destination="4yH-RR-LQc" eventType="touchUpInside" id="ZZS-dB-YqF"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2H-4T-Lnk">
                                                                     <rect key="frame" x="38" y="6" width="322" height="59"/>
@@ -797,6 +807,10 @@ sdf</string>
                                                                         <constraint firstAttribute="width" constant="30" id="xNf-l5-jYr"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuGraph"/>
+                                                                    <connections>
+                                                                        <action selector="onPressAlert:" destination="4yH-RR-LQc" eventType="touchUpInside" id="NoG-vk-vXt"/>
+                                                                        <action selector="onPressHealthSummaryButton:" destination="4yH-RR-LQc" eventType="touchUpInside" id="cjt-Bg-GFU"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1249,21 +1263,27 @@ sdf</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYn-Qv-hHl">
-                                                    <rect key="frame" x="192" y="7" width="30" height="30"/>
-                                                    <state key="normal" image="iconMenuHealth"/>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NCY-GM-izv">
-                                                    <rect key="frame" x="135" y="7" width="30" height="30"/>
+                                                    <rect key="frame" x="160" y="7" width="30" height="30"/>
                                                     <state key="normal" image="iconMenuHeart"/>
+                                                    <connections>
+                                                        <action selector="onPressHealthSummaryAndScore:" destination="RFR-ig-BS6" eventType="touchUpInside" id="rY8-Lf-czv"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLy-Mm-cl1">
-                                                    <rect key="frame" x="249" y="7" width="30" height="30"/>
+                                                    <rect key="frame" x="274" y="7" width="30" height="30"/>
                                                     <state key="normal" image="iconMenuAlert"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYn-Qv-hHl">
+                                                    <rect key="frame" x="217" y="7" width="30" height="30"/>
+                                                    <state key="normal" image="iconMenuHealth"/>
+                                                    <connections>
+                                                        <action selector="onPressHealthSummaryAndScore:" destination="RFR-ig-BS6" eventType="touchUpInside" id="EWH-fb-tlL"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bYn-Qv-hHl" firstAttribute="centerX" secondItem="LcC-tj-tX1" secondAttribute="centerX" id="3is-jt-bPi"/>
+                                                <constraint firstItem="bYn-Qv-hHl" firstAttribute="centerX" secondItem="LcC-tj-tX1" secondAttribute="centerX" constant="25" id="3is-jt-bPi"/>
                                                 <constraint firstItem="NCY-GM-izv" firstAttribute="centerY" secondItem="bYn-Qv-hHl" secondAttribute="centerY" id="6Cd-G2-I7k"/>
                                                 <constraint firstItem="hLy-Mm-cl1" firstAttribute="centerY" secondItem="bYn-Qv-hHl" secondAttribute="centerY" id="XA0-0f-BvD"/>
                                                 <constraint firstItem="bYn-Qv-hHl" firstAttribute="leading" secondItem="NCY-GM-izv" secondAttribute="trailing" constant="27" id="Xbt-Tu-3PN"/>
