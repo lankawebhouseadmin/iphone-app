@@ -54,11 +54,15 @@ class BE24PieClockView: BE24PieBaseView {
         
         if states != nil {
             
+            selectHealthState(0)
+            
+            /*
             if states!.count > selectedIndex {
                 selectHealthState(selectedIndex)
             } else {
                 selectHealthState(states!.count - 1)
             }
+            */
             
             self.setNeedsDisplay()
             
@@ -168,7 +172,9 @@ class BE24PieClockView: BE24PieBaseView {
                 } else {
                     borderColor = BE24AppManager.colorForScore(0)
                 }
+                
                 self.viewScore.layer.borderColor = borderColor.CGColor
+                
                 
                 /// Animate pin
                 let state = states![index]
@@ -207,9 +213,10 @@ class BE24PieClockView: BE24PieBaseView {
     }
 }
 
+@objc
 protocol BE24PieClockViewDelegate {
     func statesForPieCount(view: BE24PieClockView) -> [BE24StateModel]?
-    func numberOfPieCount(view: BE24PieClockView) -> Int
+//    func numberOfPieCount(view: BE24PieClockView) -> Int
     func pieClockView(view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel
     func pieClockView(view: BE24PieClockView, selectedStateIndex: Int) -> Void
 }

@@ -34,6 +34,13 @@ class BE24AlertSummaryVC: BE24StateBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
+    override func refreshData() {
+        super.refreshData()
+        currentSelectedDateIndex = nil
+        alertSelectedDayIndex(nil)
+        self.tableView.reloadData()
+    }
+    
     // MARK - UITableView datasource
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCellWithIdentifier(BE24AlertHeaderCell.cellIdentifier()) as! BE24AlertHeaderCell

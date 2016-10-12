@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SVProgressHUD
+import SwiftyJSON
 
 class BE24MainBaseVC: BE24TableViewController {
     
@@ -138,11 +140,25 @@ class BE24MainBaseVC: BE24TableViewController {
     
     func onPressRefresh(sender: AnyObject) -> Void {
         print (#function)
-        
+        SVProgressHUD.show()
+        self.requestManager().getData(appManager().currentUser!.id, token: appManager().token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
+            if result != nil {
+                self.appManager().stateData = result!
+                
+//                self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                self.refreshData()
+            } else {
+                self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: {
+                    
+                })
+            }
+            SVProgressHUD.dismiss()
+        })
     }
     
     func onPressNotification(sender: AnyObject) -> Void {
         print (#function)
+        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoAlertSummaryVC, sender: self)
     }
     
     func updateAlertBadgeCount(count: Int? = nil) -> Void {
@@ -157,5 +173,9 @@ class BE24MainBaseVC: BE24TableViewController {
         } else {
             btnNotification.badgeValue = String(count!)
         }
+    }
+    
+    func refreshData() -> Void {
+        
     }
 }

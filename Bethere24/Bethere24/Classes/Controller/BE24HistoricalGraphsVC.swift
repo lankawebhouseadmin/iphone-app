@@ -73,14 +73,23 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
         numberFormatter.numberStyle = .NoStyle
         yAxis.valueFormatter = numberFormatter
 
-        chart.rightAxis.enabled = false
-        
+        let rightAxis = chart.rightAxis
+        rightAxis.enabled = true
+        rightAxis.axisMaxValue = yAxis.axisMaxValue
+        rightAxis.axisMinValue = yAxis.axisMinValue
+        rightAxis.drawGridLinesEnabled = false
+        rightAxis.drawLabelsEnabled = false
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func refreshData() {
+        super.refreshData()
+        setData()
     }
     
     // MARK: - Chart data

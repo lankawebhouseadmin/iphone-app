@@ -21,6 +21,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         
         if appManager().selectedDayIndex != nil && appManager().selectedHealthType != nil {
             selectDateIndex(appManager().selectedDayIndex!)
+//            currentDateIndex = appManager().selectedDayIndex!
             viewMainPieCircle.selectCategoryType(appManager().selectedHealthType!)
         }
     }
@@ -34,16 +35,22 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     override func graphCellIndex() -> Int {
         return 1
     }
+    
+    override func refreshData() {
+        super.refreshData()
+        selectDateIndex(currentDateIndex)
+    }
 
     override func selectDateIndex(index: Int) {
         super.selectDateIndex(index)
         if statesData != nil {
             
+            stateDataOfCurrentDay = nil
             if statesData!.state.days.count > 0 {
                 let dateString = statesData!.state.days[index]
-                currentStateData = statesData!.state.statesByDay[dateString]
-                viewMainPieCircle.reloadData()
+                stateDataOfCurrentDay = statesData!.state.statesByDay[dateString]
             }
+            viewMainPieCircle.reloadData()
         }
     }
     
@@ -123,8 +130,8 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         selectedHealthType = healthTypeForIndex[selectedIndex]
         
         var selectedStates: [BE24StateModel] = []
-        if currentStateData != nil {
-            currentStateData!.forEach({ (state: BE24StateModel) in
+        if stateDataOfCurrentDay != nil {
+            stateDataOfCurrentDay!.forEach({ (state: BE24StateModel) in
                 if state.type() == selectedHealthType {
                     selectedStates.append(state)
                 }
@@ -143,8 +150,8 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     func pieCircleView(view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int {
         let healthType = healthTypeForIndex[categoryScoreForIndex]
         var score: Int = 0
-        if currentStateData != nil {
-            currentStateData!.forEach({ (state: BE24StateModel) in
+        if stateDataOfCurrentDay != nil {
+            stateDataOfCurrentDay!.forEach({ (state: BE24StateModel) in
                 if state.type() == healthType {
                     score = state.score
                 }

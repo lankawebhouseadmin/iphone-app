@@ -11,7 +11,7 @@ import UIKit
 class BE24StateBaseVC: BE24MainBaseVC {
 
     internal var statesData: BE24LocationModel?
-    internal var currentStateData: [BE24StateModel]?
+    internal var stateDataOfCurrentDay: [BE24StateModel]?
 
     internal var healthTypeForIndex: [HealthType] = [
         .InBathroom,
@@ -70,7 +70,9 @@ class BE24StateBaseVC: BE24MainBaseVC {
         super.viewDidLoad()
 
         if appManager().stateData != nil {
-            statesData = appManager().stateData!.first
+            if appManager().stateData!.count > 0 {
+                statesData = appManager().stateData!.first!
+            }
         }
 
     }
@@ -125,6 +127,18 @@ class BE24StateBaseVC: BE24MainBaseVC {
         } else {
             return ""
         }
+    }
+    
+    override func refreshData() {
+        super.refreshData()
+        
+        statesData = nil
+        if appManager().stateData != nil {
+            if appManager().stateData!.count > 0 {
+                statesData = appManager().stateData!.first!
+            }
+        }
+        
     }
     
     /*

@@ -60,6 +60,11 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         return 2
     }
     
+    override func refreshData() {
+        super.refreshData()
+        selectDateIndex(currentDateIndex)
+    }
+    
     // MARK: - HealthType selecting
     @IBAction func onPressSelectHealthType(sender: AnyObject) -> Void {
         print("select Health type")
@@ -113,14 +118,16 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         super.selectDateIndex(index)
         if statesData != nil {
             
+            stateDataOfCurrentDay = nil
             if statesData!.state.days.count > 0 {
                 let dateString = statesData!.state.days[index]
-                currentStateData = statesData!.state.statesByDay[dateString]
+                stateDataOfCurrentDay = statesData!.state.statesByDay[dateString]
                 
-                self.selectHealthType(selectedHealthType, dateIndex: index)
                 
 //                viewMainPieCircleView.reloadData()
             }
+            self.selectHealthType(selectedHealthType, dateIndex: index)
+
         }
 
     }
@@ -141,18 +148,19 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         
         currentStatesForHealtyType.removeAll()
         
-        let dateString = statesData!.state.days[currentDateIndex]
-        currentStateData!.forEach { (state: BE24StateModel) in
-            let stateDateString = DATE_FORMATTER.Default.stringFromDate(state.startTime)
-            if (state.type() == type) && (stateDateString == dateString) {
-                currentStatesForHealtyType.append(state)
+        if stateDataOfCurrentDay != nil {
+            let dateString = statesData!.state.days[currentDateIndex]
+            stateDataOfCurrentDay!.forEach { (state: BE24StateModel) in
+                let stateDateString = DATE_FORMATTER.Default.stringFromDate(state.startTime)
+                if (state.type() == type) && (stateDateString == dateString) {
+                    currentStatesForHealtyType.append(state)
+                }
             }
         }
-        
         self.viewMainPieClockView.reloadData()
     }
     
-    // MARK: BE24PieClockView delegate
+    // MARK: - BE24PieClockView delegate
     func statesForPieCount(view: BE24PieClockView) -> [BE24StateModel]? {
         if currentStatesForHealtyType.count == 0 {
             showStateInfo(nil)
@@ -160,13 +168,14 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         return currentStatesForHealtyType
     }
     
+    /*
     func numberOfPieCount(view: BE24PieClockView) -> Int {
         let count = currentStatesForHealtyType.count
         if count == 0 {
             showStateInfo(nil)
         }
         return count
-    }
+    } */
 
     func pieClockView(view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel {
         let state = currentStatesForHealtyType[stateForIndex]
@@ -175,7 +184,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     }
     
     func pieClockView(view: BE24PieClockView, selectedStateIndex: Int) {
-        showStateInfo(currentStateData![selectedStateIndex])
+        showStateInfo(currentStatesForHealtyType[selectedStateIndex])
     }
     
     // MARK: - Show Health infomation
