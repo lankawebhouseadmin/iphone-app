@@ -8,12 +8,13 @@
 //
 
 import UIKit
+import MZFormSheetPresentationController
 
-class BE24AlertSummaryVC: BE24StateBaseVC {
+class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
     
     var alertModels: [BE24AlertModel] = []
     var currentSelectedDateIndex: Int?
-    
+    var selectedHealthType: HealthType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,55 @@ class BE24AlertSummaryVC: BE24StateBaseVC {
         self.tableView.reloadData()
     }
     
+    // MARK: - HealthType selecting
+    private func onPressSelectHealthType() -> Void {
+        print("select Health type")
+        
+        let healthTypeMenuVC = self.storyboard!.instantiateViewControllerWithIdentifier("BE24HealthTypeMenuVC") as! BE24HealthTypeMenuVC
+        healthTypeMenuVC.showAllButton = true
+        healthTypeMenuVC.delegate = self
+        let formSheetController = MZFormSheetPresentationViewController(contentViewController: healthTypeMenuVC)
+        formSheetController.presentationController?.portraitTopInset = 170
+        var dialogSize = CGSizeMake(220, 400)
+        if self.view.frame.height < dialogSize.height + 170 {
+            dialogSize.height = self.view.frame.size.height - 190
+        }
+        formSheetController.presentationController?.contentViewSize = dialogSize  // or pass in UILayoutFittingCompressedSize to size automatically with auto-layout
+        //        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
+        formSheetController.contentViewControllerTransitionStyle = .Fade
+        
+        self.presentViewController(formSheetController, animated: true, completion: nil)
+        
+    }
+    
+    func healthTypeSelected(index: Int) {
+        if index == 0 {
+            selectedHealthType = nil
+        } else {
+            selectedHealthType = healthTypeForIndex[index - 1]
+        }
+        
+        if statesData!.alert != nil {
+            if index == 0 {
+                
+                alertModels = statesData!.alert!
+                
+            } else {
+
+                alertModels.removeAll()
+                statesData!.alert!.forEach({ (alert: BE24AlertModel) in
+                    if alert.type() == selectedHealthType {
+                        alertModels.append(alert)
+                    }
+                })
+            }
+        }
+        self.tableView.reloadData()
+
+    }
+    
     // MARK - UITableView datasource
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCellWithIdentifier(BE24AlertHeaderCell.cellIdentifier()) as! BE24AlertHeaderCell
@@ -48,7 +98,19 @@ class BE24AlertSummaryVC: BE24StateBaseVC {
             cell.segmentType.selectedSegmentIndex = 1
             cell.btnRightDate.hidden = true
             cell.btnLeftDate.hidden  = true
-            cell.lblTitle.text = "All"
+            if selectedHealthType == nil {
+                cell.btnHealthType.setTitle("All", forState: .Normal)
+                cell.btnHealthType.setImage(nil, forState: .Normal)
+            } else {
+                
+                let healthTypeData = appManager().categories[healthTypeForIndex.indexOf(selectedHealthType!)!]
+                
+                cell.btnHealthType.setImage(UIImage(named: healthTypeData[kMenuIconKeyName]!), forState: .Normal)
+                cell.btnHealthType.setTitle(healthTypeData[kMenuTitleKeyName], forState: .Normal)
+                cell.btnHealthType.setTitleColor(UIColor(rgba: healthTypeData[kMenuColorKeyName]!), forState: .Normal)
+                
+            }
+            cell.btnHealthType.enabled = true
         } else {
             if statesData != nil {
                 cell.segmentType.selectedSegmentIndex = 0
@@ -62,9 +124,13 @@ class BE24AlertSummaryVC: BE24StateBaseVC {
                 }
                 if statesData!.state.days.count > currentSelectedDateIndex {
                     let dayString = statesData!.state.days[currentSelectedDateIndex!]
-                    cell.lblTitle.text = self.dateString(dayString)
+
+                    cell.btnHealthType.setTitle(self.dateString(dayString), forState: .Normal)
+                    cell.btnHealthType.setImage(nil, forState: .Normal)
+
                 }
             }
+            cell.btnHealthType.enabled = false
         }
         cell.delegate = self
         return cell
@@ -127,23 +193,20 @@ class BE24AlertSummaryVC: BE24StateBaseVC {
 }
 
 extension BE24AlertSummaryVC: BE24AlertHeaderCellDelegate {
-    func alertSelectedLeftDate() -> String {
-        return "10/3 - Wed."
-    }
-    
-    func alertSelectedRightDate() -> String {
-        return "10/5 - Fri."
-    }
-    
-    func alertSelectedHealthTypeIndex(index: Int) {
-        
-    }
     
     func alertSelectedDayIndex(index: Int?) {
         if statesData!.alert != nil {
             if index == nil {
-                
+                if selectedHealthType == nil {
                 alertModels = statesData!.alert!
+                } else {
+                    alertModels.removeAll()
+                    statesData!.alert!.forEach({ (alert: BE24AlertModel) in
+                        if alert.type() == selectedHealthType {
+                            alertModels.append(alert)
+                        }
+                    })
+                }
                 
             } else {
                 let dayString = statesData!.state.days[index!]
@@ -176,5 +239,9 @@ extension BE24AlertSummaryVC: BE24AlertHeaderCellDelegate {
             alertSelectedDayIndex(currentSelectedDateIndex)
             self.tableView.reloadData()
         }
+    }
+    
+    func alertChooseHealthType() {
+        onPressSelectHealthType()
     }
 }

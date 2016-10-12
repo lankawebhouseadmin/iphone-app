@@ -22,8 +22,9 @@ class BE24AlertHeaderCell: BE24TableViewCell {
     @IBOutlet weak var segmentType: UISegmentedControl!
     @IBOutlet weak var btnLeftDate: UIButton!
     @IBOutlet weak var btnRightDate: UIButton!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var imgviewHealthCategory: UIImageView!
+//    @IBOutlet weak var lblTitle: UILabel!
+//    @IBOutlet weak var imgviewHealthCategory: UIImageView!
+    @IBOutlet weak var btnHealthType: UIButton!
     
     var alertType: AlertType = .Week
     
@@ -52,7 +53,9 @@ class BE24AlertHeaderCell: BE24TableViewCell {
         super.awakeFromNib()
         self.btnLeftDate.hidden = true
         self.btnRightDate.hidden = true
-        self.lblTitle.text = "All"
+//        self.lblTitle.text = "All"
+        self.btnHealthType.setImage(nil, forState: .Normal)
+        self.btnHealthType.setTitle("All", forState: .Normal)
     }
     
     @IBAction func onPressChangeWeekDayType(sender: AnyObject) {
@@ -66,6 +69,10 @@ class BE24AlertHeaderCell: BE24TableViewCell {
 //            setAlertType(.Week)
             //            self.delegate?.alertSelectedWeekDayType(.Week)
         }
+    }
+    
+    @IBAction func onPressHealthType(sender: AnyObject) {
+        delegate?.alertChooseHealthType()
     }
     
     @IBAction func onPressLeftDate(sender: AnyObject) {
@@ -86,19 +93,21 @@ class BE24AlertHeaderCell: BE24TableViewCell {
         if alertType == .Week {
             self.btnLeftDate.hidden = true
             self.btnRightDate.hidden = true
-            self.imgviewHealthCategory.image = nil
-            self.lblTitle.text = "All"
-            
+//            self.imgviewHealthCategory.image = nil
+//            self.lblTitle.text = "All"
+            self.btnHealthType.setImage(nil, forState: .Normal)
+            self.btnHealthType.setTitle("All", forState: .Normal)
 //            self.delegate?.alertSelectedDayIndex(nil)
-            
+            self.btnHealthType.enabled = true
         } else {
             self.btnLeftDate.hidden = false
             self.btnRightDate.hidden = false
-            self.imgviewHealthCategory.image = nil
+//            self.imgviewHealthCategory.image = nil
+            self.btnHealthType.setImage(nil, forState: .Normal)
 //            self.lblTitle.text = "10/4 - Tue."
             
 //            self.delegate?.alertSelectedDayIndex(currentDateIndex)
-            
+            self.btnHealthType.enabled = false
         }
     }
     
@@ -120,11 +129,13 @@ class BE24AlertHeaderCell: BE24TableViewCell {
                         self.btnLeftDate.hidden = true
                     }
                     
-                    self.lblTitle.text = dateString(locationModelData.state.days[index])
+//                    self.lblTitle.text = dateString(locationModelData.state.days[index])
+                    self.btnHealthType.setTitle(dateString(locationModelData.state.days[index]), forState: .Normal)
                     
                 } else {
                     
-                    self.lblTitle.text = "Today"
+//                    self.lblTitle.text = "Today"
+                    self.btnHealthType.setTitle("Today", forState: .Normal)
                     
                 }
                 
@@ -154,5 +165,7 @@ protocol BE24AlertHeaderCellDelegate {
     func alertSelectedWeekDayType(type: AlertType) -> Void
 
     func alertSelectedDayStep(step: Int) -> Void
+    
+    func alertChooseHealthType() -> Void
     
 }
