@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class BE24PieClockView: BE24PieBaseView {
 
+    let timezoneSeconds = Double(NSTimeZone.localTimeZone().secondsFromGMT)
+    
     var delegate: BE24PieClockViewDelegate?
     
     private var imgBackgroundView: UIImageView!
@@ -83,10 +85,10 @@ class BE24PieClockView: BE24PieBaseView {
                 for index in 0...(states!.count - 1) {
                     let state = states![index]
                     
-                    let startSeconds = (state.startTime.timeIntervalSince1970) % secondsOfOneDay // seconds of a day
-                    let endSeconds   = (state.endTime.timeIntervalSince1970) % secondsOfOneDay   // seconds of a day
-                    let start = Int(360 / secondsOfOneDay * startSeconds + 255) % 360
-                    let end   = Int(360 / secondsOfOneDay * endSeconds   + 257) % 360
+                    let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay // seconds of a day
+                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay   // seconds of a day
+                    let start = Int(360 / secondsOfOneDay * startSeconds + -1) % 360
+                    let end   = Int(360 / secondsOfOneDay * endSeconds   + 1) % 360
                     
                     if  start <= aliasAngle && aliasAngle <= end
 //                        || start >= aliasAngle && aliasAngle >= end
@@ -134,10 +136,10 @@ class BE24PieClockView: BE24PieBaseView {
                 for index in 0...(stateCount - 1) {
                     let state = states![index]
 
-                    let startSeconds = (state.startTime.timeIntervalSince1970  - 3600) % secondsOfOneDay // seconds of a day
-                    let endSeconds   = (state.endTime.timeIntervalSince1970 - 3600) % secondsOfOneDay   // seconds of a day
-                    let start: CGFloat = angleOfSecond * CGFloat(startSeconds) + CGFloat(M_PI)
-                    var end:CGFloat    = angleOfSecond * CGFloat(endSeconds )   + CGFloat(M_PI)
+                    let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay // seconds of a day
+                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay   // seconds of a day
+                    let start: CGFloat = angleOfSecond * CGFloat(startSeconds) + CGFloat(M_PI * 1.5)
+                    var end:CGFloat    = angleOfSecond * CGFloat(endSeconds )  + CGFloat(M_PI * 1.5)
                     if endSeconds - startSeconds < 60 {
                         end = start + angleOfSecond * 60
                     }
@@ -179,11 +181,11 @@ class BE24PieClockView: BE24PieBaseView {
                 
                 /// Animate pin
                 let state = states![index]
-                let startSeconds = CGFloat(state.startTime.timeIntervalSince1970 % secondsOfOneDay) // seconds of a day
-                let endSeconds   = CGFloat(state.endTime.timeIntervalSince1970 % secondsOfOneDay)   // seconds of a day
+                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
+                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
                 let middleSeconds = startSeconds + (endSeconds - startSeconds) / 2
                 
-                let angle = angleOfSecond * CGFloat(middleSeconds) - twoPI / 4 - twoPI / 24
+                let angle = angleOfSecond * CGFloat(middleSeconds) // - twoPI / 4 - twoPI / 24
                 UIView.animateWithDuration(0.3) {
                     self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
                 }
