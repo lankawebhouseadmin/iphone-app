@@ -50,6 +50,7 @@ class BE24PieClockView: BE24PieBaseView {
         
         assert(delegate != nil, "BE24PieClockViewDelegate should be not nil")
         
+        resetScore()
         states = delegate!.statesForPieCount(self)
         
         if states != nil {
@@ -191,6 +192,12 @@ class BE24PieClockView: BE24PieBaseView {
 
         }
         
+    }
+    
+    private func resetScore() {
+        self.lblScoreName.text = nil
+        self.lblScoreNumber.text = "-"
+        self.viewScore.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     func nextSelect() -> Void {
