@@ -22,6 +22,15 @@ class BE24MainBaseVC: BE24TableViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(logout(_:)), name: NOTIFICACTION_EnterBackground, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICACTION_EnterBackground, object: nil)
+    }
+    
     override func setupLayout() {
         super.setupLayout()
         
@@ -34,6 +43,12 @@ class BE24MainBaseVC: BE24TableViewController {
         
         
         //self.setPageTitle()
+    }
+    
+    func logout(sender: AnyObject) -> Void {
+        sideMenuController?.dismissViewControllerAnimated(true, completion: { 
+            
+        })
     }
     
     internal func addCustomNavigationBar() {
@@ -177,6 +192,6 @@ class BE24MainBaseVC: BE24TableViewController {
     }
     
     func refreshData() -> Void {
-        
+        updateAlertBadgeCount()
     }
 }

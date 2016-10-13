@@ -204,4 +204,4 @@ let APPSEGUE_gotoAlertSummaryVC     = "gotoAlertSummaryVC"
 let APPSEGUE_gotoHistoricalGraphsVC = "gototHistoricalGraphsVC"
 let APPSEGUE_gotoContactInfoVC      = "gotoContactInfoVC"
 
-
+let NOTIFICACTION_EnterBackground   = "com.bethere24.enter.background.app"

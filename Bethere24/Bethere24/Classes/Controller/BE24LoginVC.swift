@@ -40,7 +40,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         
         self.viewLogin.alpha = 0
         
-        self.login("rachel_stern", password: "rachel1234")
+//        self.login("rachel_stern", password: "rachel1234")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -98,6 +98,9 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     private func login(username: String, password: String) {
         SVProgressHUD.show()
         requestManager().login(username, password: password, result: { (result: AnyObject?, error: NSError?) in
+            
+            self.txtPassword.text = nil
+            
             if result != nil {
                 let json = JSON(result!)
                 let message = json["message"].stringValue
