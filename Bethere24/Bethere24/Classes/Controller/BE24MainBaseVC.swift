@@ -158,6 +158,7 @@ class BE24MainBaseVC: BE24TableViewController {
     
     func onPressNotification(sender: AnyObject) -> Void {
         print (#function)
+        appManager().selectedHealthType = nil
         sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoAlertSummaryVC, sender: self)
     }
     

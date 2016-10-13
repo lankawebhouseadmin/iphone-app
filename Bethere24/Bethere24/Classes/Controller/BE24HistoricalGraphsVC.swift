@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import MZFormSheetPresentationController
 
-class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthTypeMenuVCDelegate {
+class BE24HistoricalGraphsVC: BE24HealthBaseVC, ChartViewDelegate, BE24HealthTypeMenuVCDelegate {
 
     @IBOutlet weak var imgHealthCategory: UIImageView!
     @IBOutlet weak var lblHealthCategory: UILabel!
@@ -18,11 +18,12 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
     @IBOutlet weak var lblMonthName: UILabel!
     @IBOutlet weak var btnHealthSummary: UIButton!
     @IBOutlet weak var btnHealthScore: UIButton!
-    @IBOutlet weak var btnAlert: UIButton!
+//    @IBOutlet weak var btnAlert: UIButton!
     @IBOutlet weak var chart: LineChartView!
     @IBOutlet weak var viewChartContainer: UIView!
+//    @IBOutlet weak var constraintCenter: NSLayoutConstraint!
     
-    var selectedHealthType: HealthType = .InBathroom
+//    var selectedHealthType: HealthType = .InBathroom
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,7 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
         
         initChart()
         
-        self.btnAlert.hidden = true
+//        self.btnAlert.hidden = true
     }
     
     private func initChart() {
@@ -94,14 +95,18 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
     
     // MARK: - Chart data
     func setData() -> Void {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        self.lblMonthName.text = dateFormatter.stringFromDate(NSDate())
+        
         if statesData != nil {
-            var xVals: [String?] = []
+            var xVals: [String?] = [nil]
             var yVals: [ChartDataEntry] = []
             var dayIndex = statesData!.state.days.count
             var maxValue: Double = 0
             statesData!.state.days.forEach({ (dayString: String) in
 //                xVals.append(dayString)
-                dayIndex -= 1
                 
                 xVals.insert(dayString.substringToIndex(dayString.endIndex.advancedBy(-7)), atIndex: 0)
                 var totalTime: Double = 0
@@ -120,9 +125,10 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
 
                 }
                 
-                
-            })
+                dayIndex -= 1
 
+            })
+            xVals.insert(nil, atIndex: 0)
             let valueFormatter = NSNumberFormatter()
             valueFormatter.maximumFractionDigits = 2
             
@@ -156,6 +162,8 @@ class BE24HistoricalGraphsVC: BE24StateBaseVC, ChartViewDelegate, BE24HealthType
                 
             }
             chart.animate(xAxisDuration: 2, easingOption: .EaseOutBack)
+            
+            showAlertCount()
         }
     }
     

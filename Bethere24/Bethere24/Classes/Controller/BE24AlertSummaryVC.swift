@@ -19,9 +19,16 @@ class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if appManager().selectedHealthType != nil {
+            healthTypeSelected(healthTypeForIndex.indexOf(appManager().selectedHealthType!)! + 1)
+        } else {
+            healthTypeSelected(0)
+        }
+        
+        /*
         if statesData!.alert != nil {
             alertModels = statesData!.alert!
-        }
+        } */
     }
 
     override func setupLayout() {
@@ -88,7 +95,7 @@ class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
             }
         }
         self.tableView.reloadData()
-
+        
     }
     
     // MARK - UITableView datasource

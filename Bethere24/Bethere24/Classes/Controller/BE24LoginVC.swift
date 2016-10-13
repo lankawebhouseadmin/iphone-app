@@ -40,7 +40,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         
         self.viewLogin.alpha = 0
         
-//        self.login("rachel_stern", password: "rachel1234")
+        self.login("rachel_stern", password: "rachel1234")
     }
     
     override func viewDidAppear(animated: Bool) {

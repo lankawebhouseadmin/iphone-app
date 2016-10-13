@@ -254,7 +254,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3l-n6-5FT">
-                                                                    <rect key="frame" x="330" y="11" width="48" height="17"/>
+                                                                    <rect key="frame" x="287" y="11" width="48" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -265,17 +265,25 @@
                                                                         <constraint firstAttribute="width" secondItem="Fy9-mI-ZeI" secondAttribute="height" multiplier="1:1" id="UFx-cV-l5w"/>
                                                                     </constraints>
                                                                 </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89r-0V-tZ7">
+                                                                    <rect key="frame" x="343" y="11" width="45" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="H3l-n6-5FT" firstAttribute="centerY" secondItem="eBC-8f-1Hp" secondAttribute="centerY" id="AYv-eY-XWU"/>
                                                                 <constraint firstAttribute="height" constant="40" id="EQM-xQ-neA"/>
                                                                 <constraint firstItem="Fy9-mI-ZeI" firstAttribute="leading" secondItem="eBC-8f-1Hp" secondAttribute="leading" constant="20" id="NCl-V0-alf"/>
+                                                                <constraint firstItem="89r-0V-tZ7" firstAttribute="leading" secondItem="H3l-n6-5FT" secondAttribute="trailing" constant="8" id="aIA-WR-0YI"/>
                                                                 <constraint firstItem="Fy9-mI-ZeI" firstAttribute="top" secondItem="eBC-8f-1Hp" secondAttribute="top" constant="4" id="jYE-ST-Zvi"/>
                                                                 <constraint firstItem="0KM-Y0-Vpe" firstAttribute="leading" secondItem="Fy9-mI-ZeI" secondAttribute="trailing" constant="8" id="mLg-AD-e1U"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Fy9-mI-ZeI" secondAttribute="bottom" constant="4" id="r4t-cY-kuz"/>
-                                                                <constraint firstAttribute="trailing" secondItem="H3l-n6-5FT" secondAttribute="trailing" constant="20" id="tj3-ZO-iWt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="89r-0V-tZ7" secondAttribute="trailing" constant="10" id="udg-fh-LDL"/>
                                                                 <constraint firstItem="0KM-Y0-Vpe" firstAttribute="centerY" secondItem="eBC-8f-1Hp" secondAttribute="centerY" id="y9G-yB-J89"/>
+                                                                <constraint firstItem="89r-0V-tZ7" firstAttribute="centerY" secondItem="eBC-8f-1Hp" secondAttribute="centerY" id="zcp-zl-Vhv"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9HD-Bh-pZq">
@@ -310,8 +318,19 @@ sdf</string>
                                                                     <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0in-LX-3g0">
+                                                                    <rect key="frame" x="184" y="73" width="30" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="30" id="fEL-tP-JOH"/>
+                                                                        <constraint firstAttribute="height" constant="30" id="tYc-Ac-0qM"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="iconMenuGraph"/>
+                                                                    <connections>
+                                                                        <action selector="onPressHistoricalGraphsAndAlert:" destination="x8U-AY-QPn" eventType="touchUpInside" id="YVP-gf-XaW"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xf3-pF-CzP">
-                                                                    <rect key="frame" x="153" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="128" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="30" id="5CH-9o-7f8"/>
                                                                         <constraint firstAttribute="height" constant="30" id="kGO-rr-gSS"/>
@@ -322,23 +341,14 @@ sdf</string>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2v-uF-ZOC">
-                                                                    <rect key="frame" x="266" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="241" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="8Ay-P1-ZVs"/>
                                                                         <constraint firstAttribute="width" constant="30" id="h8Z-gR-LKh"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuAlert"/>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0in-LX-3g0">
-                                                                    <rect key="frame" x="209" y="73" width="30" height="30"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="fEL-tP-JOH"/>
-                                                                        <constraint firstAttribute="height" constant="30" id="tYc-Ac-0qM"/>
-                                                                    </constraints>
-                                                                    <state key="normal" image="iconMenuGraph"/>
                                                                     <connections>
-                                                                        <action selector="onPressAlert:" destination="x8U-AY-QPn" eventType="touchUpInside" id="Jyw-gH-dgf"/>
-                                                                        <action selector="onPressHealthScoreButton:" destination="x8U-AY-QPn" eventType="touchUpInside" id="Os0-hz-isj"/>
+                                                                        <action selector="onPressHistoricalGraphsAndAlert:" destination="x8U-AY-QPn" eventType="touchUpInside" id="SaC-lP-D2i"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -349,9 +359,8 @@ sdf</string>
                                                                 <constraint firstItem="0in-LX-3g0" firstAttribute="top" secondItem="3bo-YX-HxQ" secondAttribute="bottom" constant="8" id="DkR-ta-YYP"/>
                                                                 <constraint firstItem="Xgp-iM-en2" firstAttribute="leading" secondItem="9HD-Bh-pZq" secondAttribute="leading" id="FBd-Sa-9VF"/>
                                                                 <constraint firstItem="4dO-6r-I8x" firstAttribute="top" secondItem="9HD-Bh-pZq" secondAttribute="top" id="Mn0-7p-010"/>
-                                                                <constraint firstItem="0in-LX-3g0" firstAttribute="centerX" secondItem="9HD-Bh-pZq" secondAttribute="centerX" constant="25" id="QCk-H7-oZu"/>
+                                                                <constraint firstItem="0in-LX-3g0" firstAttribute="centerX" secondItem="9HD-Bh-pZq" secondAttribute="centerX" id="QCk-H7-oZu"/>
                                                                 <constraint firstItem="3bo-YX-HxQ" firstAttribute="leading" secondItem="Xgp-iM-en2" secondAttribute="trailing" constant="8" id="Uxz-m8-hf9"/>
-                                                                <constraint firstAttribute="bottom" secondItem="3bo-YX-HxQ" secondAttribute="bottom" constant="8" id="Yjf-uA-gR0"/>
                                                                 <constraint firstAttribute="bottom" secondItem="4dO-6r-I8x" secondAttribute="bottom" id="ZSj-dO-s8K"/>
                                                                 <constraint firstItem="4dO-6r-I8x" firstAttribute="leading" secondItem="3bo-YX-HxQ" secondAttribute="trailing" constant="8" id="c0E-U1-HLu"/>
                                                                 <constraint firstItem="xf3-pF-CzP" firstAttribute="centerY" secondItem="0in-LX-3g0" secondAttribute="centerY" id="cbP-1w-cwE"/>
@@ -362,11 +371,6 @@ sdf</string>
                                                                 <constraint firstItem="Xgp-iM-en2" firstAttribute="top" secondItem="9HD-Bh-pZq" secondAttribute="top" id="web-uD-HCX"/>
                                                                 <constraint firstItem="0in-LX-3g0" firstAttribute="leading" secondItem="xf3-pF-CzP" secondAttribute="trailing" constant="26" id="zgf-og-yz3"/>
                                                             </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="Yjf-uA-gR0"/>
-                                                                </mask>
-                                                            </variation>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -411,7 +415,9 @@ sdf</string>
                         <outlet property="btnLeftHealthCategory" destination="Xgp-iM-en2" id="awS-WW-xDw"/>
                         <outlet property="btnRightDate" destination="E8F-Kj-w8Q" id="ZOx-bN-kWX"/>
                         <outlet property="btnRightHealthCategory" destination="4dO-6r-I8x" id="zS4-eT-93f"/>
+                        <outlet property="constraintCenter" destination="QCk-H7-oZu" id="mzJ-7Y-YT0"/>
                         <outlet property="imgHealthIcon" destination="Fy9-mI-ZeI" id="feV-HZ-xri"/>
+                        <outlet property="lblAlerts" destination="89r-0V-tZ7" id="4Me-tA-ePT"/>
                         <outlet property="lblDate" destination="J5Z-XZ-yah" id="biD-IK-bmy"/>
                         <outlet property="lblHealthDetail" destination="3bo-YX-HxQ" id="YAH-Ef-gxN"/>
                         <outlet property="lblHealthTitle" destination="0KM-Y0-Vpe" id="lYE-Pw-KrG"/>
@@ -711,7 +717,7 @@ sdf</string>
                                                             <rect key="frame" x="0.0" y="0.0" width="398" height="40"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 times" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g36-7o-7Vl">
-                                                                    <rect key="frame" x="330" y="11" width="48" height="17"/>
+                                                                    <rect key="frame" x="287" y="11" width="48" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -736,16 +742,24 @@ sdf</string>
                                                                         <outletCollection property="gestureRecognizers" destination="zTc-ls-EL7" appends="YES" id="ao8-EP-ReQ"/>
                                                                     </connections>
                                                                 </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoB-MO-IZB">
+                                                                    <rect key="frame" x="343" y="11" width="45" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstItem="hBG-zz-YzV" firstAttribute="centerY" secondItem="619-fZ-g3U" secondAttribute="centerY" id="3Ol-7n-KuC"/>
-                                                                <constraint firstAttribute="trailing" secondItem="g36-7o-7Vl" secondAttribute="trailing" constant="20" id="8JF-n2-FJn"/>
                                                                 <constraint firstAttribute="height" constant="40" id="Ep2-7D-PyU"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Zov-fh-6YH" secondAttribute="bottom" constant="4" id="JZP-4o-vfy"/>
+                                                                <constraint firstAttribute="trailing" secondItem="VoB-MO-IZB" secondAttribute="trailing" constant="10" id="Ou5-Ku-0wQ"/>
                                                                 <constraint firstItem="g36-7o-7Vl" firstAttribute="centerY" secondItem="619-fZ-g3U" secondAttribute="centerY" id="RYg-2G-y6x"/>
+                                                                <constraint firstItem="VoB-MO-IZB" firstAttribute="leading" secondItem="g36-7o-7Vl" secondAttribute="trailing" constant="8" id="dzU-YM-ZIy"/>
                                                                 <constraint firstItem="Zov-fh-6YH" firstAttribute="leading" secondItem="619-fZ-g3U" secondAttribute="leading" constant="20" id="haZ-nr-gX1"/>
                                                                 <constraint firstItem="hBG-zz-YzV" firstAttribute="leading" secondItem="Zov-fh-6YH" secondAttribute="trailing" constant="8" id="lQq-nT-LWw"/>
+                                                                <constraint firstItem="VoB-MO-IZB" firstAttribute="centerY" secondItem="619-fZ-g3U" secondAttribute="centerY" id="mU1-S2-gIM"/>
                                                                 <constraint firstItem="Zov-fh-6YH" firstAttribute="top" secondItem="619-fZ-g3U" secondAttribute="top" constant="4" id="mz5-Wr-2pX"/>
                                                             </constraints>
                                                         </view>
@@ -773,15 +787,18 @@ sdf</string>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhf-ho-ZbX">
-                                                                    <rect key="frame" x="266" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="241" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="1QR-lo-MW3"/>
                                                                         <constraint firstAttribute="width" constant="30" id="XC2-he-PVW"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuAlert"/>
+                                                                    <connections>
+                                                                        <action selector="onPressHistoricalGraphsAndAlert:" destination="4yH-RR-LQc" eventType="touchUpInside" id="TXP-pa-Hfl"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmp-2p-poI">
-                                                                    <rect key="frame" x="153" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="128" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="LsV-7l-S39"/>
                                                                         <constraint firstAttribute="width" constant="30" id="rHY-cb-YJE"/>
@@ -801,15 +818,14 @@ sdf</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75o-TY-Juo">
-                                                                    <rect key="frame" x="209" y="73" width="30" height="30"/>
+                                                                    <rect key="frame" x="184" y="73" width="30" height="30"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="30" id="RSR-ow-idT"/>
                                                                         <constraint firstAttribute="width" constant="30" id="xNf-l5-jYr"/>
                                                                     </constraints>
                                                                     <state key="normal" image="iconMenuGraph"/>
                                                                     <connections>
-                                                                        <action selector="onPressAlert:" destination="4yH-RR-LQc" eventType="touchUpInside" id="NoG-vk-vXt"/>
-                                                                        <action selector="onPressHealthSummaryButton:" destination="4yH-RR-LQc" eventType="touchUpInside" id="cjt-Bg-GFU"/>
+                                                                        <action selector="onPressHistoricalGraphsAndAlert:" destination="4yH-RR-LQc" eventType="touchUpInside" id="G1u-sC-sdl"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -819,9 +835,8 @@ sdf</string>
                                                                 <constraint firstItem="75o-TY-Juo" firstAttribute="leading" secondItem="dmp-2p-poI" secondAttribute="trailing" constant="26" id="3vE-cn-Ey6"/>
                                                                 <constraint firstAttribute="trailing" secondItem="1aD-Ik-UHX" secondAttribute="trailing" id="7m3-Bm-QXX"/>
                                                                 <constraint firstAttribute="bottom" secondItem="75o-TY-Juo" secondAttribute="bottom" constant="8" id="9Kr-fb-s9l"/>
-                                                                <constraint firstItem="75o-TY-Juo" firstAttribute="centerX" secondItem="lPi-iS-CXG" secondAttribute="centerX" constant="25" id="EWa-lP-uW1"/>
+                                                                <constraint firstItem="75o-TY-Juo" firstAttribute="centerX" secondItem="lPi-iS-CXG" secondAttribute="centerX" id="EWa-lP-uW1"/>
                                                                 <constraint firstItem="1aD-Ik-UHX" firstAttribute="leading" secondItem="b2H-4T-Lnk" secondAttribute="trailing" constant="8" id="HQu-4z-PgZ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="b2H-4T-Lnk" secondAttribute="bottom" constant="8" id="LYA-oV-oTJ"/>
                                                                 <constraint firstItem="zhf-ho-ZbX" firstAttribute="centerY" secondItem="75o-TY-Juo" secondAttribute="centerY" id="SOD-AT-qxE"/>
                                                                 <constraint firstItem="1aD-Ik-UHX" firstAttribute="top" secondItem="lPi-iS-CXG" secondAttribute="top" id="Vdc-ga-Y0J"/>
                                                                 <constraint firstItem="75o-TY-Juo" firstAttribute="top" secondItem="b2H-4T-Lnk" secondAttribute="bottom" constant="8" id="WVP-zs-gks"/>
@@ -833,11 +848,6 @@ sdf</string>
                                                                 <constraint firstItem="dmp-2p-poI" firstAttribute="centerY" secondItem="75o-TY-Juo" secondAttribute="centerY" id="nHe-oG-muM"/>
                                                                 <constraint firstItem="b2H-4T-Lnk" firstAttribute="leading" secondItem="fb5-T5-wBj" secondAttribute="trailing" constant="8" id="o2b-jS-kim"/>
                                                             </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="LYA-oV-oTJ"/>
-                                                                </mask>
-                                                            </variation>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -883,7 +893,9 @@ sdf</string>
                         <outlet property="btnRightDate" destination="qLm-xa-1JF" id="vzh-gh-fKX"/>
                         <outlet property="btnRightHealthCategory" destination="1aD-Ik-UHX" id="Jej-z9-0ba"/>
                         <outlet property="btnSelectHealthType" destination="cLN-ne-1Wi" id="cZ1-Hl-zJO"/>
+                        <outlet property="constraintCenter" destination="EWa-lP-uW1" id="Kkl-wA-KOI"/>
                         <outlet property="imgHealthIcon" destination="Zov-fh-6YH" id="vmd-FB-Jed"/>
+                        <outlet property="lblAlerts" destination="VoB-MO-IZB" id="2m7-Tx-RxW"/>
                         <outlet property="lblDate" destination="4aq-la-l2n" id="KOq-hx-xjo"/>
                         <outlet property="lblHealthDetail" destination="b2H-4T-Lnk" id="wh9-qo-BWg"/>
                         <outlet property="lblHealthTitle" destination="hBG-zz-YzV" id="IHO-bL-C1h"/>
@@ -1270,6 +1282,9 @@ sdf</string>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLy-Mm-cl1">
                                                     <rect key="frame" x="274" y="7" width="30" height="30"/>
                                                     <state key="normal" image="iconMenuAlert"/>
+                                                    <connections>
+                                                        <action selector="onPressHistoricalGraphsAndAlert:" destination="RFR-ig-BS6" eventType="touchUpInside" id="Ot7-1k-qCO"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYn-Qv-hHl">
                                                     <rect key="frame" x="217" y="7" width="30" height="30"/>
@@ -1304,6 +1319,7 @@ sdf</string>
                         <outlet property="btnHealthSummary" destination="NCY-GM-izv" id="0co-4c-J0g"/>
                         <outlet property="btnSelectHealthType" destination="Ct1-vI-Kfn" id="E9P-Wk-zLm"/>
                         <outlet property="chart" destination="qfD-94-tTC" id="x5Z-RI-BGO"/>
+                        <outlet property="constraintCenter" destination="3is-jt-bPi" id="plb-hL-9Wd"/>
                         <outlet property="lblMonthName" destination="ezs-PO-wws" id="dud-yv-E8f"/>
                         <outlet property="viewChartContainer" destination="4Ij-s2-ywk" id="cOq-XU-Nqt"/>
                     </connections>

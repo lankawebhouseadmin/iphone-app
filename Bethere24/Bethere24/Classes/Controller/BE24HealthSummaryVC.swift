@@ -13,8 +13,6 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     @IBOutlet weak var viewMainPieCircle: BE24PieCircleView!
     @IBOutlet weak var btnHealthScoreDetail: UIButton!
     @IBOutlet weak var btnHistoricalGraphs: UIButton!
-    @IBOutlet weak var btnAlert: UIButton!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +58,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
             
             self.btnHealthScoreDetail.hidden = false
             self.btnHistoricalGraphs.hidden  = false
-            self.btnAlert.hidden             = true
+//            self.btnAlert.hidden             = true
             
             self.lblTimes.hidden = false
             var timesString: String = "1 time"
@@ -68,6 +66,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
                 timesString = String(states.count) + " times"
             }
             self.lblTimes.text = timesString
+            
             
             var totalTimes = 0
             states.forEach({ (state: BE24StateModel) in
@@ -95,11 +94,13 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
             
             self.btnHealthScoreDetail.hidden = true
             self.btnHistoricalGraphs.hidden  = true
-            self.btnAlert.hidden             = true
+//            self.btnAlert.hidden             = true
             self.lblTimes.hidden = true
             
             self.lblHealthDetail.text = "No data available"
         }
+        
+        showAlertCount()
     }
     
     @IBAction func onPressLeftHealthType(sender: AnyObject) {
@@ -153,7 +154,11 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         if stateDataOfCurrentDay != nil {
             stateDataOfCurrentDay!.forEach({ (state: BE24StateModel) in
                 if state.type() == healthType {
-                    score = state.score
+                    if score == 0 {
+                        score = state.score
+                    } else if score > state.score {
+                        score = state.score
+                    }
                 }
             })
         }

@@ -16,7 +16,6 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     @IBOutlet weak var btnHealthSummary: UIButton!
     @IBOutlet weak var btnHistoricalGraphs: UIButton!
-    @IBOutlet weak var btnAlert: UIButton!
     
     private var categories: [[String: String]]!
     
@@ -158,6 +157,8 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
             }
         }
         self.viewMainPieClockView.reloadData()
+        
+        showAlertCount()
     }
     
     // MARK: - BE24PieClockView delegate
