@@ -95,7 +95,7 @@ class BE24StateGroupModel: BE24Model {
             statesByDay[dateString] = statesForDate!
         }
         
-        print(days.count)
+//        print(days.count)
         
     }
 

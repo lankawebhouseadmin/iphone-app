@@ -121,6 +121,7 @@ class BE24AppManager: NSObject {
     
     var selectedHealthType: HealthType?
     var selectedDayIndex: Int?
+    var prevVCForAlertVC: BE24HealthBaseVC?
     
     private func analyticsData() {
         

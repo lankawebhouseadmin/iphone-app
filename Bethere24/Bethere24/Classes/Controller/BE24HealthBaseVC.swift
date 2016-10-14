@@ -21,8 +21,10 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     @IBOutlet weak var btnRightDate             : UIButton?
     @IBOutlet weak var btnLeftHealthCategory    : UIButton!
     @IBOutlet weak var btnRightHealthCategory   : UIButton!
-    @IBOutlet weak var constraintCenter: NSLayoutConstraint!
     @IBOutlet weak var btnAlert                 : UIButton!
+    
+    @IBOutlet weak var constraintLeftOfFirstButton:  NSLayoutConstraint!
+    @IBOutlet weak var constraintHSpaceOfLastButton: NSLayoutConstraint!
 
     internal var currentDateIndex: Int = 0
     internal var selectedHealthType: HealthType = .InBathroom
@@ -108,16 +110,19 @@ class BE24HealthBaseVC: BE24StateBaseVC {
                         }
                         self.lblAlerts!.text = alertCountString
                     }
-                    self.constraintCenter.constant = 0
+                    self.constraintLeftOfFirstButton.constant = -55
+                    self.constraintHSpaceOfLastButton.constant = 80
                     self.btnAlert.hidden = false
                 } else {
                     self.lblAlerts?.text = nil
-                    self.constraintCenter.constant = 25
+                    self.constraintLeftOfFirstButton.constant = -25
+                    self.constraintHSpaceOfLastButton.constant = 25
                     self.btnAlert.hidden = true
                 }
             } else {
                 self.lblAlerts?.text = nil
-                self.constraintCenter.constant = 25
+                self.constraintLeftOfFirstButton.constant = -25
+                self.constraintHSpaceOfLastButton.constant = 25
                 self.btnAlert.hidden = true
             }
         }
@@ -136,11 +141,14 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     @IBAction func onPressHistoricalGraphsAndAlert(sender: AnyObject) {
         appManager().selectedHealthType = selectedHealthType
         appManager().selectedDayIndex   = currentDateIndex
+        appManager().prevVCForAlertVC   = self
+        
         if sender as? UIButton == self.btnAlert {
             sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoAlertSummaryVC, sender: self)
         } else {
             sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHistoricalGraphsVC, sender: self)
         }
+        
     }
     
     /*
@@ -148,8 +156,11 @@ class BE24HealthBaseVC: BE24StateBaseVC {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let navVC = segue.destinationViewController as? BE24NavigationController {
+            if let alertVC = navVC.topViewController as? BE24AlertSummaryVC {
+                alertVC.prevVC = self
+            }
+        }
     }
     */
 

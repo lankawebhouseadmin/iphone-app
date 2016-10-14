@@ -100,6 +100,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         requestManager().login(username, password: password, result: { (result: AnyObject?, error: NSError?) in
             
             self.txtPassword.text = nil
+            self.txtUsername.text = nil
             
             if result != nil {
                 let json = JSON(result!)

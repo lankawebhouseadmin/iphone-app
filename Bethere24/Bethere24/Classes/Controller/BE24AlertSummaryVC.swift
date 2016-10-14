@@ -15,11 +15,16 @@ class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
     var alertModels: [BE24AlertModel] = []
     var currentSelectedDateIndex: Int?
     var selectedHealthType: HealthType?
+    var isBackable: Bool = false
+    var prevVC: BE24HealthBaseVC?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if appManager().selectedHealthType != nil {
+        if appManager().selectedHealthType != nil && appManager().prevVCForAlertVC != nil {
+            isBackable = true
+            prevVC = appManager().prevVCForAlertVC!
             healthTypeSelected(healthTypeForIndex.indexOf(appManager().selectedHealthType!)! + 1)
         } else {
             healthTypeSelected(0)
@@ -51,7 +56,7 @@ class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
     
     // MARK: - HealthType selecting
     private func onPressSelectHealthType() -> Void {
-        print("select Health type")
+//        print("select Health type")
         
         let healthTypeMenuVC = self.storyboard!.instantiateViewControllerWithIdentifier("BE24HealthTypeMenuVC") as! BE24HealthTypeMenuVC
         healthTypeMenuVC.showAllButton = true
@@ -99,48 +104,92 @@ class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
     }
     
     // MARK - UITableView datasource
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCellWithIdentifier(BE24AlertHeaderCell.cellIdentifier()) as! BE24AlertHeaderCell
-        if currentSelectedDateIndex == nil {
-            cell.segmentType.selectedSegmentIndex = 1
-            cell.btnRightDate.hidden = true
-            cell.btnLeftDate.hidden  = true
-            if selectedHealthType == nil {
-                cell.btnHealthType.setTitle("All", forState: .Normal)
-                cell.btnHealthType.setImage(nil, forState: .Normal)
-            } else {
-                
-                let healthTypeData = appManager().categories[healthTypeForIndex.indexOf(selectedHealthType!)!]
-                
-                cell.btnHealthType.setImage(UIImage(named: healthTypeData[kMenuIconKeyName]!), forState: .Normal)
-                cell.btnHealthType.setTitle(healthTypeData[kMenuTitleKeyName], forState: .Normal)
-                cell.btnHealthType.setTitleColor(UIColor(rgba: healthTypeData[kMenuColorKeyName]!), forState: .Normal)
-                
-            }
-            cell.btnHealthType.enabled = true
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if isBackable {
+            return 0
         } else {
-            if statesData != nil {
-                cell.segmentType.selectedSegmentIndex = 0
-                cell.btnLeftDate.hidden = true
-                cell.btnRightDate.hidden = true
-                if currentSelectedDateIndex! > 0 {
-                    cell.btnRightDate.hidden = false
-                }
-                if currentSelectedDateIndex < statesData!.state.days.count - 1 {
-                    cell.btnLeftDate.hidden = false
-                }
-                if statesData!.state.days.count > currentSelectedDateIndex {
-                    let dayString = statesData!.state.days[currentSelectedDateIndex!]
-
-                    cell.btnHealthType.setTitle(self.dateString(dayString), forState: .Normal)
-                    cell.btnHealthType.setImage(nil, forState: .Normal)
-
-                }
-            }
-            cell.btnHealthType.enabled = false
+            return 90
         }
-        cell.delegate = self
-        return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if isBackable {
+            let screenSize = UIScreen.mainScreen().bounds.size
+            var footerHeight = screenSize.height - 114 - CGFloat(80 * alertModels.count)
+            if footerHeight < 50 {
+                footerHeight = 50
+            }
+            return footerHeight
+        } else {
+            return 0
+        }
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if isBackable {
+            return nil
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(BE24AlertHeaderCell.cellIdentifier()) as! BE24AlertHeaderCell
+            if currentSelectedDateIndex == nil {
+                cell.segmentType.selectedSegmentIndex = 1
+                cell.btnRightDate.hidden = true
+                cell.btnLeftDate.hidden  = true
+                if selectedHealthType == nil {
+                    cell.btnHealthType.setTitle("All", forState: .Normal)
+                    cell.btnHealthType.setImage(nil, forState: .Normal)
+                } else {
+                    
+                    let healthTypeData = appManager().categories[healthTypeForIndex.indexOf(selectedHealthType!)!]
+                    
+                    cell.btnHealthType.setImage(UIImage(named: healthTypeData[kMenuIconKeyName]!), forState: .Normal)
+                    cell.btnHealthType.setTitle(healthTypeData[kMenuTitleKeyName], forState: .Normal)
+                    cell.btnHealthType.setTitleColor(UIColor(rgba: healthTypeData[kMenuColorKeyName]!), forState: .Normal)
+                    
+                }
+                cell.btnHealthType.enabled = true
+            } else {
+                if statesData != nil {
+                    cell.segmentType.selectedSegmentIndex = 0
+                    cell.btnLeftDate.hidden = true
+                    cell.btnRightDate.hidden = true
+                    if currentSelectedDateIndex! > 0 {
+                        cell.btnRightDate.hidden = false
+                    }
+                    if currentSelectedDateIndex < statesData!.state.days.count - 1 {
+                        cell.btnLeftDate.hidden = false
+                    }
+                    if statesData!.state.days.count > currentSelectedDateIndex {
+                        let dayString = statesData!.state.days[currentSelectedDateIndex!]
+
+                        cell.btnHealthType.setTitle(self.dateString(dayString), forState: .Normal)
+                        cell.btnHealthType.setImage(nil, forState: .Normal)
+
+                    }
+                }
+                cell.btnHealthType.enabled = false
+            }
+            cell.delegate = self
+            return cell
+        }
+    }
+    
+    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if isBackable {
+            let cell = tableView.dequeueReusableCellWithIdentifier(BE24AlertFooterCell.cellIdentifier()) as! BE24AlertFooterCell
+            cell.delegate = self
+            if prevVC! is BE24HealthSummaryVC {
+                cell.btnBack.setImage(UIImage(named: "iconMenuHeart"), forState: .Normal)
+            } else if prevVC! is BE24HealthScoreVC {
+                cell.btnBack.setImage(UIImage(named: "iconMenuHealth"), forState: .Normal)
+            } else if prevVC! is BE24HistoricalGraphsVC {
+                cell.btnBack.setImage(UIImage(named: "iconMenuGraph"), forState: .Normal)
+            } else {
+                cell.btnBack.hidden = true
+            }
+            return cell
+        } else {
+            return nil
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -199,7 +248,7 @@ class BE24AlertSummaryVC: BE24StateBaseVC, BE24HealthTypeMenuVCDelegate {
 
 }
 
-extension BE24AlertSummaryVC: BE24AlertHeaderCellDelegate {
+extension BE24AlertSummaryVC: BE24AlertHeaderCellDelegate, BE24AlertFooterCellDelegate {
     
     func alertSelectedDayIndex(index: Int?) {
         if statesData!.alert != nil {
@@ -250,5 +299,16 @@ extension BE24AlertSummaryVC: BE24AlertHeaderCellDelegate {
     
     func alertChooseHealthType() {
         onPressSelectHealthType()
+    }
+    
+    func alertFooterCellPressBack(sender: AnyObject) {
+        if prevVC! is BE24HealthSummaryVC {
+            sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHealthSummaryVC, sender: self)
+        } else if prevVC! is BE24HealthScoreVC {
+            sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHealthScoreVC, sender: self)
+        } else if prevVC! is BE24HistoricalGraphsVC {
+            sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHistoricalGraphsVC, sender: self)
+        }
+
     }
 }

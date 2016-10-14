@@ -66,7 +66,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     // MARK: - HealthType selecting
     @IBAction func onPressSelectHealthType(sender: AnyObject) -> Void {
-        print("select Health type")
+//        print("select Health type")
         
         let healthTypeMenuVC = self.storyboard!.instantiateViewControllerWithIdentifier("BE24HealthTypeMenuVC") as! BE24HealthTypeMenuVC
         healthTypeMenuVC.delegate = self

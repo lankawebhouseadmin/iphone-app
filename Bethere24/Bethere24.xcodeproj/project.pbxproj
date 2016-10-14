@@ -30,6 +30,7 @@
 		E14675B91D97F6FC000567AC /* UIView+BE24.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675B61D97F6FC000567AC /* UIView+BE24.swift */; };
 		E14675BB1D9811F1000567AC /* BE24RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675BA1D9811F1000567AC /* BE24RequestManager.swift */; };
 		E14675BD1D98A840000567AC /* BE24SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14675BC1D98A840000567AC /* BE24SideMenuController.swift */; };
+		E16C042F1DB11BF10080D81C /* BE24AlertFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16C042E1DB11BF10080D81C /* BE24AlertFooterCell.swift */; };
 		E177E6FC1D98B84F00570B1D /* BE24MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */; };
 		E177E6FF1D98B9D400570B1D /* BE24MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */; };
 		E177E7011D98CEF800570B1D /* BE24MainBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */; };
@@ -123,6 +124,7 @@
 		E14675B61D97F6FC000567AC /* UIView+BE24.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BE24.swift"; sourceTree = "<group>"; };
 		E14675BA1D9811F1000567AC /* BE24RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24RequestManager.swift; sourceTree = "<group>"; };
 		E14675BC1D98A840000567AC /* BE24SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24SideMenuController.swift; sourceTree = "<group>"; };
+		E16C042E1DB11BF10080D81C /* BE24AlertFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24AlertFooterCell.swift; sourceTree = "<group>"; };
 		E177E6FB1D98B84F00570B1D /* BE24MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MenuVC.swift; sourceTree = "<group>"; };
 		E177E6FE1D98B9D400570B1D /* BE24MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MenuCell.swift; sourceTree = "<group>"; };
 		E177E7001D98CEF800570B1D /* BE24MainBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24MainBaseVC.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				E1F1FBD01DA51727007AA0A0 /* BE24TableViewCell.swift */,
 				E1F1FBD21DA51739007AA0A0 /* BE24AlertHeaderCell.swift */,
 				E1F1FBD41DA518D2007AA0A0 /* BE24AlertContentCell.swift */,
+				E16C042E1DB11BF10080D81C /* BE24AlertFooterCell.swift */,
 				E1DD98F11DA9F25E004E234B /* BE24HealthTypeMenuCell.swift */,
 			);
 			path = View;
@@ -736,6 +739,7 @@
 				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
 				E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */,
 				E1F1FBD51DA518D2007AA0A0 /* BE24AlertContentCell.swift in Sources */,
+				E16C042F1DB11BF10080D81C /* BE24AlertFooterCell.swift in Sources */,
 				E177E7251D99083E00570B1D /* Constraint.swift in Sources */,
 				E183BD001DA7D3BD004B5418 /* BE24StateBaseVC.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,

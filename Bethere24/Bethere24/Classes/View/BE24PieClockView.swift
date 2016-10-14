@@ -76,7 +76,7 @@ class BE24PieClockView: BE24PieBaseView {
         
         let aliasAngle = ((angle + 90) % 360)
         
-        print(aliasAngle)
+//        print(aliasAngle)
         
         if states != nil {
             if states!.count == 1 {
