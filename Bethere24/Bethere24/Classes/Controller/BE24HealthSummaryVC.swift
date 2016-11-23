@@ -152,7 +152,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         let healthType = healthTypeForIndex[categoryScoreForIndex]
         var score: Int = 0
         if stateDataOfCurrentDay != nil {
-            stateDataOfCurrentDay!.forEach({ (state: BE24StateModel) in
+            for state in stateDataOfCurrentDay! {
                 if state.type() == healthType {
                     if score == 0 {
                         score = state.score
@@ -160,7 +160,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
                         score = state.score
                     }
                 }
-            })
+            }
         }
         return score
     }

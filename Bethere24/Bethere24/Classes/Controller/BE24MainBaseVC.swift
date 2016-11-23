@@ -24,11 +24,11 @@ class BE24MainBaseVC: BE24TableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(logout(_:)), name: NOTIFICACTION_EnterBackground, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(logout(_:)), name: NOTIFICACTION_EnterBackground, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICACTION_EnterBackground, object: nil)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICACTION_EnterBackground, object: nil)
     }
     
     override func setupLayout() {

@@ -143,6 +143,20 @@ class BE24AppManager: NSObject {
         return UIColor(rgba: colorValue)
     }
     
+    func saveUsername(username: String, password: String) {
+        let userDefault = NSUserDefaults.standardUserDefaults();
+        userDefault.setObject(username, forKey: "username")
+        userDefault.setObject(password, forKey: "password")
+        userDefault.synchronize()
+    }
+    
+    func getUsernamePassword() -> (String?, String?) {
+        let userDefault = NSUserDefaults.standardUserDefaults();
+        let username: String? = userDefault.objectForKey("username") as? String
+        let password: String? = userDefault.objectForKey("password") as? String
+        return (username, password)
+    }
+    
 }
 
 enum PageType {
@@ -190,6 +204,12 @@ struct DATE_FORMATTER {
         dateFormatter.dateFormat = "M/d/yyyy\nh:m a"
         return dateFormatter
     }()
+    static let MonthDay: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/d"
+        return dateFormatter
+    }()
+
 }
 
 let kMenuIconKeyName            = "icon"

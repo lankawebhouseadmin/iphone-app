@@ -131,6 +131,24 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
 
     }
     
+    override func dateString(dateString: String) -> String {
+        if let date = DATE_FORMATTER.Default.dateFromString(dateString) {
+            let calendar = NSCalendar.currentCalendar()
+            if let aDaysAgo = calendar.dateByAddingUnit(.Day, value: -1, toDate: date, options: []) {
+                let yesterDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysAgo)
+                let selectedDayString = DATE_FORMATTER.MonthDay.stringFromDate(date)
+                let resultString = "\(yesterDayString) 6:00 am - \(selectedDayString) 6:00 am"
+                return resultString
+            }
+        }
+        let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
+        if dateString == todayString {
+            return "Today"
+        } else {
+            return dateString
+        }
+    }
+    
     func selectHealthType(type: HealthType, dateIndex: Int) -> Void {
         
         selectedHealthType  = type

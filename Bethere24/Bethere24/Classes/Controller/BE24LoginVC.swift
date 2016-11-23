@@ -40,6 +40,10 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         
         self.viewLogin.alpha = 0
         
+        let usernamePassword = appManager().getUsernamePassword()
+        txtUsername.text = usernamePassword.0
+        txtPassword.text = usernamePassword.1
+        
 //        self.login("rachel_stern", password: "rachel1234")
     }
     
@@ -62,6 +66,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         }) { (success: Bool) in
             UIView.animateWithDuration(0.5, animations: {
                 self.viewLogin.alpha = 1
+                self.autoLogin()
             })
 
         }
@@ -95,12 +100,20 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
 //        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
     }
     
+    private func autoLogin() {
+        if self.txtUsername.text?.characters.count > 0 && self.txtPassword.text?.characters.count >= 6 {
+            login(self.txtUsername.text!, password: self.txtPassword.text!)
+        }
+    }
+    
     private func login(username: String, password: String) {
         SVProgressHUD.show()
         requestManager().login(username, password: password, result: { (result: AnyObject?, error: NSError?) in
             
-            self.txtPassword.text = nil
-            self.txtUsername.text = nil
+//            self.txtPassword.text = nil
+//            self.txtUsername.text = nil
+            
+            self.appManager().saveUsername(username, password: password)
             
             if result != nil {
                 let json = JSON(result!)

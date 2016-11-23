@@ -152,6 +152,23 @@ class BE24PieClockView: BE24PieBaseView {
                     
                 }
             }
+            
+            /// draw green bar
+            
+            let aPath = UIBezierPath()
+            
+            aPath.moveToPoint(centerPoint)
+            
+            aPath.addLineToPoint(CGPoint(x: centerPoint.x + radius, y: centerPoint.y))
+            aPath.lineWidth = 2
+            aPath.closePath()
+            
+            //If you want to stroke it with a red color
+            UIColor.greenColor().set()
+            aPath.stroke()
+            //If you want to fill it as well 
+            aPath.fill()
+
         }
     }
 
