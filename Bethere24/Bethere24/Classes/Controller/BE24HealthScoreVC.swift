@@ -134,10 +134,10 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     override func dateString(dateString: String) -> String {
         if let date = DATE_FORMATTER.Default.dateFromString(dateString) {
             let calendar = NSCalendar.currentCalendar()
-            if let aDaysAgo = calendar.dateByAddingUnit(.Day, value: -1, toDate: date, options: []) {
-                let yesterDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysAgo)
+            if let aDaysAfter = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: []) {
+                let tommorowDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysAfter)
                 let selectedDayString = DATE_FORMATTER.MonthDay.stringFromDate(date)
-                let resultString = "\(yesterDayString) 6:00 am - \(selectedDayString) 6:00 am"
+                let resultString = "\(selectedDayString) 6:00 am - \(tommorowDayString) 6:00 am"
                 return resultString
             }
         }
