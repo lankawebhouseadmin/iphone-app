@@ -20,6 +20,7 @@ class BE24LocationModel: BE24Model {
     var zipCode         : String?
     var country         : String?
     var virtualDayStart : String?
+    var virtualDayStartOrigin : String?
     var alert           : [BE24AlertModel]?
     
 
@@ -32,7 +33,10 @@ class BE24LocationModel: BE24Model {
         state           = BE24StateGroupModel(data: data["state"])
         zipCode         = data["zip"].string
         country         = data["country"].string
-        virtualDayStart = data["virtual_day_start"].string
+        virtualDayStartOrigin = data["virtual_day_start"].stringValue
+        if let virtualDay = DATE_FORMATTER.OnlyTime.dateFromString(virtualDayStartOrigin!) {
+            virtualDayStart = DATE_FORMATTER.TimeA.stringFromDate(virtualDay)
+        }
         alert = []
         data["alert"].arrayValue.forEach { (elem: JSON) in
             self.alert?.append(BE24AlertModel(data: elem))

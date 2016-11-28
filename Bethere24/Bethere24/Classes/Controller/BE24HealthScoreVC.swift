@@ -132,21 +132,34 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     }
     
     override func dateString(dateString: String) -> String {
+
         if let date = DATE_FORMATTER.Default.dateFromString(dateString) {
             let calendar = NSCalendar.currentCalendar()
-            if let aDaysAfter = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: []) {
-                let tommorowDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysAfter)
+            if let aDaysNextday = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: []) {
+                let nextDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysNextday)
                 let selectedDayString = DATE_FORMATTER.MonthDay.stringFromDate(date)
-                let resultString = "\(selectedDayString) 6:00 am - \(tommorowDayString) 6:00 am"
+                let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
+                var resultString: String!
+                if dateString == todayString {
+                    let stringToday = DATE_FORMATTER.StandardISO.stringFromDate(NSDate())
+                    let stringVirtualToday: String = stringToday.substringToIndex(stringToday.startIndex.advancedBy(11)) + statesData!.virtualDayStartOrigin!
+                    let dateVirtualToday: NSDate = DATE_FORMATTER.StandardISO.dateFromString(stringVirtualToday)!
+                    let loginTimeString = DATE_FORMATTER.TimeA.stringFromDate(appManager().currentUser!.loginTime!)
+                    if appManager().currentUser!.loginTime!.compare(dateVirtualToday) == .OrderedAscending {
+                        let aDaysYesterday = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: [])
+                        let yesterDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysYesterday!)
+                        resultString = "\(yesterDayString) \(statesData!.virtualDayStart!) - \(selectedDayString) \(loginTimeString)"
+                    } else {
+                        resultString = "\(selectedDayString) \(statesData!.virtualDayStart!) - \(selectedDayString) \(loginTimeString)"
+                    }
+                    
+                } else {
+                    resultString = "\(selectedDayString) \(statesData!.virtualDayStart!) - \(nextDayString) \(statesData!.virtualDayStart!)"
+                }
                 return resultString
             }
         }
-        let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
-        if dateString == todayString {
-            return "Today"
-        } else {
-            return dateString
-        }
+        return dateString
     }
     
     func selectHealthType(type: HealthType, dateIndex: Int) -> Void {
@@ -204,6 +217,12 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     func pieClockView(view: BE24PieClockView, selectedStateIndex: Int) {
         showStateInfo(currentStatesForHealtyType[selectedStateIndex])
+    }
+    
+    func shouldShowLoginTimeClockView(view: BE24PieClockView) -> Bool {
+        let dateString = statesData!.state.days[currentDateIndex]
+        let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
+        return dateString == todayString
     }
     
     // MARK: - Show Health infomation

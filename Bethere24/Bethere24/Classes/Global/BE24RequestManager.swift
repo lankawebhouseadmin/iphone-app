@@ -25,7 +25,8 @@ class BE24RequestManager: NSObject {
     
     typealias DetailtResponse = (AnyObject?, NSError?) -> Void
     
-    let baseURL = "http://staging.noostore.com"
+//    let baseURL = "http://staging.noostore.com"
+    let baseURL = "http://uat.noostore.com:80"
     let URI_Login = "/api/login/"
     let UIR_State = "/api/states/"
     func POST(url: String, params: [String: AnyObject]?, result: DetailtResponse) -> Void {

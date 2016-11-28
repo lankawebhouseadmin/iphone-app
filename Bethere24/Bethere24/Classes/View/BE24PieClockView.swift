@@ -119,7 +119,7 @@ class BE24PieClockView: BE24PieBaseView {
             //define the radius by the smallest side of the view
             var radius:CGFloat = 0.0
             if CGRectGetWidth(rect) > CGRectGetHeight(rect){
-                radius = (CGRectGetWidth(rect) - arcWidth) / 2.0 + 3
+                radius = (CGRectGetWidth (rect) - arcWidth) / 2.0 + 3
             }else{
                 radius = (CGRectGetHeight(rect) - arcWidth) / 2.0 + 3
             }
@@ -154,20 +154,52 @@ class BE24PieClockView: BE24PieBaseView {
             }
             
             /// draw green bar
+            let stateData = BE24AppManager.sharedManager.stateData!.first!
+            let time = DATE_FORMATTER.OnlyTime.dateFromString(stateData.virtualDayStartOrigin!)!
+            let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: time)
+            
+            let totalSeconds = component.hour * 3600 + component.minute * 60 + component.second
+            let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)
+            let bx = centerPoint.x + radius * cos(angle)
+            let by = centerPoint.y + radius * sin(angle)
             
             let aPath = UIBezierPath()
             
             aPath.moveToPoint(centerPoint)
             
-            aPath.addLineToPoint(CGPoint(x: centerPoint.x + radius, y: centerPoint.y))
+            aPath.addLineToPoint(CGPoint(x: bx, y: by))
             aPath.lineWidth = 2
             aPath.closePath()
             
             //If you want to stroke it with a red color
-            UIColor.greenColor().set()
+            UIColor.blueColor().set()
             aPath.stroke()
             //If you want to fill it as well 
             aPath.fill()
+            
+            if delegate!.shouldShowLoginTimeClockView(self) {
+                let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: BE24AppManager.sharedManager.currentUser!.loginTime!)
+                
+                let totalSeconds = component.hour * 3600 + component.minute * 60 + component.second
+                let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)
+                let bx = centerPoint.x + radius * cos(angle)
+                let by = centerPoint.y + radius * sin(angle)
+                
+                let aPath = UIBezierPath()
+                
+                aPath.moveToPoint(centerPoint)
+                
+                aPath.addLineToPoint(CGPoint(x: bx, y: by))
+                aPath.lineWidth = 2
+                aPath.closePath()
+                
+                //If you want to stroke it with a red color
+                UIColor.greenColor().set()
+                aPath.stroke()
+                //If you want to fill it as well
+                aPath.fill()
+
+            }
 
         }
     }
@@ -245,4 +277,5 @@ protocol BE24PieClockViewDelegate {
 //    func numberOfPieCount(view: BE24PieClockView) -> Int
     func pieClockView(view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel
     func pieClockView(view: BE24PieClockView, selectedStateIndex: Int) -> Void
+    func shouldShowLoginTimeClockView(view: BE24PieClockView) -> Bool
 }

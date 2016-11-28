@@ -66,7 +66,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         }) { (success: Bool) in
             UIView.animateWithDuration(0.5, animations: {
                 self.viewLogin.alpha = 1
-                self.autoLogin()
+//                self.autoLogin()
             })
 
         }

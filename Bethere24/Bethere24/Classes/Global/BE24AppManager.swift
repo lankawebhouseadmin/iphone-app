@@ -209,7 +209,21 @@ struct DATE_FORMATTER {
         dateFormatter.dateFormat = "M/d"
         return dateFormatter
     }()
-
+    static let OnlyTime: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss"
+        return dateFormatter
+    }()
+    static let TimeA: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        return dateFormatter
+    }()
+    static let StandardISO: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss"
+        return dateFormatter
+    }()
 }
 
 let kMenuIconKeyName            = "icon"
