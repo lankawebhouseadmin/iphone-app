@@ -3,7 +3,7 @@
 //  Bethere24
 //
 //  Created by Prbath Neranja on 10/6/16.
-//  Copyright © 2016 LankaWebHouse. All rights reserved.
+//  Copyright © 2016 BeThere24. All rights reserved.
 //
 
 import UIKit
