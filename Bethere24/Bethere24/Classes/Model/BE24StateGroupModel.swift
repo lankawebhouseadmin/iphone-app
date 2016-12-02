@@ -80,11 +80,18 @@ class BE24StateGroupModel: BE24Model {
             }
         }
         
+        var startDayTimeInterval: Double = 2000000000
+        var endDayTimeInterval: Double = 0
+        
         allStates.forEach { (aState: BE24StateModel) in
-            
             let dateString = aState.dateString()
-            if days.contains(dateString) == false {
-                days.append(dateString)
+//            let timeInterval = aState.startTime.timeIntervalSince1970
+            let timeInterval = aState.startTime.timeIntervalSince1970 //DATE_FORMATTER.Default.dateFromString(dateString)!.timeIntervalSince1970
+            if startDayTimeInterval > timeInterval {
+                startDayTimeInterval = timeInterval
+            }
+            if endDayTimeInterval < timeInterval {
+                endDayTimeInterval = timeInterval
             }
             
             var statesForDate = statesByDay[dateString]
@@ -95,7 +102,23 @@ class BE24StateGroupModel: BE24Model {
             statesByDay[dateString] = statesForDate!
         }
         
-//        print(days.count)
+        days.removeAll()
+        var timeInterval = endDayTimeInterval
+        while timeInterval > startDayTimeInterval - (3600 * 24) {
+            let dateString = DATE_FORMATTER.Default.stringFromDate(NSDate(timeIntervalSince1970: timeInterval))
+            days.append(dateString)
+            
+            var statesForDate = statesByDay[dateString]
+            if statesForDate == nil {
+                statesForDate = []
+                statesByDay[dateString] = statesForDate!
+            }
+            
+            timeInterval -= (3600 * 24)
+        }
+        
+        
+        print(days.count)
         
     }
 

@@ -15,13 +15,14 @@ extension JSON {
         case .String:
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = dateFormat
-            return dateFormatter.dateFromString(self.object as! String)
+            let date = dateFormatter.dateFromString(self.object as! String)
+            return date
         default:
             return nil
         }
     }
     
     public func dateTime() -> NSDate? {
-        return dateFromFormat("yyyy'-'MM'-'dd'T'hh':'mm':'ss")
+        return dateFromFormat("yyyy-MM-dd'T'HH:mm:ss")
     }
 }
