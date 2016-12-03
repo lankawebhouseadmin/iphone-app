@@ -42,7 +42,7 @@ class BE24PieCircleView: BE24PieBaseView {
         
         //define the radius by the smallest side of the view
         var radius:CGFloat = 0.0
-        if CGRectGetWidth(rect) > CGRectGetHeight(rect){
+        if CGRectGetWidth(rect) < CGRectGetHeight(rect){
             radius = (CGRectGetWidth(rect) - arcWidth) / 2.0
         }else{
             radius = (CGRectGetHeight(rect) - arcWidth) / 2.0
@@ -95,10 +95,10 @@ class BE24PieCircleView: BE24PieBaseView {
     override func arrangeSublayout() {
         super.arrangeSublayout()
         
-        let width = UIScreen.mainScreen().bounds.size.width - 16
-        let selfBounds = CGRectMake(0, 0, width, width)
+//        let width = UIScreen.mainScreen().bounds.size.width - 16
+        let selfBounds = self.bounds // CGRectMake(0, 0, width, width)
         let centerPoint = CGPointMake(CGRectGetMidX(selfBounds), CGRectGetMidY(selfBounds))
-        let radius:CGFloat = width / 4.0 + 30
+        let radius:CGFloat = min(selfBounds.width, selfBounds.height) / 4.0 + 30
         
         let twoPI = 2.0 * CGFloat(M_PI)
         let angleDelta = twoPI / 8
@@ -131,8 +131,16 @@ class BE24PieCircleView: BE24PieBaseView {
         if delegate != nil {
             let score = self.delegate!.pieCircleView(self, categoryScoreForIndex: index)
             let scoreValueName = self.scoreValueAndName(score)
-            self.lblScoreNumber.text = scoreValueName.0
-            self.lblScoreName.text = scoreValueName.1
+//            self.lblScoreNumber.text = scoreValueName.0
+//            self.lblScoreName.text = scoreValueName.1
+            self.viewScore.imgScore.image = UIImage(named: scoreValueName.0)
+            if let scoreName = scoreValueName.1 {
+                self.viewScore.imgScoreName.image = UIImage(named: scoreName)
+            } else {
+                self.viewScore.imgScoreName.image = nil
+            }
+            
+
             
             borderColor = BE24AppManager.colorForScore(score)
             

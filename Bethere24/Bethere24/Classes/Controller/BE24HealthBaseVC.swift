@@ -29,7 +29,7 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     internal var currentDateIndex: Int = 0
     internal var selectedHealthType: HealthType = .InBathroom
 
-
+    // MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,19 +48,11 @@ class BE24HealthBaseVC: BE24StateBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == graphCellIndex() {
-            return UIScreen.mainScreen().bounds.size.width
-        } else {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
-        }
-    }
-
     internal func graphCellIndex() -> Int {
         return 100
     }
 
-    // MARK: - 
+    // MARK:
     internal func selectDateIndex(index: Int) {
         if statesData != nil {
             

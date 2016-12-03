@@ -37,9 +37,6 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         } else {
             selectHealthType(.InBathroom, dateIndex: 0)
         }
-
-        
-        
 //        showStateInfo(nil)
     }
 
@@ -48,6 +45,11 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         self.pageType = .HealthScoreDetails
         self.viewMainPieClockView.delegate = self
 //        self.viewMainPieCircleView.reloadData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        viewMainPieClockView.arrangeSublayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +61,18 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         return 2
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == graphCellIndex() {
+            var height = UIScreen.mainScreen().bounds.size.height - 360
+            if height > UIScreen.mainScreen().bounds.width {
+                height = UIScreen.mainScreen().bounds.width
+            }
+            return height
+        } else {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
+    }
+
     override func refreshData() {
         super.refreshData()
         selectDateIndex(currentDateIndex)

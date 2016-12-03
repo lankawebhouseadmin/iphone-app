@@ -24,6 +24,8 @@ class BE24PieClockView: BE24PieBaseView {
     private let twoPI = 2.0 * CGFloat(M_PI)
     private let angleOfSecond = 2.0 * CGFloat(M_PI) / CGFloat(86400)
     
+    private var originAngle: CGFloat = 0
+    
     override func awakeFromNib() {
         
         imgBackgroundView = UIImageView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
@@ -42,7 +44,7 @@ class BE24PieClockView: BE24PieBaseView {
     override func arrangeSublayout() {
         super.arrangeSublayout()
         
-        let width = UIScreen.mainScreen().bounds.size.width - 16
+        let width = self.bounds.height - 16 // UIScreen.mainScreen().bounds.size.width - 16
         imgBackgroundView.makeRoundView(radius: width / 2)
 
     }
@@ -118,7 +120,7 @@ class BE24PieClockView: BE24PieBaseView {
             
             //define the radius by the smallest side of the view
             var radius:CGFloat = 0.0
-            if CGRectGetWidth(rect) > CGRectGetHeight(rect){
+            if CGRectGetWidth(rect) < CGRectGetHeight(rect){
                 radius = (CGRectGetWidth (rect) - arcWidth) / 2.0 + 3
             }else{
                 radius = (CGRectGetHeight(rect) - arcWidth) / 2.0 + 3
@@ -204,7 +206,7 @@ class BE24PieClockView: BE24PieBaseView {
         }
     }
 
-    private func selectHealthState(index: Int) {
+    private func selectHealthState(index: Int, directionToNext: Bool = true) {
         
         if let statesCount = states?.count {
             
@@ -215,9 +217,13 @@ class BE24PieClockView: BE24PieBaseView {
                 if delegate != nil {
                     let score = self.delegate!.pieClockView(self, stateForIndex: index).score
                     let scoreValueName = self.scoreValueAndName(score)
-                    self.lblScoreNumber.text = scoreValueName.0
-                    self.lblScoreName.text = scoreValueName.1
-                    
+                    self.viewScore.imgScore.image = UIImage(named: scoreValueName.0)
+                    if let scoreName = scoreValueName.1 {
+                        self.viewScore.imgScoreName.image = UIImage(named: scoreName)
+                    } else {
+                        self.viewScore.imgScoreName.image = nil
+                    }
+
                     borderColor = BE24AppManager.colorForScore(score)
                     
                     delegate!.pieClockView(self, selectedStateIndex: index)
@@ -230,15 +236,21 @@ class BE24PieClockView: BE24PieBaseView {
                 
                 /// Animate pin
                 let state = states![index]
-                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
-                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
+                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds)) // % secondsOfOneDay)   // seconds of a day
+                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds)) // % secondsOfOneDay)   // seconds of a day
                 let middleSeconds = startSeconds + (endSeconds - startSeconds) / 2
                 
-                let angle = angleOfSecond * CGFloat(middleSeconds) // - twoPI / 4 - twoPI / 24
-                UIView.animateWithDuration(0.3) {
-                    self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
+                var angle = angleOfSecond * CGFloat(middleSeconds) // - twoPI / 4 - twoPI / 24
+                if directionToNext == false {
+//                    angle = angle - twoPI
                 }
-                
+                let originTransform = CGAffineTransformMakeRotation(originAngle)
+                let newTransform = CGAffineTransformRotate(originTransform, (angle - originAngle) % CGFloat(secondsOfOneDay))
+                print (angle)
+                UIView.animateWithDuration(0.3) {
+                    self.imgviewArrow.transform = newTransform //CGAffineTransformMakeRotation(angle)
+                }
+                originAngle = angle
             }
 
         }
@@ -246,15 +258,16 @@ class BE24PieClockView: BE24PieBaseView {
     }
     
     private func resetScore() {
-        self.lblScoreName.text = nil
-        self.lblScoreNumber.text = "-"
+        self.viewScore.imgScore.image = UIImage(named: "score")
+        self.viewScore.imgScoreName.image = nil
+
         self.viewScore.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     func nextSelect() -> Void {
         if let statesCount = states?.count {
             if statesCount > 0 {
-                self.selectHealthState((selectedIndex + 1) % statesCount)
+                self.selectHealthState((selectedIndex + 1) % statesCount, directionToNext: false)
             }
         }
     }

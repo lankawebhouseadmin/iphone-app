@@ -30,8 +30,25 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         self.viewMainPieCircle.delegate = self
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        viewMainPieCircle.arrangeSublayout()
+    }
+    
     override func graphCellIndex() -> Int {
         return 1
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == graphCellIndex() {
+            var height = UIScreen.mainScreen().bounds.size.height - 320
+            if height > UIScreen.mainScreen().bounds.width {
+                height = UIScreen.mainScreen().bounds.width
+            }
+            return height
+        } else {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
     }
     
     override func refreshData() {

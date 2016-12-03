@@ -66,6 +66,8 @@ class BE24StateBaseVC: BE24MainBaseVC {
             "",
         ]
     ]
+    
+    // MARK:
     override func viewDidLoad() {
         super.viewDidLoad()
 
