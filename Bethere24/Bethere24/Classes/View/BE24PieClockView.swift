@@ -236,11 +236,11 @@ class BE24PieClockView: BE24PieBaseView {
                 
                 /// Animate pin
                 let state = states![index]
-                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds)) // % secondsOfOneDay)   // seconds of a day
-                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds)) // % secondsOfOneDay)   // seconds of a day
-                let middleSeconds = startSeconds + (endSeconds - startSeconds) / 2
+                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
+//                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
+//                let middleSeconds = startSeconds + (endSeconds - startSeconds) / 2
                 
-                var angle = angleOfSecond * CGFloat(middleSeconds) // - twoPI / 4 - twoPI / 24
+                var angle = angleOfSecond * CGFloat(startSeconds) // - twoPI / 4 - twoPI / 24
                 if directionToNext == false {
 //                    angle = angle - twoPI
                 }
@@ -248,7 +248,7 @@ class BE24PieClockView: BE24PieBaseView {
                 let newTransform = CGAffineTransformRotate(originTransform, (angle - originAngle) % CGFloat(secondsOfOneDay))
                 print (angle)
                 UIView.animateWithDuration(0.3) {
-                    self.imgviewArrow.transform = newTransform //CGAffineTransformMakeRotation(angle)
+                    self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
                 }
                 originAngle = angle
             }
