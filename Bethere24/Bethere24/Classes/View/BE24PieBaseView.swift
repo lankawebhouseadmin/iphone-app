@@ -44,7 +44,6 @@ class BE24PieBaseView: BE24View {
             make.width.equalTo(viewScore.snp_height).offset(0)
         }
         viewScore.makeBorder(UIColor.whiteColor(), borderWidth: 5)
-        viewScore.makeRoundView(radius: viewScore.frame.width * 0.5)
 
     }
     
@@ -62,8 +61,6 @@ class BE24PieBaseView: BE24View {
 
     func arrangeSublayout() {
         
-        viewScore.makeRoundView(radius: viewScore.frame.width * 0.5)
-
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -111,6 +108,12 @@ class BE24PieBaseView: BE24View {
 
     func reloadData() -> Void {
         setNeedsDisplay()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        viewScore.makeRoundView(radius: viewScore.frame.width * 0.5)
+        arrangeSublayout()
     }
 
 }

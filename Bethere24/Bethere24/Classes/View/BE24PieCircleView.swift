@@ -95,8 +95,8 @@ class BE24PieCircleView: BE24PieBaseView {
     override func arrangeSublayout() {
         super.arrangeSublayout()
         
-//        let width = UIScreen.mainScreen().bounds.size.width - 16
-        let selfBounds = self.bounds // CGRectMake(0, 0, width, width)
+        let width = UIScreen.mainScreen().bounds.size.width - 16
+        let selfBounds = CGRectMake(0, 0, width, self.bounds.height)
         let centerPoint = CGPointMake(CGRectGetMidX(selfBounds), CGRectGetMidY(selfBounds))
         let radius:CGFloat = min(selfBounds.width, selfBounds.height) / 4.0 + 30
         

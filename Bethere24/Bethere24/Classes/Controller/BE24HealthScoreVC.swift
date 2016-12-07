@@ -49,7 +49,6 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        viewMainPieClockView.arrangeSublayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +70,13 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         } else {
             return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
         }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == graphCellIndex() {
+            viewMainPieClockView.arrangeSublayout()
+        }
+        return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
     }
 
     override func refreshData() {
@@ -201,9 +207,10 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
                 }
             }
         }
+        showAlertCount()
+
         self.viewMainPieClockView.reloadData()
         
-        showAlertCount()
     }
     
     // MARK: - BE24PieClockView delegate
@@ -244,9 +251,9 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         
         if state != nil {
             
-            self.btnHealthSummary.hidden = false
+//            self.btnHealthSummary.hidden = false
             self.btnHistoricalGraphs.hidden  = false
-            self.btnAlert.hidden             = true
+//            self.btnAlert.hidden             = true
             
             self.lblTimes.hidden = false
             var timesString: String = "1 time"
@@ -290,10 +297,11 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
             
         } else {
             
-            self.btnHealthSummary.hidden     = true
+//            self.btnHealthSummary.hidden     = true
             self.btnHistoricalGraphs.hidden  = true
-            self.btnAlert.hidden             = true
+//            self.btnAlert.hidden             = true
             self.lblTimes.hidden             = true
+            self.constraintLeftOfFirstButton.constant = 0
             
             self.lblHealthDetail.text = "No data available"
         }

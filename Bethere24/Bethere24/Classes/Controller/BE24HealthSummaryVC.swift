@@ -32,7 +32,6 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        viewMainPieCircle.arrangeSublayout()
     }
     
     override func graphCellIndex() -> Int {

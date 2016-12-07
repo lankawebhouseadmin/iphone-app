@@ -216,7 +216,7 @@ struct DATE_FORMATTER {
     }()
     static let TimeA: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "h:mm a"
         return dateFormatter
     }()
     static let StandardISO: NSDateFormatter = {

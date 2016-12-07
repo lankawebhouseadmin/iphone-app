@@ -29,6 +29,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     private var didSetFrameOfLogo = false
     
     // MARK: - Life cycle
+    
     override func setupLayout() {
         super.setupLayout()
         
@@ -45,6 +46,10 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         txtPassword.text = usernamePassword.1
         
 //        self.login("rachel_stern", password: "rachel1234")
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(onPressLogo(_:)))
+        longGesture.minimumPressDuration = 3
+        self.imgLogo.addGestureRecognizer(longGesture)
+        self.imgLogo.userInteractionEnabled = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -154,7 +159,6 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     private func vaildUserInfo() -> Bool {
         if self.txtUsername.text?.characters.count == 0 {
             self.showSimpleAlert("Warning", Message: "Username shouldn't be empty.", CloseButton: "Close", Completion: {
-                
             })
             return false
         } else if self.txtPassword.text?.characters.count < 6 {
@@ -164,6 +168,23 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
             return false
         }
         return true
+    }
+    
+    func onPressLogo(sender: AnyObject) -> Void {
+        let alertController = UIAlertController(title: "Select server", message: nil, preferredStyle: .Alert)
+        let stageAction = UIAlertAction(title: "Stage", style: .Default) { (action: UIAlertAction) in
+            BE24RequestManager.baseURL = "http://staging.noostore.com"
+        }
+        
+        let uatAction = UIAlertAction(title: "UAT", style: .Default) { (action: UIAlertAction) in
+            BE24RequestManager.baseURL = "http://uat.noostore.com:80"
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(stageAction)
+        alertController.addAction(uatAction)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     // MARK: - UITextField delegate
