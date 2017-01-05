@@ -246,7 +246,7 @@ class BE24PieClockView: BE24PieBaseView {
                 }
                 let originTransform = CGAffineTransformMakeRotation(originAngle)
                 let newTransform = CGAffineTransformRotate(originTransform, (angle - originAngle) % CGFloat(secondsOfOneDay))
-                print (angle)
+//                print (angle)
                 UIView.animateWithDuration(0.3) {
                     self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
                 }

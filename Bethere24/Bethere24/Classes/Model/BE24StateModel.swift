@@ -33,8 +33,17 @@ class BE24StateModel: BE24Model {
         
     }
     
-    func dateString() -> String {
-        return DATE_FORMATTER.Default.stringFromDate(startTime!)
+    func dateString(virtualTime: String) -> String {
+        let timeString = DATE_FORMATTER.OnlyTime.stringFromDate(startTime)
+        let elems = timeString.componentsSeparatedByString(":")
+        let timeSeconds = Int(elems[0])! * 3600 + Int(elems[1])! * 60 + Int(elems[2])!
+        let virtualElems = virtualTime.componentsSeparatedByString(":")
+        let virtualSeconds = Int(virtualElems[0])! * 3600 + Int(virtualElems[1])! * 60 + Int(virtualElems[2])!
+        if timeSeconds > virtualSeconds {
+            return DATE_FORMATTER.Default.stringFromDate(startTime)
+        } else {
+            return DATE_FORMATTER.Default.stringFromDate(NSDate(timeIntervalSince1970: startTime.timeIntervalSince1970 - Double(virtualSeconds)))
+        }
     }
     
     func type() -> HealthType {

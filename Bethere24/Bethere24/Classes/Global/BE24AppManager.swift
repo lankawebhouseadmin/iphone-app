@@ -224,6 +224,11 @@ struct DATE_FORMATTER {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ss"
         return dateFormatter
     }()
+    static let FullDate: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/M/d - eee. hh:mm:ss"
+        return dateFormatter
+    }()
 }
 
 let kMenuIconKeyName            = "icon"

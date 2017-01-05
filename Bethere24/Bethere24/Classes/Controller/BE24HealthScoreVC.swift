@@ -200,8 +200,20 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         
         if stateDataOfCurrentDay != nil {
             let dateString = statesData!.state.days[currentDateIndex]
-            stateDataOfCurrentDay!.forEach { (state: BE24StateModel) in
-                let stateDateString = DATE_FORMATTER.Default.stringFromDate(state.startTime)
+//            let virtualDayStartTimeString = String(format: "2017/%@ %@", dateString, statesData!.virtualDayStartOrigin!)
+//            if let virtualDayStartTime = DATE_FORMATTER.FullDate.dateFromString(virtualDayStartTimeString) {
+//                let virtualDayEndTime = virtualDayStartTime.timeIntervalSince1970 + 3600 * 24
+//                for state in stateDataOfCurrentDay! {
+//                    let timeInterval = state.startTime.timeIntervalSince1970
+//                    if (state.type() == type) && (virtualDayStartTime.timeIntervalSince1970 < timeInterval && timeInterval < virtualDayEndTime) {
+//                        currentStatesForHealtyType.append(state)
+//                    }
+//
+//                }
+//            }
+            for state in stateDataOfCurrentDay! {
+                let stateDateString = state.dateString(statesData!.virtualDayStartOrigin!) // DATE_FORMATTER.Default.stringFromDate(state.startTime)
+                
                 if (state.type() == type) && (stateDateString == dateString) {
                     currentStatesForHealtyType.append(state)
                 }

@@ -854,7 +854,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prbath.Bethere24;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c4d9ad02-6ec9-4ac9-91a0-9392471d34e5";
+				PROVISIONING_PROFILE = "8da02bfb-ab8f-470b-ba56-b6c9f8fdeb67";
 			};
 			name = Release;
 		};

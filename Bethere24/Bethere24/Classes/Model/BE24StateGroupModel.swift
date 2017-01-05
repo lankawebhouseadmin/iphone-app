@@ -19,7 +19,7 @@ class BE24StateGroupModel: BE24Model {
     var statesByDay     : [String: [BE24StateModel]] = [:]
     var statesByType    : [HealthType: AnyObject] = [:]
 
-    override init(data: JSON) {
+    init(data: JSON, virtualTime: String) {
         super.init(data: data)
         let types: [HealthType] = [
                 .InBathroom,
@@ -43,7 +43,7 @@ class BE24StateGroupModel: BE24Model {
             }
         }
         
-        branchState()
+        branchState(virtualTime)
     }
     
     func setObject(object: AnyObject, key: String) -> Void {
@@ -70,7 +70,7 @@ class BE24StateGroupModel: BE24Model {
         }
     }
     
-    private func branchState() -> Void {
+    private func branchState(virtualTime: String) -> Void {
         
         allStates.sortInPlace { (first: BE24StateModel, second: BE24StateModel) -> Bool in
             if first.startTime.compare(second.startTime) == .OrderedAscending {
@@ -84,7 +84,7 @@ class BE24StateGroupModel: BE24Model {
         var endDayTimeInterval: Double = 0
         
         allStates.forEach { (aState: BE24StateModel) in
-            let dateString = aState.dateString()
+            let dateString = aState.dateString(virtualTime)
 //            let timeInterval = aState.startTime.timeIntervalSince1970
             let timeInterval = aState.startTime.timeIntervalSince1970 //DATE_FORMATTER.Default.dateFromString(dateString)!.timeIntervalSince1970
             if startDayTimeInterval > timeInterval {
