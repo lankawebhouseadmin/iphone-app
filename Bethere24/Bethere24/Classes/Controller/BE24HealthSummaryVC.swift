@@ -148,11 +148,11 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         
         var selectedStates: [BE24StateModel] = []
         if stateDataOfCurrentDay != nil {
-            stateDataOfCurrentDay!.forEach({ (state: BE24StateModel) in
+            for state in stateDataOfCurrentDay! {
                 if state.type() == selectedHealthType {
                     selectedStates.append(state)
                 }
-            })
+            }
         }
         
         let healthTypeData = appManager().categories[selectedIndex]

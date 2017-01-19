@@ -20,6 +20,10 @@ class BE24StateModel: BE24Model {
     var normalTime      : Int!
     var actualTime      : Int!
     
+    private var virtualTime: String = "00:00:00"
+    var virtualStartTime: NSDate!
+    var virtualEndTime: NSDate!
+    
     override init(data: JSON) {
         super.init(data: data)
         stateType       = data["state_type"].intValue
@@ -31,9 +35,25 @@ class BE24StateModel: BE24Model {
         normalTime      = data["normal_time"].intValue
         actualTime      = data["actual_time"].intValue
         
+        virtualStartTime = startTime
+        virtualEndTime   = endTime
+    }
+    
+    func setVirtualDayTime(virtualTime: String) -> Void {
+        self.virtualTime = virtualTime
+        
+        let virtualElems = virtualTime.componentsSeparatedByString(":")
+        let virtualSeconds = Double(virtualElems[0])! * 3600 + Double(virtualElems[1])! * 60 + Double(virtualElems[2])!
+        
+        virtualStartTime = NSDate(timeIntervalSince1970: (startTime.timeIntervalSince1970 - virtualSeconds))
+        virtualEndTime   = NSDate(timeIntervalSince1970: (endTime.timeIntervalSince1970 - virtualSeconds))
     }
     
     func dateString(virtualTime: String) -> String {
+        
+        return DATE_FORMATTER.Default.stringFromDate(virtualStartTime)
+        
+        /*
         let timeString = DATE_FORMATTER.OnlyTime.stringFromDate(startTime)
         let elems = timeString.componentsSeparatedByString(":")
         let timeSeconds = Int(elems[0])! * 3600 + Int(elems[1])! * 60 + Int(elems[2])!
@@ -43,7 +63,7 @@ class BE24StateModel: BE24Model {
             return DATE_FORMATTER.Default.stringFromDate(startTime)
         } else {
             return DATE_FORMATTER.Default.stringFromDate(NSDate(timeIntervalSince1970: startTime.timeIntervalSince1970 - Double(virtualSeconds)))
-        }
+        } */
     }
     
     func type() -> HealthType {

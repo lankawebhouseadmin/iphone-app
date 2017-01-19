@@ -20,6 +20,8 @@ class BE24UserModel: BE24Model {
     var activity    : Bool = true
     var apiKey      : String?
     var loginTime   : NSDate?
+//    var currentTime : NSDate?
+    var personTimeZone : String?
     
     override init(data: JSON) {
         super.init(data: data)
@@ -32,6 +34,8 @@ class BE24UserModel: BE24Model {
         activity    = data["active"].boolValue
         apiKey      = data["api_key"].string
         loginTime   = data["login_time"].dateTime()
+//        currentTime = data["current_time"].dateTime()
+        personTimeZone = data["person_location"].string
     }
     
     func fullname() -> String {

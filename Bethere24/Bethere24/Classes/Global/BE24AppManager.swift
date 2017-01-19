@@ -143,6 +143,24 @@ class BE24AppManager: NSObject {
         return UIColor(rgba: colorValue)
     }
     
+    class func defaultDayString(date: NSDate) -> String {
+        if BE24AppManager.sharedManager.currentUser == nil {
+            return DATE_FORMATTER.Default.stringFromDate(date)
+        } else {
+            let virtualTime = BE24AppManager.sharedManager.stateData!.first!.clientInfo.virtualDayStartOriginal
+            let timeString = DATE_FORMATTER.OnlyTime.stringFromDate(date)
+            let elems = timeString.componentsSeparatedByString(":")
+            let timeSeconds = Int(elems[0])! * 3600 + Int(elems[1])! * 60 + Int(elems[2])!
+            let virtualElems = virtualTime.componentsSeparatedByString(":")
+            let virtualSeconds = Int(virtualElems[0])! * 3600 + Int(virtualElems[1])! * 60 + Int(virtualElems[2])!
+            if timeSeconds > virtualSeconds {
+                return DATE_FORMATTER.Default.stringFromDate(date)
+            } else {
+                return DATE_FORMATTER.Default.stringFromDate(NSDate(timeIntervalSince1970: date.timeIntervalSince1970 - Double(virtualSeconds)))
+            }
+        }
+    }
+    
     func saveUsername(username: String, password: String) {
         let userDefault = NSUserDefaults.standardUserDefaults();
         userDefault.setObject(username, forKey: "username")

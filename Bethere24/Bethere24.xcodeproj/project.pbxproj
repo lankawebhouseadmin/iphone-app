@@ -10,6 +10,7 @@
 		361397B9C1DC1C2FC9E4028A /* Pods_Bethere24UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B596DDDD494E9A7721BAE0 /* Pods_Bethere24UITests.framework */; };
 		8808F2171E859A372E4FD6C6 /* Pods_Bethere24Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F695FE7B33C30C8D3DAD2682 /* Pods_Bethere24Tests.framework */; };
 		B18C845D776739F51B44EE34 /* Pods_Bethere24.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2451088EBEBA0A39BD02C3 /* Pods_Bethere24.framework */; };
+		E1007DED1E2FD2F400BD16BE /* BE24ClientInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1007DEC1E2FD2F400BD16BE /* BE24ClientInfoModel.swift */; };
 		E146756D1D97A788000567AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E146756C1D97A788000567AC /* AppDelegate.swift */; };
 		E14675721D97A788000567AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E14675701D97A788000567AC /* Main.storyboard */; };
 		E14675751D97A788000567AC /* Bethere24.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E14675731D97A788000567AC /* Bethere24.xcdatamodeld */; };
@@ -87,6 +88,7 @@
 		346989408296261C8A3B45A2 /* Pods-Bethere24.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24/Pods-Bethere24.debug.xcconfig"; sourceTree = "<group>"; };
 		3F4E749A86CFA4C83E99DFE7 /* Pods-Bethere24Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24Tests/Pods-Bethere24Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8081768BF3EDDAD52C2E25C5 /* Pods-Bethere24.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bethere24.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bethere24/Pods-Bethere24.release.xcconfig"; sourceTree = "<group>"; };
+		E1007DEC1E2FD2F400BD16BE /* BE24ClientInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BE24ClientInfoModel.swift; sourceTree = "<group>"; };
 		E14675691D97A788000567AC /* Bethere24.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bethere24.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E146756C1D97A788000567AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E14675711D97A788000567AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				E1E52FA71DA6AD2F00C2111A /* BE24AlertModel.swift */,
 				E1E52FA91DA6DA9700C2111A /* BE24LocationModel.swift */,
 				E183BCFB1DA7AF1D004B5418 /* BE24BranchFromState.swift */,
+				E1007DEC1E2FD2F400BD16BE /* BE24ClientInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				E14675AA1D97A980000567AC /* BE24AppManager.swift in Sources */,
 				E177E7131D98F0EA00570B1D /* BE24HistoricalGraphsVC.swift in Sources */,
 				E1F1FBD51DA518D2007AA0A0 /* BE24AlertContentCell.swift in Sources */,
+				E1007DED1E2FD2F400BD16BE /* BE24ClientInfoModel.swift in Sources */,
 				E16C042F1DB11BF10080D81C /* BE24AlertFooterCell.swift in Sources */,
 				E183BD001DA7D3BD004B5418 /* BE24StateBaseVC.swift in Sources */,
 				E14675A61D97A95D000567AC /* BE24ViewController.swift in Sources */,

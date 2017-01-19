@@ -156,25 +156,32 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         if let date = DATE_FORMATTER.Default.dateFromString(dateString) {
             let calendar = NSCalendar.currentCalendar()
             if let aDaysNextday = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: []) {
+                
                 let nextDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysNextday)
                 let selectedDayString = DATE_FORMATTER.MonthDay.stringFromDate(date)
-                let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
+                let currentTimeString = statesData!.clientInfo.currentTimeDayString() //  BE24AppManager.defaultDayString(appManager().currentUser!.loginTime!)
+                
                 var resultString: String!
-                if dateString == todayString {
-                    let stringToday = DATE_FORMATTER.StandardISO.stringFromDate(NSDate())
-                    let stringVirtualToday: String = stringToday.substringToIndex(stringToday.startIndex.advancedBy(11)) + statesData!.virtualDayStartOrigin!
+                if dateString == currentTimeString {
+                    
+                    let currentTimeString = DATE_FORMATTER.TimeA.stringFromDate(statesData!.clientInfo.currentTime)
+                    resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(selectedDayString) \(currentTimeString)"
+                    /*
+                    let currentTimeString = statesData!.clientInfo.currentTimeString // DATE_FORMATTER.StandardISO.stringFromDate(NSDate())
+                    let stringVirtualToday: String = currentTimeString.substringToIndex(currentTimeString.startIndex.advancedBy(11)) + statesData!.clientInfo.virtualDayStartOriginal
                     let dateVirtualToday: NSDate = DATE_FORMATTER.StandardISO.dateFromString(stringVirtualToday)!
                     let loginTimeString = DATE_FORMATTER.TimeA.stringFromDate(appManager().currentUser!.loginTime!)
+                    
                     if appManager().currentUser!.loginTime!.compare(dateVirtualToday) == .OrderedAscending {
-                        let aDaysYesterday = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: [])
+                        let aDaysYesterday = calendar.dateByAddingUnit(.Day, value: -1, toDate: date, options: [])
                         let yesterDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysYesterday!)
-                        resultString = "\(yesterDayString) \(statesData!.virtualDayStart!) - \(selectedDayString) \(loginTimeString)"
+                        resultString = "\(yesterDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(selectedDayString) \(loginTimeString)"
                     } else {
-                        resultString = "\(selectedDayString) \(statesData!.virtualDayStart!) - \(selectedDayString) \(loginTimeString)"
-                    }
+                        resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(selectedDayString) \(loginTimeString)"
+                    } */
                     
                 } else {
-                    resultString = "\(selectedDayString) \(statesData!.virtualDayStart!) - \(nextDayString) \(statesData!.virtualDayStart!)"
+                    resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(nextDayString) \(statesData!.clientInfo.virtualDayStartOriginal)"
                 }
                 return resultString
             }
@@ -212,7 +219,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
 //                }
 //            }
             for state in stateDataOfCurrentDay! {
-                let stateDateString = state.dateString(statesData!.virtualDayStartOrigin!) // DATE_FORMATTER.Default.stringFromDate(state.startTime)
+                let stateDateString = state.dateString(statesData!.clientInfo.virtualDayStartOriginal) // DATE_FORMATTER.Default.stringFromDate(state.startTime)
                 
                 if (state.type() == type) && (stateDateString == dateString) {
                     currentStatesForHealtyType.append(state)
@@ -254,8 +261,10 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     
     func shouldShowLoginTimeClockView(view: BE24PieClockView) -> Bool {
         let dateString = statesData!.state.days[currentDateIndex]
-        let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
-        return dateString == todayString
+//        let loginTimeString = BE24AppManager.defaultDayString(appManager().currentUser!.loginTime!) // DATE_FORMATTER.Default.stringFromDate(appManager().currentUser!.loginTime!)
+        let currentTimeString = statesData!.clientInfo.currentTimeDayString()
+        
+        return dateString == currentTimeString
     }
     
     // MARK: - Show Health infomation

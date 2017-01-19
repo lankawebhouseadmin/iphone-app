@@ -31,14 +31,15 @@ class BE24StateGroupModel: BE24Model {
                 .InRecliner,
                 .TakingMedication,
             ]
-        types.forEach { (type: HealthType) in
+        for type in types {
             if let states = data[type.rawValue].array {
                 var arrayStates: [BE24StateModel] = []
-                states.forEach({ (elem: JSON) in
+                for elem in states {
                     let aState = BE24StateModel(data: elem)
+                    aState.setVirtualDayTime(virtualTime)
                     arrayStates.append(aState)
                     self.allStates.append(aState)
-                })
+                }
                 self.setStates(arrayStates, forType: type)
             }
         }
@@ -83,7 +84,7 @@ class BE24StateGroupModel: BE24Model {
         var startDayTimeInterval: Double = 2000000000
         var endDayTimeInterval: Double = 0
         
-        allStates.forEach { (aState: BE24StateModel) in
+        for aState in allStates {
             let dateString = aState.dateString(virtualTime)
 //            let timeInterval = aState.startTime.timeIntervalSince1970
             let timeInterval = aState.startTime.timeIntervalSince1970 //DATE_FORMATTER.Default.dateFromString(dateString)!.timeIntervalSince1970

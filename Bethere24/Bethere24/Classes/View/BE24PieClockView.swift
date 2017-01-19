@@ -157,7 +157,7 @@ class BE24PieClockView: BE24PieBaseView {
             
             /// draw green bar
             let stateData = BE24AppManager.sharedManager.stateData!.first!
-            let time = DATE_FORMATTER.OnlyTime.dateFromString(stateData.virtualDayStartOrigin!)!
+            let time = DATE_FORMATTER.OnlyTime.dateFromString(stateData.clientInfo.virtualDayStartOriginal)!
             let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: time)
             
             let totalSeconds = component.hour * 3600 + component.minute * 60 + component.second
@@ -180,7 +180,7 @@ class BE24PieClockView: BE24PieBaseView {
             aPath.fill()
             
             if delegate!.shouldShowLoginTimeClockView(self) {
-                let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: BE24AppManager.sharedManager.currentUser!.loginTime!)
+                let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: stateData.clientInfo.currentTime)
                 
                 let totalSeconds = component.hour * 3600 + component.minute * 60 + component.second
                 let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)

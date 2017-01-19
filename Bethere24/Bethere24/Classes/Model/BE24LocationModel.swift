@@ -17,11 +17,8 @@ class BE24LocationModel: BE24Model {
     var address         : String?
     var city            : String?
     var state           : BE24StateGroupModel!
-    var zipCode         : String?
-    var country         : String?
-    var virtualDayStart : String?
-    var virtualDayStartOrigin : String?
     var alert           : [BE24AlertModel]?
+    var clientInfo      : BE24ClientInfoModel!
     
 
     override init(data: JSON) {
@@ -30,14 +27,14 @@ class BE24LocationModel: BE24Model {
         locationType    = data["location_type"].stringValue
         address         = data["address"].string
         city            = data["city"].string
-        
-        zipCode         = data["zip"].string
-        country         = data["country"].string
-        virtualDayStartOrigin = data["virtual_day_start"].stringValue
-        if let virtualDay = DATE_FORMATTER.OnlyTime.dateFromString(virtualDayStartOrigin!) {
-            virtualDayStart = DATE_FORMATTER.TimeA.stringFromDate(virtualDay)
-        }
-        state           = BE24StateGroupModel(data: data["state"], virtualTime: virtualDayStartOrigin!)
+        clientInfo      = BE24ClientInfoModel(data: data["client_info"])
+//        zipCode         = data["zip"].string
+//        country         = data["country"].string
+//        virtualDayStartOrigin = data["virtual_day_start"].stringValue
+//        if let virtualDay = DATE_FORMATTER.OnlyTime.dateFromString(virtualDayStartOrigin!) {
+//            virtualDayStart = DATE_FORMATTER.TimeA.stringFromDate(virtualDay)
+//        }
+        state           = BE24StateGroupModel(data: data["state"], virtualTime: clientInfo.virtualDayStartOriginal)
         alert = []
         data["alert"].arrayValue.forEach { (elem: JSON) in
             self.alert?.append(BE24AlertModel(data: elem))

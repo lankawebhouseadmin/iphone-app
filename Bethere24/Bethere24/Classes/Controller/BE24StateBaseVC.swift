@@ -85,11 +85,15 @@ class BE24StateBaseVC: BE24MainBaseVC {
     }
     
     internal func dateString(dateString: String) -> String {
-        let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
-        if dateString == todayString {
-            return "Today"
-        } else {
+        if appManager().currentUser == nil {
             return dateString
+        } else {
+            let todayString = BE24AppManager.defaultDayString(appManager().currentUser!.loginTime!) //  DATE_FORMATTER.Default.stringFromDate(NSDate())
+            if dateString == todayString {
+                return "Today"
+            } else {
+                return dateString
+            }
         }
     }
     
