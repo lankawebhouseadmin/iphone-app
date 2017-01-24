@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SVProgressHUD.setDefaultMaskType(.Black)
         
-        setTimeZone()
+//        setTimeZone()
         
         return true
     }
@@ -51,9 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
     
-    func setTimeZone() -> Void {
-        let timeZone = NSTimeZone(forSecondsFromGMT: 0)
-        NSTimeZone.setDefaultTimeZone(timeZone)
+    func setTimeZone(timeZoneName: String) -> Void {
+        if let timeZone = NSTimeZone(name: timeZoneName) {
+            NSTimeZone.setDefaultTimeZone(timeZone)
+        } else {
+            NSTimeZone.setDefaultTimeZone(NSTimeZone(forSecondsFromGMT: 0))
+        }
     }
 
     // MARK: - Core Data stack

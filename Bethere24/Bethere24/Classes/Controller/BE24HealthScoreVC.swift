@@ -165,7 +165,8 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
                 if dateString == currentTimeString {
                     
                     let currentTimeString = DATE_FORMATTER.TimeA.stringFromDate(statesData!.clientInfo.currentTime)
-                    resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(selectedDayString) \(currentTimeString)"
+                    let currentDayString  = DATE_FORMATTER.MonthDay.stringFromDate(statesData!.clientInfo.currentTime)
+                    resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(currentDayString) \(currentTimeString)"
                     /*
                     let currentTimeString = statesData!.clientInfo.currentTimeString // DATE_FORMATTER.StandardISO.stringFromDate(NSDate())
                     let stringVirtualToday: String = currentTimeString.substringToIndex(currentTimeString.startIndex.advancedBy(11)) + statesData!.clientInfo.virtualDayStartOriginal

@@ -82,7 +82,12 @@ class BE24StateGroupModel: BE24Model {
         }
         
         var startDayTimeInterval: Double = 2000000000
-        var endDayTimeInterval: Double = 0
+        var endDayTimeInterval: Double = NSDate().timeIntervalSince1970
+        
+        let virtualElems = virtualTime.componentsSeparatedByString(":")
+        let virtualSeconds = Double(virtualElems[0])! * 3600 + Double(virtualElems[1])! * 60 + Double(virtualElems[2])!
+        
+        endDayTimeInterval -= virtualSeconds
         
         for aState in allStates {
             let dateString = aState.dateString(virtualTime)
@@ -91,9 +96,9 @@ class BE24StateGroupModel: BE24Model {
             if startDayTimeInterval > timeInterval {
                 startDayTimeInterval = timeInterval
             }
-            if endDayTimeInterval < timeInterval {
-                endDayTimeInterval = timeInterval
-            }
+//            if endDayTimeInterval < timeInterval {
+//                endDayTimeInterval = timeInterval
+//            }
             
             var statesForDate = statesByDay[dateString]
             if statesForDate == nil {

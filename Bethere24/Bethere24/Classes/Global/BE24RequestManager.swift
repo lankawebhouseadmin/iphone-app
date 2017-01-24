@@ -28,7 +28,7 @@ class BE24RequestManager: NSObject {
 //    let baseURL = "http://staging.noostore.com"
     static var baseURL = "http://uat.noostore.com:80"
     let URI_Login = "/api/login/"
-    let UIR_State = "/api/states/"
+    let UIR_State = "/api/utc_states/"
     func POST(url: String, params: [String: AnyObject]?, result: DetailtResponse) -> Void {
         Alamofire.request(.POST, url, parameters: params).responseJSON { (response: Response<AnyObject, NSError>) in
             switch response.result {

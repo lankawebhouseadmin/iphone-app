@@ -90,7 +90,7 @@ class BE24StateBaseVC: BE24MainBaseVC {
         } else {
             let todayString = BE24AppManager.defaultDayString(appManager().currentUser!.loginTime!) //  DATE_FORMATTER.Default.stringFromDate(NSDate())
             if dateString == todayString {
-                return "Today"
+                return dateString //"Today"
             } else {
                 return dateString
             }

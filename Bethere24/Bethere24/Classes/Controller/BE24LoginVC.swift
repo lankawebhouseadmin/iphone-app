@@ -128,6 +128,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
                     let appManager = self.appManager()
                     appManager.currentUser = BE24UserModel(data: json["data"])
                     appManager.token = json["token"].stringValue
+                    (UIApplication.sharedApplication().delegate as! AppDelegate).setTimeZone(appManager.currentUser!.personTimeZone!)
                     
                     print ("userID : " + String(appManager.currentUser!.id) + "  <:::>  " + "token : " + appManager.token!)
                     

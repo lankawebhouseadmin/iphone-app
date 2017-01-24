@@ -108,7 +108,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
             
         } else {
             
-            self.btnHealthScoreDetail.hidden = true
+            self.btnHealthScoreDetail.hidden = false //true
             self.btnHistoricalGraphs.hidden  = true
 //            self.btnAlert.hidden             = true
             self.lblTimes.hidden = true
