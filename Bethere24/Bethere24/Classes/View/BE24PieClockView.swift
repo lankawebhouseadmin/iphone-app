@@ -142,7 +142,7 @@ class BE24PieClockView: BE24PieBaseView {
                     let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay   // seconds of a day
                     let start: CGFloat = angleOfSecond * CGFloat(startSeconds) + CGFloat(M_PI * 1.5)
                     var end:CGFloat    = angleOfSecond * CGFloat(endSeconds )  + CGFloat(M_PI * 1.5)
-                    if endSeconds - startSeconds < 60 {
+                    if endSeconds > startSeconds && endSeconds - startSeconds < 60 {
                         end = start + angleOfSecond * 60
                     }
         //            let colorValue = BE24AppManager.sharedManager.categories[index][kMenuColorKeyName]!
