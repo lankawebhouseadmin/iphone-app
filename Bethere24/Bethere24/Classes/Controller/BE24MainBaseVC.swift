@@ -157,19 +157,48 @@ class BE24MainBaseVC: BE24TableViewController {
     func onPressRefresh(sender: AnyObject) -> Void {
         print (#function)
         SVProgressHUD.show()
-        self.requestManager().getData(appManager().currentUser!.id, token: appManager().token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
-            if result != nil {
-                self.appManager().stateData = result!
-                
-//                self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
-                self.refreshData()
-            } else {
-                self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: {
+        
+        let usernamePassword = appManager().getUsernamePassword()
+        let username = usernamePassword.0
+        let password = usernamePassword.1
+
+        self.requestManager().login(username!, password: password!) { (userInfo: AnyObject?, userError: NSError?) in
+            if userInfo != nil {
+                let json = JSON(userInfo!)
+                let message = json["message"].stringValue
+                let success = json["success"].stringValue
+                if success == "true" {
+
+                    self.appManager().currentUser = BE24UserModel(data: json["data"])
+                    self.appManager().token = json["token"].stringValue
+                    (UIApplication.sharedApplication().delegate as! AppDelegate).setTimeZone(self.appManager().currentUser!.personTimeZone!)
                     
-                })
+                    print ("userID : " + String(self.appManager().currentUser!.id) + "  <:::>  " + "token : " + self.appManager().token!)
+                    
+                    self.requestManager().getData(self.appManager().currentUser!.id, token: self.appManager().token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
+                        if result != nil {
+                            self.appManager().stateData = result!
+                            
+                            //                self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                            self.refreshData()
+                        } else {
+                            self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: {
+                                
+                            })
+                        }
+                        SVProgressHUD.dismiss()
+                    })
+                    return
+                } else {
+                    self.showSimpleAlert("Error", Message: message, CloseButton: "Close", Completion: {
+                        
+                    })
+                }
+            } else {
+                self.showSimpleAlert("Error", Message: userError!.localizedDescription, CloseButton: "Close", Completion: {})
             }
-            SVProgressHUD.dismiss()
-        })
+        }
+        
     }
     
     func onPressNotification(sender: AnyObject) -> Void {
