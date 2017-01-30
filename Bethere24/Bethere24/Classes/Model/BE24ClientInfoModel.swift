@@ -55,4 +55,12 @@ class BE24ClientInfoModel: BE24Model {
         let virtualCurrentime = NSDate(timeIntervalSince1970: (currentTime.timeIntervalSince1970 - virtualSeconds))
         return DATE_FORMATTER.Default.stringFromDate(virtualCurrentime)
     }
+    
+    func getFormattedVirtualDayStartTime() -> String {
+        if let startTime = DATE_FORMATTER.OnlyTime.dateFromString(virtualDayStartOriginal) {
+            return DATE_FORMATTER.TimeA.stringFromDate(startTime)
+        } else {
+            return virtualDayStartOriginal
+        }
+    }
 }

@@ -164,9 +164,10 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
                 var resultString: String!
                 if dateString == currentTimeString {
                     
+                    let virtualDayStartTime = statesData!.clientInfo.getFormattedVirtualDayStartTime()
                     let currentTimeString = DATE_FORMATTER.TimeA.stringFromDate(statesData!.clientInfo.currentTime)
                     let currentDayString  = DATE_FORMATTER.MonthDay.stringFromDate(statesData!.clientInfo.currentTime)
-                    resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(currentDayString) \(currentTimeString)"
+                    resultString = "\(selectedDayString) \(virtualDayStartTime) - \(currentDayString) \(currentTimeString)"
                     /*
                     let currentTimeString = statesData!.clientInfo.currentTimeString // DATE_FORMATTER.StandardISO.stringFromDate(NSDate())
                     let stringVirtualToday: String = currentTimeString.substringToIndex(currentTimeString.startIndex.advancedBy(11)) + statesData!.clientInfo.virtualDayStartOriginal
@@ -182,7 +183,8 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
                     } */
                     
                 } else {
-                    resultString = "\(selectedDayString) \(statesData!.clientInfo.virtualDayStartOriginal) - \(nextDayString) \(statesData!.clientInfo.virtualDayStartOriginal)"
+                    let virtualDayStartTime = statesData!.clientInfo.getFormattedVirtualDayStartTime()
+                    resultString = "\(selectedDayString) \(virtualDayStartTime) - \(nextDayString) \(virtualDayStartTime)"
                 }
                 return resultString
             }
