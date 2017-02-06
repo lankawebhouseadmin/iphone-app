@@ -99,7 +99,7 @@ class BE24MainBaseVC: BE24TableViewController {
         
         let _lblTitle = UILabel()
         _lblTitle.text = "Health Summary"
-        _lblTitle.font = UIFont.boldSystemFontOfSize(14)
+        _lblTitle.font = UIFont.boldSystemFontOfSize(16)
         _lblTitle.textColor = APPCOLOR.TEXTCOLOR_DARK
         _titleView.addSubview(_lblTitle)
         _lblTitle.snp_makeConstraints { (make) in

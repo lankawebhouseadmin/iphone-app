@@ -200,7 +200,7 @@ enum HealthType: String {
 
 struct APPCOLOR {
     static let BACKGROUND_BLACK = UIColor(colorLiteralRed: 0.145, green: 0.145, blue: 0.145, alpha: 1)
-    static let TEXTCOLOR_DARK   = UIColor(colorLiteralRed: 0.588, green: 0.588, blue: 0.588, alpha: 1)
+    static let TEXTCOLOR_DARK   = UIColor(rgba: "#222222")
     static let InBathroom       = UIColor(rgba: "#0246ff")
     static let WithVisitors     = UIColor(rgba: "#0290ce")
     static let InDiningArea     = UIColor(rgba: "#2d6f00")
