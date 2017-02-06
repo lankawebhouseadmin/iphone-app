@@ -28,8 +28,13 @@ class BE24AlertModel: BE24Model {
         alertTime  = NSDate(timeIntervalSince1970: data["alert_time"].doubleValue)
     }
     
-    func dateString() -> String {
-        return DATE_FORMATTER.Default.stringFromDate(alertTime)
+    func dateString(virtualTime: String) -> String {
+        let virtualElems = virtualTime.componentsSeparatedByString(":")
+        let virtualSeconds = Double(virtualElems[0])! * 3600 + Double(virtualElems[1])! * 60 + Double(virtualElems[2])!
+        
+        let virtualTime = NSDate(timeIntervalSince1970: (alertTime.timeIntervalSince1970 - virtualSeconds))
+
+        return DATE_FORMATTER.Default.stringFromDate(virtualTime)
     }
 
     func type() -> HealthType {

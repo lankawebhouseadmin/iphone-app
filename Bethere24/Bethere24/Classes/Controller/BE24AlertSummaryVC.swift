@@ -257,21 +257,21 @@ extension BE24AlertSummaryVC: BE24AlertHeaderCellDelegate, BE24AlertFooterCellDe
                 alertModels = statesData!.alert!
                 } else {
                     alertModels.removeAll()
-                    statesData!.alert!.forEach({ (alert: BE24AlertModel) in
+                    for alert in statesData!.alert! {
                         if alert.type() == selectedHealthType {
                             alertModels.append(alert)
                         }
-                    })
+                    }
                 }
                 
             } else {
                 let dayString = statesData!.state.days[index!]
                 alertModels.removeAll()
-                statesData!.alert!.forEach({ (alert: BE24AlertModel) in
-                    if dayString == alert.dateString() {
+                for alert in statesData!.alert! {
+                    if dayString == alert.dateString(statesData!.clientInfo.virtualDayStartOriginal) {
                         alertModels.append(alert)
                     }
-                })
+                }
             }
             
         }

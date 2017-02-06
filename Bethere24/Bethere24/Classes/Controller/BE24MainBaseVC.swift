@@ -217,7 +217,11 @@ class BE24MainBaseVC: BE24TableViewController {
             }
             btnNotification.badgeValue = ""
         } else {
-            btnNotification.badgeValue = String(count!)
+            if count! == 0 {
+                btnNotification.badgeValue = ""
+            } else {
+                btnNotification.badgeValue = String(count!)
+            }
         }
     }
     

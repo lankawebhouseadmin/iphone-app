@@ -73,11 +73,22 @@ class BE24HealthBaseVC: BE24StateBaseVC {
                 
                 self.lblDate?.text = dateString(dayString)
                 
+                if let alerts = statesData!.alert {
+                    var alertCountForDay: Int = 0
+                    for alert in alerts {
+                        if alert.dateString(statesData!.clientInfo.virtualDayStartOriginal) == dayString {
+                            alertCountForDay += 1
+                        }
+                    }
+                    updateAlertBadgeCount(alertCountForDay)
+                }
+
             } else {
                 
                 self.lblDate?.text = "Today"
                 
             }
+            
             
         }
         
@@ -89,11 +100,12 @@ class BE24HealthBaseVC: BE24StateBaseVC {
             let dayString = statesData!.state.days[currentDateIndex]
             if let alerts = statesData!.alert {
                 var alertsForCurrentHealthType: [BE24AlertModel] = []
-                alerts.forEach({ (alert: BE24AlertModel) in
-                    if alert.dateString() == dayString && selectedHealthType == alert.type() {
+                for alert in alerts {
+                    if alert.dateString(statesData!.clientInfo.virtualDayStartOriginal) == dayString &&
+                        selectedHealthType == alert.type() {
                         alertsForCurrentHealthType.append(alert)
                     }
-                })
+                }
                 if alertsForCurrentHealthType.count > 0 {
                     if self.lblAlerts != nil {
                         var alertCountString = "1 Alert"
