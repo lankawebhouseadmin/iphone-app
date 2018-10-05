@@ -27,7 +27,7 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     @IBOutlet weak var constraintHSpaceOfLastButton: NSLayoutConstraint!
 
     internal var currentDateIndex: Int = 0
-    internal var selectedHealthType: HealthType = .InBathroom
+    internal var selectedHealthType: HealthType = .InMotion
 
     // MARK:
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class BE24HealthBaseVC: BE24StateBaseVC {
     }
 
     // MARK:
-    internal func selectDateIndex(index: Int) {
+    internal func selectDateIndex(_ index: Int) {
         if statesData != nil {
             
             
@@ -62,13 +62,13 @@ class BE24HealthBaseVC: BE24StateBaseVC {
                 let dayString = statesData!.state.days[index]
                 
                 /// Buttons for Select Date
-                self.btnRightDate?.hidden = false
-                self.btnLeftDate?.hidden = false
+                self.btnRightDate?.isHidden = false
+                self.btnLeftDate?.isHidden = false
                 if index == 0 {
-                    self.btnRightDate?.hidden = true
+                    self.btnRightDate?.isHidden = true
                 }
                 if index >= (statesData!.state.days.count - 1) {
-                    self.btnLeftDate?.hidden = true
+                    self.btnLeftDate?.isHidden = true
                 }
                 
                 self.lblDate?.text = dateString(dayString)
@@ -116,41 +116,41 @@ class BE24HealthBaseVC: BE24StateBaseVC {
                     }
                     self.constraintLeftOfFirstButton.constant = -55
                     self.constraintHSpaceOfLastButton.constant = 80
-                    self.btnAlert.hidden = false
+                    self.btnAlert.isHidden = false
                 } else {
                     self.lblAlerts?.text = nil
                     self.constraintLeftOfFirstButton.constant = -25
                     self.constraintHSpaceOfLastButton.constant = 25
-                    self.btnAlert.hidden = true
+                    self.btnAlert.isHidden = true
                 }
             } else {
                 self.lblAlerts?.text = nil
                 self.constraintLeftOfFirstButton.constant = -25
                 self.constraintHSpaceOfLastButton.constant = 25
-                self.btnAlert.hidden = true
+                self.btnAlert.isHidden = true
             }
         }
     }
     
-    @IBAction func onPressLeftDate(sender: AnyObject) {
+    @IBAction func onPressLeftDate(_ sender: AnyObject) {
         currentDateIndex += 1
         selectDateIndex(currentDateIndex)
     }
     
-    @IBAction func onPressRightDate(sender: AnyObject) {
+    @IBAction func onPressRightDate(_ sender: AnyObject) {
         currentDateIndex -= 1
         selectDateIndex(currentDateIndex)
     }
     
-    @IBAction func onPressHistoricalGraphsAndAlert(sender: AnyObject) {
+    @IBAction func onPressHistoricalGraphsAndAlert(_ sender: AnyObject) {
         appManager().selectedHealthType = selectedHealthType
         appManager().selectedDayIndex   = currentDateIndex
         appManager().prevVCForAlertVC   = self
         
         if sender as? UIButton == self.btnAlert {
-            sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoAlertSummaryVC, sender: self)
+            sideMenuController?.performSegue(withIdentifier: APPSEGUE_gotoAlertSummaryVC, sender: self)
         } else {
-            sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHistoricalGraphsVC, sender: self)
+            sideMenuController?.performSegue(withIdentifier: APPSEGUE_gotoHistoricalGraphsVC, sender: self)
         }
         
     }

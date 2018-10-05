@@ -10,6 +10,41 @@ import UIKit
 import SVProgressHUD
 import SwiftyJSON
 import DKChainableAnimationKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
 
@@ -20,24 +55,25 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var btnForgotPassword: UIButton!
     @IBOutlet weak var btnSignin: UIButton!
+    var subTitle = ""
     
     /// Constraint
     @IBOutlet weak var constraintHeightOfLogo: NSLayoutConstraint!
     @IBOutlet weak var constraintTopOfLogo: NSLayoutConstraint!
     @IBOutlet weak var constraintBottomSpaceForKeyboard: NSLayoutConstraint!
     
-    private var didSetFrameOfLogo = false
+    fileprivate var didSetFrameOfLogo = false
     
     // MARK: - Life cycle
     
     override func setupLayout() {
         super.setupLayout()
         
-        let screenSize = UIScreen.mainScreen().bounds.size
+        let screenSize = UIScreen.main.bounds.size
         self.constraintTopOfLogo.constant = -(screenSize.height * 0.5 * 0.3)
         self.constraintHeightOfLogo.constant = 1
         
-        self.imgLogo.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        self.imgLogo.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         
         self.viewLogin.alpha = 0
         
@@ -49,42 +85,42 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(onPressLogo(_:)))
         longGesture.minimumPressDuration = 3
         self.imgLogo.addGestureRecognizer(longGesture)
-        self.imgLogo.userInteractionEnabled = true
+        self.imgLogo.isUserInteractionEnabled = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         animateLogo()
     }
     
-    private func animateLogo() {
+    fileprivate func animateLogo() {
         
         self.constraintTopOfLogo.constant = 0
         self.constraintHeightOfLogo.constant = 180
 
         self.view.setNeedsUpdateConstraints()
-        UIView.animateWithDuration(1, animations: {
+        UIView.animate(withDuration: 1, animations: {
             self.view.layoutIfNeeded()
-            self.imgLogo.transform = CGAffineTransformMakeScale(1, 1)
+            self.imgLogo.transform = CGAffineTransform(scaleX: 1, y: 1)
 
-        }) { (success: Bool) in
-            UIView.animateWithDuration(0.5, animations: {
+        }, completion: { (success: Bool) in
+            UIView.animate(withDuration: 0.5, animations: {
                 self.viewLogin.alpha = 1
 //                self.autoLogin()
             })
 
-        }
+        }) 
     }
     
     // MARK: - Override 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         self.view.endEditing(true)
     }
     
-    override func keyboardWillShowRect(keyboardSize: CGSize) {
-        let bottomTextField = self.viewLogin.frame.origin.y + CGRectGetMaxY(self.txtPassword.frame) + 5
+    override func keyboardWillShowRect(_ keyboardSize: CGSize) {
+        let bottomTextField = self.viewLogin.frame.origin.y + self.txtPassword.frame.maxY + 5
         if bottomTextField > self.view.bounds.size.height - keyboardSize.height {
             let dy = bottomTextField - (self.view.bounds.size.height - keyboardSize.height)
             self.constraintBottomSpaceForKeyboard.constant = 40 + dy
@@ -98,20 +134,20 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
     }
     
     // MARK: - Login
-    @IBAction func onPressSign(sender: AnyObject) {
+    @IBAction func onPressSign(_ sender: AnyObject) {
         if vaildUserInfo() {
             login(self.txtUsername.text!, password: self.txtPassword.text!)
         }
 //        self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
     }
     
-    private func autoLogin() {
+    fileprivate func autoLogin() {
         if self.txtUsername.text?.characters.count > 0 && self.txtPassword.text?.characters.count >= 6 {
             login(self.txtUsername.text!, password: self.txtPassword.text!)
         }
     }
     
-    private func login(username: String, password: String) {
+    fileprivate func login(_ username: String, password: String) {
         SVProgressHUD.show()
         requestManager().login(username, password: password, result: { (result: AnyObject?, error: NSError?) in
             
@@ -128,15 +164,16 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
                     let appManager = self.appManager()
                     appManager.currentUser = BE24UserModel(data: json["data"])
                     appManager.token = json["token"].stringValue
-                    (UIApplication.sharedApplication().delegate as! AppDelegate).setTimeZone(appManager.currentUser!.personTimeZone!)
+                    (UIApplication.shared.delegate as! AppDelegate).setTimeZone(appManager.currentUser!.personTimeZone!)
                     
                     print ("userID : " + String(appManager.currentUser!.id) + "  <:::>  " + "token : " + appManager.token!)
                     
                     self.requestManager().getData(appManager.currentUser!.id, token: appManager.token!, result: { (result: [BE24LocationModel]?, json: JSON?, error: NSError?) in
                         if result != nil {
                             appManager.stateData = result!
+                            print(result)
                             
-                            self.performSegueWithIdentifier(APPSEGUE_gotoMainVC, sender: self)
+                            self.performSegue(withIdentifier: APPSEGUE_gotoMainVC, sender: self)
                             
                         } else {
                             self.showSimpleAlert("Error", Message: error!.localizedDescription, CloseButton: "Close", Completion: {
@@ -157,7 +194,7 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
 
     }
     
-    private func vaildUserInfo() -> Bool {
+    fileprivate func vaildUserInfo() -> Bool {
         if self.txtUsername.text?.characters.count == 0 {
             self.showSimpleAlert("Warning", Message: "Username shouldn't be empty.", CloseButton: "Close", Completion: {
             })
@@ -171,25 +208,28 @@ class BE24LoginVC: BE24ViewController, UITextFieldDelegate {
         return true
     }
     
-    func onPressLogo(sender: AnyObject) -> Void {
-        let alertController = UIAlertController(title: "Select server", message: nil, preferredStyle: .Alert)
-        let stageAction = UIAlertAction(title: "Stage", style: .Default) { (action: UIAlertAction) in
-            BE24RequestManager.baseURL = "http://staging.noostore.com"
+    func onPressLogo(_ sender: AnyObject) -> Void {
+        let alertController = UIAlertController(title: "Select server", message: nil, preferredStyle: .alert)
+        let stageAction = UIAlertAction(title: "Stage", style: .default) { (action: UIAlertAction) in
+            BE24RequestManager.baseURL = "http://staging.bt24now.com"
+            self.subTitle = "Dev"
+            
         }
         
-        let uatAction = UIAlertAction(title: "UAT", style: .Default) { (action: UIAlertAction) in
-            BE24RequestManager.baseURL = "http://uat.noostore.com:80"
+        let uatAction = UIAlertAction(title: "UAT", style: .default) { (action: UIAlertAction) in
+            BE24RequestManager.baseURL = "http://uat.bt24go.com"
+            self.subTitle = "Utc"
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(stageAction)
         alertController.addAction(uatAction)
         alertController.addAction(cancelAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK: - UITextField delegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.txtUsername {
             self.txtPassword.becomeFirstResponder()
         } else if textField == self.txtPassword {

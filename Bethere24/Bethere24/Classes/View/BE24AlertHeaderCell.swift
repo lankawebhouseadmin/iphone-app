@@ -9,8 +9,8 @@
 import UIKit
 
 enum AlertType {
-    case Week
-    case Day
+    case week
+    case day
 }
 
 class BE24AlertHeaderCell: BE24TableViewCell {
@@ -26,9 +26,9 @@ class BE24AlertHeaderCell: BE24TableViewCell {
 //    @IBOutlet weak var imgviewHealthCategory: UIImageView!
     @IBOutlet weak var btnHealthType: UIButton!
     
-    var alertType: AlertType = .Week
+    var alertType: AlertType = .week
     
-    private var _currentDateIndex: Int = 0
+    fileprivate var _currentDateIndex: Int = 0
     var currentDateIndex: Int {
         set {
             _currentDateIndex = newValue
@@ -51,67 +51,67 @@ class BE24AlertHeaderCell: BE24TableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.btnLeftDate.hidden = true
-        self.btnRightDate.hidden = true
+        self.btnLeftDate.isHidden = true
+        self.btnRightDate.isHidden = true
 //        self.lblTitle.text = "All"
-        self.btnHealthType.setImage(nil, forState: .Normal)
-        self.btnHealthType.setTitle("All", forState: .Normal)
+        self.btnHealthType.setImage(nil, for: UIControlState())
+        self.btnHealthType.setTitle("All", for: UIControlState())
     }
     
-    @IBAction func onPressChangeWeekDayType(sender: AnyObject) {
+    @IBAction func onPressChangeWeekDayType(_ sender: AnyObject) {
         
         if self.segmentType.selectedSegmentIndex == 0 {
-            self.delegate?.alertSelectedWeekDayType(.Day)
+            self.delegate?.alertSelectedWeekDayType(.day)
 //            setAlertType(.Day)
             //            self.delegate?.alertSelectedWeekDayType(.Day)
         } else {
-            self.delegate?.alertSelectedWeekDayType(.Week)
+            self.delegate?.alertSelectedWeekDayType(.week)
 //            setAlertType(.Week)
             //            self.delegate?.alertSelectedWeekDayType(.Week)
         }
     }
     
-    @IBAction func onPressHealthType(sender: AnyObject) {
+    @IBAction func onPressHealthType(_ sender: AnyObject) {
         delegate?.alertChooseHealthType()
     }
     
-    @IBAction func onPressLeftDate(sender: AnyObject) {
+    @IBAction func onPressLeftDate(_ sender: AnyObject) {
 //        currentDateIndex += 1
 //        selectDateIndex(currentDateIndex)
         self.delegate?.alertSelectedDayStep(-1)
     }
     
-    @IBAction func onPressRightDate(sender: AnyObject) {
+    @IBAction func onPressRightDate(_ sender: AnyObject) {
 //        currentDateIndex -= 1
 //        selectDateIndex(currentDateIndex)
         self.delegate?.alertSelectedDayStep(1)
     }
     
 
-    private func setAlertType(type: AlertType) {
+    fileprivate func setAlertType(_ type: AlertType) {
         alertType = type
-        if alertType == .Week {
-            self.btnLeftDate.hidden = true
-            self.btnRightDate.hidden = true
+        if alertType == .week {
+            self.btnLeftDate.isHidden = true
+            self.btnRightDate.isHidden = true
 //            self.imgviewHealthCategory.image = nil
 //            self.lblTitle.text = "All"
-            self.btnHealthType.setImage(nil, forState: .Normal)
-            self.btnHealthType.setTitle("All", forState: .Normal)
+            self.btnHealthType.setImage(nil, for: UIControlState())
+            self.btnHealthType.setTitle("All", for: UIControlState())
 //            self.delegate?.alertSelectedDayIndex(nil)
-            self.btnHealthType.enabled = true
+            self.btnHealthType.isEnabled = true
         } else {
-            self.btnLeftDate.hidden = false
-            self.btnRightDate.hidden = false
+            self.btnLeftDate.isHidden = false
+            self.btnRightDate.isHidden = false
 //            self.imgviewHealthCategory.image = nil
-            self.btnHealthType.setImage(nil, forState: .Normal)
+            self.btnHealthType.setImage(nil, for: UIControlState())
 //            self.lblTitle.text = "10/4 - Tue."
             
 //            self.delegate?.alertSelectedDayIndex(currentDateIndex)
-            self.btnHealthType.enabled = false
+            self.btnHealthType.isEnabled = false
         }
     }
     
-    internal func selectDateIndex(index: Int) {
+    internal func selectDateIndex(_ index: Int) {
         
         if let stateData = BE24AppManager.sharedManager.stateData {
             if stateData.count > 0 {
@@ -120,22 +120,22 @@ class BE24AlertHeaderCell: BE24TableViewCell {
                 
                 if locationModelData.state.days.count > 0 {
                     /// Buttons for Select Date
-                    self.btnRightDate.hidden = false
-                    self.btnLeftDate.hidden = false
+                    self.btnRightDate.isHidden = false
+                    self.btnLeftDate.isHidden = false
                     if index == 0 {
-                        self.btnRightDate.hidden = true
+                        self.btnRightDate.isHidden = true
                     }
                     if index >= (locationModelData.state.days.count - 1) {
-                        self.btnLeftDate.hidden = true
+                        self.btnLeftDate.isHidden = true
                     }
                     
 //                    self.lblTitle.text = dateString(locationModelData.state.days[index])
-                    self.btnHealthType.setTitle(dateString(locationModelData.state.days[index]), forState: .Normal)
+                    self.btnHealthType.setTitle(dateString(locationModelData.state.days[index]), for: UIControlState())
                     
                 } else {
                     
 //                    self.lblTitle.text = "Today"
-                    self.btnHealthType.setTitle("Today", forState: .Normal)
+                    self.btnHealthType.setTitle("Today", for: UIControlState())
                     
                 }
                 
@@ -145,8 +145,8 @@ class BE24AlertHeaderCell: BE24TableViewCell {
         
     }
 
-    internal func dateString(dateString: String) -> String {
-        let todayString = DATE_FORMATTER.Default.stringFromDate(NSDate())
+    internal func dateString(_ dateString: String) -> String {
+        let todayString = DATE_FORMATTER.Default.string(from: Date())
         if dateString == todayString {
             return "Today"
         } else {
@@ -154,7 +154,7 @@ class BE24AlertHeaderCell: BE24TableViewCell {
         }
     }
     
-    func selectHealthCategory(typeIndex: Int) -> Void {
+    func selectHealthCategory(_ typeIndex: Int) -> Void {
         
     }
     
@@ -162,9 +162,9 @@ class BE24AlertHeaderCell: BE24TableViewCell {
 
 protocol BE24AlertHeaderCellDelegate {
 
-    func alertSelectedWeekDayType(type: AlertType) -> Void
+    func alertSelectedWeekDayType(_ type: AlertType) -> Void
 
-    func alertSelectedDayStep(step: Int) -> Void
+    func alertSelectedDayStep(_ step: Int) -> Void
     
     func alertChooseHealthType() -> Void
     

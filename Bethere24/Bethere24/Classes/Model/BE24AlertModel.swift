@@ -16,7 +16,7 @@ class BE24AlertModel: BE24Model {
     var actualTime : Int!
     var stateType  : Int!
     var score      : Int!
-    var alertTime  : NSDate!
+    var alertTime  : Date!
     
     override init(data: JSON) {
         super.init(data: data)
@@ -25,16 +25,16 @@ class BE24AlertModel: BE24Model {
         actualTime = data["actual_time"].intValue
         stateType  = data["state_type"].intValue
         score      = data["score"].intValue
-        alertTime  = NSDate(timeIntervalSince1970: data["alert_time"].doubleValue)
+        alertTime  = Date(timeIntervalSince1970: data["alert_time"].doubleValue)
     }
     
-    func dateString(virtualTime: String) -> String {
-        let virtualElems = virtualTime.componentsSeparatedByString(":")
+    func dateString(_ virtualTime: String) -> String {
+        let virtualElems = virtualTime.components(separatedBy: ":")
         let virtualSeconds = Double(virtualElems[0])! * 3600 + Double(virtualElems[1])! * 60 + Double(virtualElems[2])!
         
-        let virtualTime = NSDate(timeIntervalSince1970: (alertTime.timeIntervalSince1970 - virtualSeconds))
+        let virtualTime = Date(timeIntervalSince1970: (alertTime.timeIntervalSince1970 - virtualSeconds))
 
-        return DATE_FORMATTER.Default.stringFromDate(virtualTime)
+        return DATE_FORMATTER.Default.string(from: virtualTime)
     }
 
     func type() -> HealthType {

@@ -36,7 +36,7 @@ class BE24StateBaseVC: BE24MainBaseVC {
             "had some difficulty using the recliner",
         ],
         HealthType.InDining : [
-            "had eat normally",
+            "ate normally",
             "may not have eaten well",
             "did not eat well",
         ],
@@ -61,9 +61,9 @@ class BE24StateBaseVC: BE24MainBaseVC {
             "had visitors",
         ],
         HealthType.InMotion : [
-            "",
-            "",
-            "",
+            "used to go",
+            "used to go",
+            "used to go",
         ]
     ]
     
@@ -84,7 +84,7 @@ class BE24StateBaseVC: BE24MainBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
-    internal func dateString(dateString: String) -> String {
+    internal func dateString(_ dateString: String) -> String {
         if appManager().currentUser == nil {
             return dateString
         } else {
@@ -97,18 +97,29 @@ class BE24StateBaseVC: BE24MainBaseVC {
         }
     }
     
-    internal func timeString(totalTimes: Int, isMedication: Bool = false) -> String {
+    internal func timeString(_ totalTimes: Int, isMedication: Bool = false) -> String {
         if isMedication == false {
             let hour = totalTimes / 60
             let minute = totalTimes % 60
             if hour > 0 {
-                var timeString = "\(hour) Hr"
+                var timeString = "\(hour) Hr,"
                 if minute > 0 {
-                    timeString = timeString + " \(minute) Min"
+                    
+                    if minute < 10 {
+                        timeString = timeString + " 0\(minute) Min"
+                    } else {
+                        timeString = timeString + " \(minute) Min"
+                    }
                 }
                 return timeString
             } else {
-                return "\(minute) Min"
+                var timeString = ""
+                if minute < 10 {
+                    timeString = timeString + " \(minute) Min"
+                } else {
+                   timeString = "\(minute) Min"
+                }
+                return timeString
             }
         } else {
             if totalTimes > 1 {
@@ -119,7 +130,7 @@ class BE24StateBaseVC: BE24MainBaseVC {
         }
     }
     
-    internal func healthDetailReportString(type: HealthType, score: Int) -> String {
+    internal func healthDetailReportString(_ type: HealthType, score: Int) -> String {
         if appManager().currentUser != nil {
             let fullname = appManager().currentUser!.firstName! // appManager().currentUser!.fullname()
             var index: Int = 0

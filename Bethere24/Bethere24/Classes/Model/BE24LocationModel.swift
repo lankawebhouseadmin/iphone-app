@@ -43,7 +43,7 @@ class BE24LocationModel: BE24Model {
         branchState()
     }
     
-    private func branchState() -> Void {
+    fileprivate func branchState() -> Void {
         
     }
 }

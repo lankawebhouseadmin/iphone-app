@@ -12,29 +12,29 @@ class BE24SideMenuController: SideMenuController {
 
     required init?(coder aDecoder: NSCoder) {
         SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "iconMenu")
-        SideMenuController.preferences.drawing.sidePanelPosition = .UnderCenterPanelLeft
+        SideMenuController.preferences.drawing.sidePanelPosition = .underCenterPanelLeft
         SideMenuController.preferences.drawing.sidePanelWidth = 240
         SideMenuController.preferences.drawing.centerPanelShadow = true
-        SideMenuController.preferences.animating.statusBarBehaviour = .HorizontalPan
+        SideMenuController.preferences.animating.statusBarBehaviour = .horizontalPan
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.performSegueWithIdentifier(APPSEGUE_gotoMenuVC, sender: self)
-        self.performSegueWithIdentifier(APPSEGUE_gotoHealthSummaryVC, sender: self)
+        self.performSegue(withIdentifier: APPSEGUE_gotoMenuVC, sender: self)
+        self.performSegue(withIdentifier: APPSEGUE_gotoHealthSummaryVC, sender: self)
 //        self.performSegueWithIdentifier(APPSEGUE_gotoHistoricalGraphsVC, sender: self)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     }
 

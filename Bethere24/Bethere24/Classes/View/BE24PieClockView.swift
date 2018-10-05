@@ -11,28 +11,30 @@ import SwiftyJSON
 
 class BE24PieClockView: BE24PieBaseView {
 
-    let timezoneSeconds = Double(NSTimeZone.localTimeZone().secondsFromGMT)
+    let timezoneSeconds = Double(NSTimeZone.local.secondsFromGMT())
     
     var delegate: BE24PieClockViewDelegate?
     
-    private var imgBackgroundView: UIImageView!
+    fileprivate var imgBackgroundView: UIImageView!
     
-    private var selectedIndex: Int = 0
+    fileprivate var selectedIndex: Int = 0
 //    private var stateCount: Int = 0
-    private var states: [BE24StateModel]?
-    private let secondsOfOneDay: Double = 86400
-    private let twoPI = 2.0 * CGFloat(M_PI)
-    private let angleOfSecond = 2.0 * CGFloat(M_PI) / CGFloat(86400)
+    fileprivate var states: [BE24StateModel]?
+    fileprivate let secondsOfOneDay: Double = 86400
+    fileprivate let twoPI = 2.0 * .pi
+    fileprivate let angleOfSecond = 2.0 * .pi / CGFloat(86400)
     
-    private var originAngle: CGFloat = 0
+    fileprivate var originAngle: CGFloat = 0
+    
+    var testTimeArr = ["1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM", "12:00 PM", "1:00 AM", "2:00 AM", "3:00 AM", "4:00 AM", "5:00 AM", "6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 AM"]
     
     override func awakeFromNib() {
         
-        imgBackgroundView = UIImageView(frame: CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-        imgBackgroundView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        imgBackgroundView.contentMode = .ScaleAspectFit
+        imgBackgroundView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        imgBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        imgBackgroundView.contentMode = .scaleAspectFit
         imgBackgroundView.image = UIImage(named: "imgClockBackground")
-        imgBackgroundView.makeBorder(UIColor.whiteColor(), borderWidth: 5)
+        imgBackgroundView.makeBorder(UIColor.white, borderWidth: 5)
 //        self.addSubview(imgBackgroundView)
         
         super.awakeFromNib()
@@ -44,7 +46,7 @@ class BE24PieClockView: BE24PieBaseView {
     override func arrangeSublayout() {
         super.arrangeSublayout()
         
-        let width = self.bounds.height - 16 // UIScreen.mainScreen().bounds.size.width - 16
+        let width = self.bounds.height - 2 // UIScreen.mainScreen().bounds.size.width - 16
         imgBackgroundView.makeRoundView(radius: width / 2)
 
     }
@@ -74,7 +76,7 @@ class BE24PieClockView: BE24PieBaseView {
         }
     }
     
-    override func touchedOnAngle(angle: Int) -> Void {
+    override func touchedOnAngle(_ angle: Int) -> Void {
         
         let aliasAngle = ((angle + 90) % 360)
         
@@ -87,10 +89,10 @@ class BE24PieClockView: BE24PieBaseView {
                 for index in 0...(states!.count - 1) {
                     let state = states![index]
                     
-                    let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay // seconds of a day
-                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay   // seconds of a day
-                    let start = Int(360 / secondsOfOneDay * startSeconds + -1) % 360
-                    let end   = Int(360 / secondsOfOneDay * endSeconds   + 1) % 360
+                    let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay) // seconds of a day
+                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay)   // seconds of a day
+                    let start = Int(360 / secondsOfOneDay * startSeconds) % 360
+                    let end   = Int(360 / secondsOfOneDay * endSeconds) % 360
                     
                     if  start <= aliasAngle && aliasAngle <= end
 //                        || start >= aliasAngle && aliasAngle >= end
@@ -110,20 +112,22 @@ class BE24PieClockView: BE24PieBaseView {
             }
         }
     }
+    
+   
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         if states != nil {
         
             //find the centerpoint of the rect
-            let centerPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
+            let centerPoint = CGPoint(x: rect.midX, y: rect.midY)
             
             //define the radius by the smallest side of the view
             var radius:CGFloat = 0.0
-            if CGRectGetWidth(rect) < CGRectGetHeight(rect){
-                radius = (CGRectGetWidth (rect) - arcWidth) / 2.0 + 3
+            if rect.width < rect.height{
+                radius = (rect.width - arcWidth) / 2.0 - 1
             }else{
-                radius = (CGRectGetHeight(rect) - arcWidth) / 2.0 + 3
+                radius = (rect.height - arcWidth) / 2.0 - 1
             }
             
             /// Draw Pie
@@ -138,65 +142,78 @@ class BE24PieClockView: BE24PieBaseView {
                 for index in 0...(stateCount - 1) {
                     let state = states![index]
 
-                    let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay // seconds of a day
-                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay   // seconds of a day
+                    
+                    if(state.startTime == state.endTime)
+                    {
+                        state.endTime = state.endTime.addingTimeInterval(1) // To create white line for very less time interval i.e start time = end time
+                    }
+                    
+                    let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay) // seconds of a day
+                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay)   // seconds of a day
                     let start: CGFloat = angleOfSecond * CGFloat(startSeconds) + CGFloat(M_PI * 1.5)
                     var end:CGFloat    = angleOfSecond * CGFloat(endSeconds )  + CGFloat(M_PI * 1.5)
                     if endSeconds > startSeconds && endSeconds - startSeconds < 60 {
                         end = start + angleOfSecond * 60
                     }
-        //            let colorValue = BE24AppManager.sharedManager.categories[index][kMenuColorKeyName]!
-                    let pieColor = UIColor(rgba: "#ffffff88")
-                    CGContextSetFillColorWithColor(context, pieColor.CGColor)
-                    CGContextMoveToPoint(context, centerPoint.x, centerPoint.y)
-                    CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start, end, 0)
-                    CGContextFillPath(context)
+//                    let colorValue = BE24AppManager.sharedManager.categories[index][kMenuColorKeyName]!
+                    let pieColor = colorWithHexString(hexString: "#ffff88")
+                    context?.setFillColor(pieColor.cgColor)
+                    context?.move(to: CGPoint(x: centerPoint.x, y: centerPoint.y))
+                    context?.addArc(center: centerPoint, radius: radius, startAngle: start, endAngle: end, clockwise: false)
+//                    CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start, end, 0)
+                    context?.fillPath()
                     
                 }
             }
             
             /// draw green bar
             let stateData = BE24AppManager.sharedManager.stateData!.first!
-            let time = DATE_FORMATTER.OnlyTime.dateFromString(stateData.clientInfo.virtualDayStartOriginal)!
-            let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: time)
+            let time = DATE_FORMATTER.OnlyTime.date(from: stateData.clientInfo.virtualDayStartOriginal)!
             
-            let totalSeconds = component.hour * 3600 + component.minute * 60 + component.second
+//            for Ttime in testTimeArr {
+//            
+//            let testTime = DATE_FORMATTER.TimeA.dateFromString(Ttime)
+            
+            let component = (Calendar.current as NSCalendar).components([.hour, .minute, .second], from: time)
+            
+            let totalSeconds = component.hour! * 3600 + component.minute! * 60 + component.second!
             let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)
             let bx = centerPoint.x + radius * cos(angle)
             let by = centerPoint.y + radius * sin(angle)
             
             let aPath = UIBezierPath()
             
-            aPath.moveToPoint(centerPoint)
+            aPath.move(to: centerPoint)
             
-            aPath.addLineToPoint(CGPoint(x: bx, y: by))
+            aPath.addLine(to: CGPoint(x: bx, y: by))
             aPath.lineWidth = 2
-            aPath.closePath()
+            aPath.close()
             
             //If you want to stroke it with a red color
-            UIColor.blueColor().set()
+            UIColor.blue.set()
             aPath.stroke()
             //If you want to fill it as well 
             aPath.fill()
             
+            
             if delegate!.shouldShowLoginTimeClockView(self) {
-                let component = NSCalendar.currentCalendar().components([.Hour, .Minute, .Second], fromDate: stateData.clientInfo.currentTime)
+                let component = (Calendar.current as NSCalendar).components([.hour, .minute, .second], from: stateData.clientInfo.currentTime as Date)
                 
-                let totalSeconds = component.hour * 3600 + component.minute * 60 + component.second
+                let totalSeconds = component.hour! * 3600 + component.minute! * 60 + component.second!
                 let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)
                 let bx = centerPoint.x + radius * cos(angle)
                 let by = centerPoint.y + radius * sin(angle)
                 
                 let aPath = UIBezierPath()
                 
-                aPath.moveToPoint(centerPoint)
+                aPath.move(to: centerPoint)
                 
-                aPath.addLineToPoint(CGPoint(x: bx, y: by))
+                aPath.addLine(to: CGPoint(x: bx, y: by))
                 aPath.lineWidth = 2
-                aPath.closePath()
+                aPath.close()
                 
                 //If you want to stroke it with a red color
-                UIColor.greenColor().set()
+                UIColor.green.set()
                 aPath.stroke()
                 //If you want to fill it as well
                 aPath.fill()
@@ -206,7 +223,7 @@ class BE24PieClockView: BE24PieBaseView {
         }
     }
 
-    private func selectHealthState(index: Int, directionToNext: Bool = true) {
+    fileprivate func selectHealthState(_ index: Int, directionToNext: Bool = true) {
         
         if let statesCount = states?.count {
             
@@ -216,7 +233,7 @@ class BE24PieClockView: BE24PieBaseView {
                 var borderColor: UIColor!
                 if delegate != nil {
                     let score = self.delegate!.pieClockView(self, stateForIndex: index).score
-                    let scoreValueName = self.scoreValueAndName(score)
+                    let scoreValueName = self.scoreValueAndName(score!)
                     self.viewScore.imgScore.image = UIImage(named: scoreValueName.0)
                     if let scoreName = scoreValueName.1 {
                         self.viewScore.imgScoreName.image = UIImage(named: scoreName)
@@ -224,19 +241,19 @@ class BE24PieClockView: BE24PieBaseView {
                         self.viewScore.imgScoreName.image = nil
                     }
 
-                    borderColor = BE24AppManager.colorForScore(score)
+                    borderColor = BE24AppManager.colorForScore(score!)
                     
                     delegate!.pieClockView(self, selectedStateIndex: index)
                 } else {
                     borderColor = BE24AppManager.colorForScore(0)
                 }
                 
-                self.viewScore.layer.borderColor = borderColor.CGColor
+                self.viewScore.layer.borderColor = borderColor.cgColor
                 
                 
                 /// Animate pin
                 let state = states![index]
-                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
+                let startSeconds = CGFloat((state.startTime.timeIntervalSince1970 + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay))   // seconds of a day
 //                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
 //                let middleSeconds = startSeconds + (endSeconds - startSeconds) / 2
                 
@@ -244,12 +261,13 @@ class BE24PieClockView: BE24PieBaseView {
                 if directionToNext == false {
 //                    angle = angle - twoPI
                 }
-                let originTransform = CGAffineTransformMakeRotation(originAngle)
-                let newTransform = CGAffineTransformRotate(originTransform, (angle - originAngle) % CGFloat(secondsOfOneDay))
+                let originTransform = CGAffineTransform(rotationAngle: originAngle)
+                let newTransform = originTransform.rotated(by: (angle - originAngle).truncatingRemainder(dividingBy: CGFloat(secondsOfOneDay)))
 //                print (angle)
-                UIView.animateWithDuration(0.3) {
-                    self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
-                }
+                UIView.animate(withDuration: 0.3, animations: {
+                    
+                    self.imgviewArrow.transform = CGAffineTransform(rotationAngle: angle)
+                }) 
                 originAngle = angle
             }
 
@@ -257,11 +275,11 @@ class BE24PieClockView: BE24PieBaseView {
         
     }
     
-    private func resetScore() {
+    fileprivate func resetScore() {
         self.viewScore.imgScore.image = UIImage(named: "score")
         self.viewScore.imgScoreName.image = nil
 
-        self.viewScore.layer.borderColor = UIColor.whiteColor().CGColor
+        self.viewScore.layer.borderColor = UIColor.white.cgColor
     }
     
     func nextSelect() -> Void {
@@ -286,9 +304,9 @@ class BE24PieClockView: BE24PieBaseView {
 
 @objc
 protocol BE24PieClockViewDelegate {
-    func statesForPieCount(view: BE24PieClockView) -> [BE24StateModel]?
+    func statesForPieCount(_ view: BE24PieClockView) -> [BE24StateModel]?
 //    func numberOfPieCount(view: BE24PieClockView) -> Int
-    func pieClockView(view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel
-    func pieClockView(view: BE24PieClockView, selectedStateIndex: Int) -> Void
-    func shouldShowLoginTimeClockView(view: BE24PieClockView) -> Bool
+    func pieClockView(_ view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel
+    func pieClockView(_ view: BE24PieClockView, selectedStateIndex: Int) -> Void
+    func shouldShowLoginTimeClockView(_ view: BE24PieClockView) -> Bool
 }

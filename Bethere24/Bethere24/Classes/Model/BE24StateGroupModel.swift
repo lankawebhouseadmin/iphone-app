@@ -11,8 +11,8 @@ import SwiftyJSON
 
 class BE24StateGroupModel: BE24Model {
     
-    private var data: [String: AnyObject] = [:]
-    private var allStates: [BE24StateModel] = []
+    fileprivate var data: [String: AnyObject] = [:]
+    fileprivate var allStates: [BE24StateModel] = []
     
     /// App side data
     var days            : [String] = []
@@ -47,19 +47,19 @@ class BE24StateGroupModel: BE24Model {
         branchState(virtualTime)
     }
     
-    func setObject(object: AnyObject, key: String) -> Void {
+    func setObject(_ object: AnyObject, key: String) -> Void {
         data[key] = object
     }
     
-    func objectForKey(key: String) -> AnyObject? {
+    func objectForKey(_ key: String) -> AnyObject? {
         return data[key]
     }
     
-    func setStates(states: [BE24StateModel], forType: HealthType) -> Void {
-        self.setObject(states, key: forType.rawValue)
+    func setStates(_ states: [BE24StateModel], forType: HealthType) -> Void {
+        self.setObject(states as AnyObject, key: forType.rawValue)
     }
     
-    func statesForType(type: HealthType) -> [BE24StateModel]? {
+    func statesForType(_ type: HealthType) -> [BE24StateModel]? {
         if let statesObject = data[type.rawValue] {
             if let states = statesObject as? [BE24StateModel] {
                 return states
@@ -71,10 +71,10 @@ class BE24StateGroupModel: BE24Model {
         }
     }
     
-    private func branchState(virtualTime: String) -> Void {
+    fileprivate func branchState(_ virtualTime: String) -> Void {
         
-        allStates.sortInPlace { (first: BE24StateModel, second: BE24StateModel) -> Bool in
-            if first.startTime.compare(second.startTime) == .OrderedAscending {
+        allStates.sort { (first: BE24StateModel, second: BE24StateModel) -> Bool in
+            if first.startTime.compare(second.startTime as Date) == .orderedAscending {
                 return false
             } else {
                 return true
@@ -82,9 +82,9 @@ class BE24StateGroupModel: BE24Model {
         }
         
         var startDayTimeInterval: Double = 2000000000
-        var endDayTimeInterval: Double = NSDate().timeIntervalSince1970
+        var endDayTimeInterval: Double = Date().timeIntervalSince1970
         
-        let virtualElems = virtualTime.componentsSeparatedByString(":")
+        let virtualElems = virtualTime.components(separatedBy: ":")
         let virtualSeconds = Double(virtualElems[0])! * 3600 + Double(virtualElems[1])! * 60 + Double(virtualElems[2])!
         
         endDayTimeInterval -= virtualSeconds
@@ -111,7 +111,7 @@ class BE24StateGroupModel: BE24Model {
         days.removeAll()
         var timeInterval = endDayTimeInterval
         while timeInterval > startDayTimeInterval - (3600 * 24) {
-            let dateString = DATE_FORMATTER.Default.stringFromDate(NSDate(timeIntervalSince1970: timeInterval))
+            let dateString = DATE_FORMATTER.Default.string(from: Date(timeIntervalSince1970: timeInterval))
             days.append(dateString)
             
             var statesForDate = statesByDay[dateString]

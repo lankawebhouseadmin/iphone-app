@@ -22,10 +22,10 @@ class BE24PieBaseView: BE24View {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
 
         imgviewArrow = UIImageView(image: UIImage(named: "iconPinArrow"))
-        imgviewArrow.contentMode = .Top
+        imgviewArrow.contentMode = .top
         self.addSubview(imgviewArrow)
         imgviewArrow.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.snp_centerX).offset(0)
@@ -35,7 +35,7 @@ class BE24PieBaseView: BE24View {
         }
         
 //        let frame = CGRectMake(0, 0, 100, 100)
-        viewScore = UINib(nibName: "ScoreView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as! BE24ScoreView
+        viewScore = UINib(nibName: "ScoreView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! BE24ScoreView
         self.addSubview(viewScore)
         viewScore.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.snp_centerX).offset(0)
@@ -43,11 +43,11 @@ class BE24PieBaseView: BE24View {
             make.height.equalTo(self.snp_height).offset(0).multipliedBy(0.4)
             make.width.equalTo(viewScore.snp_height).offset(0)
         }
-        viewScore.makeBorder(UIColor.whiteColor(), borderWidth: 5)
+        viewScore.makeBorder(UIColor.white, borderWidth: 5)
 
     }
     
-    internal func scoreValueAndName(score: Int) -> (String, String?) {
+    internal func scoreValueAndName(_ score: Int) -> (String, String?) {
         if 0 < score && score <= 2 {
             return ("score" + String(score), "scoreNamePoor")
         } else if 2 < score && score <= 7 {
@@ -63,10 +63,10 @@ class BE24PieBaseView: BE24View {
         
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if let touch = touches.first {
-            let position = touch.locationInView(self)
+            let position = touch.location(in: self)
             
             let outRadius = Float(self.bounds.width * 0.5)
             let inRadius  = Float(self.viewScore.frame.width * 0.5)
@@ -81,16 +81,16 @@ class BE24PieBaseView: BE24View {
             if inRadius <= radius && radius <= outRadius {
                 
                 
-                let area1 = CGRectMake(CGFloat(ox), CGFloat(oy), self.bounds.width * 0.5, self.bounds.height * 0.5)
-                let area2 = CGRectOffset(area1, -area1.width, 0)
-                let area3 = CGRectOffset(area1, -area1.width, -area1.height)
-                let area4 = CGRectOffset(area1, 0, -area1.height)
+                let area1 = CGRect(x: CGFloat(ox), y: CGFloat(oy), width: self.bounds.width * 0.5, height: self.bounds.height * 0.5)
+                let area2 = area1.offsetBy(dx: -area1.width, dy: 0)
+                let area3 = area1.offsetBy(dx: -area1.width, dy: -area1.height)
+                let area4 = area1.offsetBy(dx: 0, dy: -area1.height)
                 
                 var angle = Int(atanf(ty / tx).radiansToDegrees.double)
                 
-                if CGRectContainsPoint(area2, position) || CGRectContainsPoint(area3, position){
+                if area2.contains(position) || area3.contains(position){
                     angle = 180 + angle
-                } else if CGRectContainsPoint(area4, position) {
+                } else if area4.contains(position) {
                     angle = 360 + angle
                 }
                 
@@ -102,7 +102,7 @@ class BE24PieBaseView: BE24View {
         }
     }
     
-    func touchedOnAngle(alpha: Int) -> Void {
+    func touchedOnAngle(_ alpha: Int) -> Void {
         
     }
 

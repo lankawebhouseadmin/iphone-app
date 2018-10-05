@@ -21,7 +21,7 @@ class BE24AlertContentCell: BE24TableViewCell {
 //    @IBOutlet weak var lblActualTimes: UILabel!
     @IBOutlet weak var lblAlertContent: UILabel!
     
-    private var _alert: BE24AlertModel!
+    fileprivate var _alert: BE24AlertModel!
     var alert: BE24AlertModel {
         get {
             return _alert

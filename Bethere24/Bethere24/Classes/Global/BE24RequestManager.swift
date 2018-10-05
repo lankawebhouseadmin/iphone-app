@@ -12,70 +12,101 @@ import SwiftyJSON
 
 class BE24RequestManager: NSObject {
 
-    class var sharedManager: BE24RequestManager {
-        struct Static {
-            static var onceToken: dispatch_once_t = 0
-            static var instance: BE24RequestManager? = nil
-        }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = BE24RequestManager()
-        }
-        return Static.instance!
-    }
+//    private static var __once: () = {
+//            Static.instance = BE24RequestManager()
+//        }()
+//
+//    class var sharedManager: BE24RequestManager {
+//        struct Static {
+//            static var onceToken: Int = 0
+//            static var instance: BE24RequestManager? = nil
+//        }
+//        _ = BE24RequestManager.__once
+//        return Static.instance!
+//    }
+    
+    static let sharedManager = BE24RequestManager()
     
     typealias DetailtResponse = (AnyObject?, NSError?) -> Void
     
-//    let baseURL = "http://staging.noostore.com"
-    static var baseURL = "http://uat.noostore.com:80"
-    let URI_Login = "/api/login/"
-    let UIR_State = "/api/utc_states/"
-    func POST(url: String, params: [String: AnyObject]?, result: DetailtResponse) -> Void {
-        Alamofire.request(.POST, url, parameters: params).responseJSON { (response: Response<AnyObject, NSError>) in
+    static var baseURL = "http://uat.bt24go.com"
+        let URI_Login = "/api/login/"
+        let UIR_State = "/api/utc_states/"
+    func POST(_ url: String, params: [String: AnyObject]?, result: @escaping DetailtResponse) -> Void {
+        
+        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
-            case .Success(let userData):
-                result(userData, nil)
+            case .success(let userData):
+                result(userData as AnyObject, nil)
                 break
-            case .Failure(let error):
-                result(nil, error)
+            case .failure(let error):
+                result(nil, error as NSError)
                 break
             }
         }
+        
+        
+//        Alamofire.request(.POST, url, parameters: params).responseJSON { (response: Response<AnyObject, NSError>) in
+//            switch response.result {
+//            case .Success(let userData):
+//                result(userData, nil)
+//                break
+//            case .Failure(let error):
+//                result(nil, error)
+//                break
+//            }
+//        }
     }
     
-    func GET(url: String, params: [String: AnyObject]?, result: DetailtResponse) -> Void {
-        Alamofire.request(.GET, url, parameters: params).responseJSON { (response: Response<AnyObject, NSError>) in
-            switch response.result {
-            case .Success(let userData):
-                result(userData, nil)
+    func GET(_ url: String, params: [String: AnyObject]?, result: @escaping DetailtResponse) -> Void {
+        
+        Alamofire.request(url, method: .get, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (reponse) in
+            switch reponse.result {
+            case .success(let userData):
+                result(userData as AnyObject, nil)
                 break
-            case .Failure(let error):
-                result(nil, error)
+            case .failure(let error):
+                result(nil, error as NSError)
                 break
             }
         }
+        
+        
+//        Alamofire.request(.GET, url, parameters: params).responseJSON { (response: Response<AnyObject, NSError>) in
+//            switch response.result {
+//            case .Success(let userData):
+//                result(userData, nil)
+//                break
+//            case .Failure(let error):
+//                result(nil, error)
+//                break
+//            }
+//        }
     }
     
-    func requestURL(uri: String) -> String {
+    func requestURL(_ uri: String) -> String {
         
         return BE24RequestManager.baseURL + uri
     }
 
-    func login(username: String, password: String, result: DetailtResponse) -> Void {
+    func login(_ username: String, password: String, result: @escaping DetailtResponse) -> Void {
         
         let url = requestURL(URI_Login)
         let params = [
             "username": username,
             "password": password
         ]
-        POST(url, params: params, result: result)
+        POST(url, params: params as [String : AnyObject], result: result)
         
     }
     
-    func getData(userid: Int, token: String, result: (([BE24LocationModel]?, JSON?, NSError?) -> Void)) -> Void {
+    func getData(_ userid: Int, token: String, result: @escaping (([BE24LocationModel]?, JSON?, NSError?) -> Void)) -> Void {
         let url = requestURL(UIR_State + String(userid) + "/" + token)
+        print(url)
         GET(url, params: nil) { (response: AnyObject?, error: NSError?) in
             if response != nil {
                 let json = JSON(response!)
+                print(json)
                 var locations: [BE24LocationModel] = []
                 if json.arrayValue.count > 0 {
                     let location = json.arrayValue.first!["location"]["0"]

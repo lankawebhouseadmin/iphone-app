@@ -25,7 +25,7 @@ class BE24HealthTypeMenuCell: BE24TableViewCell {
     
     func updateMenuItem() -> Void {
         self.lblTitle.text = menuTitleAndIcon[kMenuTitleKeyName]
-        self.lblTitle.textColor = UIColor(rgba: menuTitleAndIcon[kMenuColorKeyName]!)
+        self.lblTitle.textColor = colorWithHexString(hexString: menuTitleAndIcon[kMenuColorKeyName]!)
         
         self.imgviewIcon.image = UIImage(named: menuTitleAndIcon[kMenuIconKeyName]!)
     }

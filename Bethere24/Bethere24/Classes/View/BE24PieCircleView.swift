@@ -14,8 +14,8 @@ class BE24PieCircleView: BE24PieBaseView {
     var delegate: BE24PieCircleViewDelegate?
 
 
-    private var categoryIcons: [UIImageView] = []
-    private var selectedIndex: Int = 0
+    fileprivate var categoryIcons: [UIImageView] = []
+    fileprivate var selectedIndex: Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,42 +32,52 @@ class BE24PieCircleView: BE24PieBaseView {
         arrangeSublayout()
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
 
         //find the centerpoint of the rect
-        let twoPI = 2.0 * CGFloat(M_PI)
+        let twoPI = 2.0 * .pi
         
-        let centerPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
+        let centerPoint = CGPoint(x: rect.midX, y: rect.midY)
         
         //define the radius by the smallest side of the view
         var radius:CGFloat = 0.0
-        if CGRectGetWidth(rect) < CGRectGetHeight(rect){
-            radius = (CGRectGetWidth(rect) - arcWidth) / 2.0
+        if rect.width < rect.height{
+            radius = (rect.width - arcWidth) / 2.0
         }else{
-            radius = (CGRectGetHeight(rect) - arcWidth) / 2.0
+            radius = (rect.height - arcWidth) / 2.0
         }
 
         /// Draw border
-        var start:CGFloat = -(twoPI / 16 + twoPI / 4);
+        var start:CGFloat = CGFloat(-(twoPI / 16 + twoPI / 4));
         let borderDt: CGFloat = 0.02
         //starting point for all drawing code is getting the context.
         let context = UIGraphicsGetCurrentContext()
         //set colorspace
         _ = CGColorSpaceCreateDeviceRGB()
         //set line attributes
-        CGContextSetLineWidth(context, arcWidth)
-        CGContextSetLineCap(context, .Square)
+        context?.setLineWidth(arcWidth)
+        context?.setLineCap(.square)
 
         for index in 0...7 {
-            let end:CGFloat = start + twoPI / 8
+            let end:CGFloat = start + CGFloat(twoPI / 8)
             
             let colorValue = BE24AppManager.sharedManager.categories[index][kMenuColorKeyName]!
-            let pieColor = UIColor(rgba: colorValue)
-            CGContextSetFillColorWithColor(context, pieColor.CGColor)
-            CGContextMoveToPoint(context, centerPoint.x, centerPoint.y)
-            CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start, end, 0)
-            CGContextFillPath(context)
+            let pieColor = colorWithHexString(hexString: colorValue)
+            context?.setFillColor(pieColor.cgColor)
+            //print("\(pieColor.getRed(UnsafeMutablePointer<CGFloat>?, green: <#T##UnsafeMutablePointer<CGFloat>?#>, blue: <#T##UnsafeMutablePointer<CGFloat>?#>, alpha: <#T##UnsafeMutablePointer<CGFloat>?#>))")
+//            do {
+//                let pieColor = try UIColor(rgba_throws: colorValue)
+//                context?.setFillColor(pieColor.cgColor)
+//            }
+//            catch {
+//                print("throws error")
+//            }
+            context?.move(to: CGPoint(x: centerPoint.x, y: centerPoint.y))
+            context?.addArc(center: centerPoint, radius: radius, startAngle: start, endAngle: end, clockwise: false
+            )
+//            CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start, end, 0)
+            context?.fillPath()
 
             var borderColor: UIColor!
             if delegate != nil {
@@ -76,14 +86,16 @@ class BE24PieCircleView: BE24PieBaseView {
             } else {
                 borderColor = BE24AppManager.colorForScore(0)
             }
-            CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
-            CGContextSetLineWidth(context, arcWidth * 0.8 )
+            context?.setStrokeColor(borderColor.cgColor)
+            context?.setLineWidth(arcWidth * 0.8 )
             if index == 7 {
-                CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end - borderDt, 0)
+                context?.addArc(center: centerPoint, radius: radius, startAngle: start + borderDt, endAngle: end - borderDt, clockwise: false)
+//                CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end - borderDt, 0)
             } else {
-                CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end + borderDt, 0)
+//                CGContextAddArc(context, centerPoint.x, centerPoint.y, radius, start + borderDt, end + borderDt, 0)
+                context?.addArc(center: centerPoint, radius: radius, startAngle: start + borderDt, endAngle: end + borderDt, clockwise: false)
             }
-            CGContextStrokePath(context)
+            context?.strokePath()
             
             start = end
         }
@@ -95,20 +107,20 @@ class BE24PieCircleView: BE24PieBaseView {
     override func arrangeSublayout() {
         super.arrangeSublayout()
         
-        let width = UIScreen.mainScreen().bounds.size.width - 16
-        let selfBounds = CGRectMake(0, 0, width, self.bounds.height)
-        let centerPoint = CGPointMake(CGRectGetMidX(selfBounds), CGRectGetMidY(selfBounds))
+        let width = UIScreen.main.bounds.size.width - 16
+        let selfBounds = CGRect(x: 0, y: 0, width: width, height: self.bounds.height)
+        let centerPoint = CGPoint(x: selfBounds.midX, y: selfBounds.midY)
         let radius:CGFloat = min(selfBounds.width, selfBounds.height) / 4.0 + 30
         
-        let twoPI = 2.0 * CGFloat(M_PI)
+        let twoPI = 2.0 * .pi
         let angleDelta = twoPI / 8
-        var start:CGFloat = -(twoPI / 4);
+        var start:CGFloat = CGFloat(-(twoPI / 4))
         
         self.categoryIcons.forEach { (imageView: UIImageView) in
             let ox = centerPoint.x + cos(start) * radius
             let oy = centerPoint.y + sin(start) * radius
-            imageView.center = CGPointMake(ox, oy)
-            start += angleDelta
+            imageView.center = CGPoint(x: ox, y: oy)
+            start += CGFloat(angleDelta)
         }
         
     }
@@ -118,14 +130,14 @@ class BE24PieCircleView: BE24PieBaseView {
         selectCateogryIndex(selectedIndex)
     }
     
-    override func touchedOnAngle(angle: Int) -> Void {
+    override func touchedOnAngle(_ angle: Int) -> Void {
         let categoryCount = 8
         let tempIndex = (((angle + 360 / categoryCount / 2) / (360 / categoryCount)) % categoryCount + 2) % categoryCount
         selectCateogryIndex(tempIndex)
     }
 
     
-    private func selectCateogryIndex(index: Int) {
+    fileprivate func selectCateogryIndex(_ index: Int) {
         selectedIndex = index
         var borderColor: UIColor!
         if delegate != nil {
@@ -148,33 +160,33 @@ class BE24PieCircleView: BE24PieBaseView {
         } else {
             borderColor = BE24AppManager.colorForScore(0)
         }
-        self.viewScore.layer.borderColor = borderColor.CGColor
+        self.viewScore.layer.borderColor = borderColor.cgColor
         
         /// Animate pin
-        let angle = CGFloat(M_PI * 2) / 8 * CGFloat(selectedIndex)
-        UIView.animateWithDuration(0.3) { 
-            self.imgviewArrow.transform = CGAffineTransformMakeRotation(angle)
-        }
+        let angle = 2 * .pi / 8 * CGFloat(selectedIndex)
+        UIView.animate(withDuration: 0.3, animations: { 
+            self.imgviewArrow.transform = CGAffineTransform(rotationAngle: angle)
+        }) 
         
     }
     
-    func nextSelect(step: Int = 1) -> Void {
+    func nextSelect(_ step: Int = 1) -> Void {
         self.selectCateogryIndex((selectedIndex + step) % 8)
     }
     
-    func prevSelect(step: Int = 1) -> Void {
+    func prevSelect(_ step: Int = 1) -> Void {
         if selectedIndex == 0 {
             selectedIndex = 8
         }
         self.selectCateogryIndex((selectedIndex - step) % 8)
     }
     
-    func selectCategoryType(type: HealthType) -> Void {
-        self.selectCateogryIndex(BE24AppManager.sharedManager.healthTypeForIndex.indexOf(type)!)
+    func selectCategoryType(_ type: HealthType) -> Void {
+        self.selectCateogryIndex(BE24AppManager.sharedManager.healthTypeForIndex.index(of: type)!)
     }
 }
 
 protocol BE24PieCircleViewDelegate {
-    func pieCircleView(view: BE24PieCircleView, selectedIndex: Int) -> Void
-    func pieCircleView(view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int
+    func pieCircleView(_ view: BE24PieCircleView, selectedIndex: Int) -> Void
+    func pieCircleView(_ view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int
 }

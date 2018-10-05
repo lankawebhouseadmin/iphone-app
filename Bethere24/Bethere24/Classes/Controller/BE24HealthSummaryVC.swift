@@ -26,11 +26,11 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
     
     override func setupLayout() {
         super.setupLayout()
-        self.pageType = .HealthSummary
+        self.pageType = .healthSummary
         self.viewMainPieCircle.delegate = self
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
@@ -38,15 +38,15 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         return 1
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == graphCellIndex() {
-            var height = UIScreen.mainScreen().bounds.size.height - 320
-            if height > UIScreen.mainScreen().bounds.width {
-                height = UIScreen.mainScreen().bounds.width
+            var height = UIScreen.main.bounds.size.height - 320
+            if height > UIScreen.main.bounds.width {
+                height = UIScreen.main.bounds.width
             }
             return height
         } else {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
     
@@ -55,7 +55,7 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         selectDateIndex(currentDateIndex)
     }
 
-    override func selectDateIndex(index: Int) {
+    override func selectDateIndex(_ index: Int) {
         super.selectDateIndex(index)
         if statesData != nil {
             
@@ -68,15 +68,15 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         }
     }
     
-    private func showStateInfo(states: [BE24StateModel]) {
+    fileprivate func showStateInfo(_ states: [BE24StateModel]) {
         
         if states.count > 0 {
             
-            self.btnHealthScoreDetail.hidden = false
-            self.btnHistoricalGraphs.hidden  = false
+            self.btnHealthScoreDetail.isHidden = false
+            self.btnHistoricalGraphs.isHidden  = false
 //            self.btnAlert.hidden             = true
             
-            self.lblTimes.hidden = false
+            self.lblTimes.isHidden = false
             var timesString: String = "1 time"
             if states.count > 1 {
                 timesString = String(states.count) + " times"
@@ -85,33 +85,48 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
             
             
             var totalTimes = 0
-            states.forEach({ (state: BE24StateModel) in
-                totalTimes += state.actualTime
-            })
+            
+            
+            let state1 = states.first!
+            if(state1.type() == HealthType.TakingMedication)
+            {
+//                totalTimes  = states[0].actualTime
+                states.forEach({ (state: BE24StateModel) in
+                    totalTimes += state.actualTime
+                })
+            }
+            else
+            {
+                states.forEach({ (state: BE24StateModel) in
+                    totalTimes += state.actualTime
+                })
+            }
+
+            
             let state = states.first!
             let isMedication = (state.type() == HealthType.TakingMedication)
             let normalTitle = "Normal: "
             let totalTitle  = "Total: "
-            let detailString = normalTitle + timeString(state.normalTime, isMedication: isMedication) + ",  " +
+            let detailString = normalTitle + timeString(state.normalTime, isMedication: isMedication) + "  " +
                                totalTitle  + timeString(totalTimes, isMedication: isMedication) + "\n\n" +
                                healthDetailReportString(state.type(), score: state.score)
             let attrDetailString = NSMutableAttributedString(string: detailString, attributes: nil)
             
-            let boldFont = UIFont.boldSystemFontOfSize(12)
+            let boldFont = UIFont.boldSystemFont(ofSize: 12)
             let firstRange = NSMakeRange(0, normalTitle.characters.count)
-            let secondRange = NSMakeRange(detailString.startIndex.distanceTo(detailString.rangeOfString(totalTitle)!.startIndex), totalTitle.characters.count)
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: firstRange)
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: secondRange)
+            let secondRange = NSMakeRange(detailString.characters.distance(from: detailString.startIndex, to: detailString.range(of: totalTitle)!.lowerBound), totalTitle.characters.count)
+            attrDetailString.addAttributes([NSAttributedStringKey.font : boldFont], range: firstRange)
+            attrDetailString.addAttributes([NSAttributedStringKey.font : boldFont], range: secondRange)
             
 //            self.lblHealthDetail.text = detailString
             self.lblHealthDetail.attributedText = attrDetailString
             
         } else {
             
-            self.btnHealthScoreDetail.hidden = false //true
-            self.btnHistoricalGraphs.hidden  = true
+            self.btnHealthScoreDetail.isHidden = false //true
+            self.btnHistoricalGraphs.isHidden  = true
 //            self.btnAlert.hidden             = true
-            self.lblTimes.hidden = true
+            self.lblTimes.isHidden = true
             
             self.lblHealthDetail.text = "No data available"
         }
@@ -119,15 +134,15 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         showAlertCount()
     }
     
-    @IBAction func onPressLeftHealthType(sender: AnyObject) {
+    @IBAction func onPressLeftHealthType(_ sender: AnyObject) {
         viewMainPieCircle.prevSelect()
     }
     
-    @IBAction func onPressRightHealthType(sender: AnyObject) {
+    @IBAction func onPressRightHealthType(_ sender: AnyObject) {
         viewMainPieCircle.nextSelect()
     }
     
-    @IBAction func onPressHealthScoreButton(sender: AnyObject) {
+    @IBAction func onPressHealthScoreButton(_ sender: AnyObject) {
         appManager().selectedHealthType = selectedHealthType
         appManager().selectedDayIndex   = currentDateIndex
         var segueName: String!
@@ -136,17 +151,18 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         } else {
             segueName = APPSEGUE_gotoHistoricalGraphsVC
         }
-        sideMenuController?.performSegueWithIdentifier(segueName, sender: self)
+        sideMenuController?.performSegue(withIdentifier: segueName, sender: self)
 
 //        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHealthScoreVC, sender: self)
     }
     
     // MARK: - BE24PieCirlceView delegate
-    func pieCircleView(view: BE24PieCircleView, selectedIndex: Int) {
+    func pieCircleView(_ view: BE24PieCircleView, selectedIndex: Int) {
 //        print (selectedIndex)
         selectedHealthType = healthTypeForIndex[selectedIndex]
         
         var selectedStates: [BE24StateModel] = []
+        
         if stateDataOfCurrentDay != nil {
             for state in stateDataOfCurrentDay! {
                 if state.type() == selectedHealthType {
@@ -157,14 +173,19 @@ class BE24HealthSummaryVC: BE24HealthBaseVC, BE24PieCircleViewDelegate {
         
         let healthTypeData = appManager().categories[selectedIndex]
         self.lblHealthTitle.text = healthTypeData[kMenuTitleKeyName]
-        self.lblHealthTitle.textColor = UIColor(rgba: healthTypeData[kMenuColorKeyName]!)
+        do {
+            self.lblHealthTitle.textColor = try UIColor(rgba_throws: healthTypeData[kMenuColorKeyName]!)
+        }
+        catch {
+            print("throws error")
+        }
         self.imgHealthIcon.image = UIImage(named: healthTypeData[kMenuIconKeyName]!)
 
         showStateInfo(selectedStates)
         
     }
     
-    func pieCircleView(view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int {
+    func pieCircleView(_ view: BE24PieCircleView, categoryScoreForIndex: Int) -> Int {
         let healthType = healthTypeForIndex[categoryScoreForIndex]
         var score: Int = 0
         if stateDataOfCurrentDay != nil {

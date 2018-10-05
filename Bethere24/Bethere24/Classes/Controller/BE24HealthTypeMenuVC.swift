@@ -11,7 +11,7 @@ import MZFormSheetPresentationController
 
 class BE24HealthTypeMenuVC: BE24TableViewController {
 
-    private var categories: [[String: String]]!
+    fileprivate var categories: [[String: String]]!
     var delegate: BE24HealthTypeMenuVCDelegate?
     var showAllButton: Bool = false
     
@@ -28,7 +28,7 @@ class BE24HealthTypeMenuVC: BE24TableViewController {
     }
     
     // MARK: - UITableView datasource
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if showAllButton {
             return categories.count + 1
         } else {
@@ -36,13 +36,13 @@ class BE24HealthTypeMenuVC: BE24TableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(BE24HealthTypeMenuCell.cellIdentifier()) as! BE24HealthTypeMenuCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BE24HealthTypeMenuCell.cellIdentifier()) as! BE24HealthTypeMenuCell
         if showAllButton {
             if indexPath.row == 0 {
                 cell.imgviewIcon.image = nil
                 cell.lblTitle.text = "All"
-                cell.lblTitle.textColor = UIColor.blackColor()
+                cell.lblTitle.textColor = UIColor.black
             } else {
                 cell.menuTitleAndIcon = categories[indexPath.row - 1]
             }
@@ -53,9 +53,9 @@ class BE24HealthTypeMenuVC: BE24TableViewController {
     }
     
     //MARK: delegate
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.healthTypeSelected(indexPath.row)
-        self.dismissViewControllerAnimated(true) { 
+        self.dismiss(animated: true) { 
             
         }
     }
@@ -73,5 +73,5 @@ class BE24HealthTypeMenuVC: BE24TableViewController {
 }
 
 protocol BE24HealthTypeMenuVCDelegate {
-    func healthTypeSelected(index: Int) -> Void
+    func healthTypeSelected(_ index: Int) -> Void
 }

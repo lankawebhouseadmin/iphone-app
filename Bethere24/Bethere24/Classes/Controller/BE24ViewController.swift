@@ -16,38 +16,38 @@ class BE24ViewController: UIViewController {
         self.setupLayout()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardNotification()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardNotification()
     }
     
-    private func addKeyboardNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    fileprivate func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
     
-    private func removeKeyboardNotification() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    fileprivate func removeKeyboardNotification() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWillShow(notification: NSNotification) -> Void {
-        var keyboardBound : CGRect = CGRectZero
-        notification.userInfo![UIKeyboardFrameEndUserInfoKey]?.getValue(&keyboardBound)
+    func keyboardWillShow(_ notification: Notification) -> Void {
+        var keyboardBound : CGRect = CGRect.zero
+        (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as AnyObject).getValue(&keyboardBound)
         keyboardWillShowRect(keyboardBound.size)
     }
     
-    func keyboardWillHide(notification: NSNotification) -> Void {
+    func keyboardWillHide(_ notification: Notification) -> Void {
         keyboardWillHideRect()
     }
     
-    func keyboardWillShowRect(keyboardSize : CGSize) -> Void {
+    func keyboardWillShowRect(_ keyboardSize : CGSize) -> Void {
         
     }
     

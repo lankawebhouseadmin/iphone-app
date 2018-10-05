@@ -25,11 +25,11 @@ class BE24MainBaseVC: BE24TableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(logout(_:)), name: NOTIFICACTION_EnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: NSNotification.Name(rawValue: NOTIFICACTION_EnterBackground), object: nil)
     }
     
     deinit {
-//        NSNotificationCenter.defaultCenter().removeObserver(self, name: NOTIFICACTION_EnterBackground, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NOTIFICACTION_EnterBackground), object: nil)
     }
     
     override func setupLayout() {
@@ -40,29 +40,29 @@ class BE24MainBaseVC: BE24TableViewController {
         
         self.tableView.allowsSelection = false
         self.tableView.backgroundColor = APPCOLOR.BACKGROUND_BLACK
-        self.tableView.separatorStyle = .None
+        self.tableView.separatorStyle = .none
         
         
         //self.setPageTitle()
     }
     
-    func logout(sender: AnyObject) -> Void {
-        sideMenuController?.dismissViewControllerAnimated(true, completion: { 
+    func logout(_ sender: AnyObject) -> Void {
+        sideMenuController?.dismiss(animated: true, completion: { 
             
         })
     }
     
     internal func addCustomNavigationBar() {
-        let titleView = BE24View(frame: CGRectMake(0, 0, 180, 30))
+        let titleView = BE24View(frame: CGRect(x: 0, y: 0, width: 180, height: 30))
         
-        let imgIconLogo = UIImageView(frame: CGRectMake(0, 0, 30, 30))
+        let imgIconLogo = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         imgIconLogo.image = UIImage(named: "iconLogoBig")
         titleView.addSubview(imgIconLogo)
-        
-        let lblTitle = UILabel(frame: CGRectMake(CGRectGetMaxX(imgIconLogo.frame) + 10, imgIconLogo.frame.origin.y, 100, 30))
+    
+        let lblTitle = UILabel(frame: CGRect(x: imgIconLogo.frame.maxX + 10, y: imgIconLogo.frame.origin.y, width: 100, height: 30))
         lblTitle.text = "BeThere24™"
-        lblTitle.font = UIFont.systemFontOfSize(20)
-        lblTitle.textColor = UIColor.whiteColor()
+        lblTitle.font = UIFont.systemFont(ofSize: 20)
+        lblTitle.textColor = UIColor.white
         lblTitle.sizeToFit()
         var frame = lblTitle.frame
         frame.size.height = 30
@@ -72,20 +72,20 @@ class BE24MainBaseVC: BE24TableViewController {
         self.navigationItem.titleView = titleView
         
         let btnRefresh = UIBarButtonItem(image: UIImage(named: "iconRefresh"),
-                                         style: .Plain,
+                                         style: .plain,
                                          target: self,
                                          action: #selector(self.onPressRefresh(_:)))
-        btnRefresh.tintColor = UIColor.whiteColor()
+        btnRefresh.tintColor = UIColor.white
 //        btnRefresh.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
         
-        let btnNotificationBody = UIButton(type: .Custom)
-        btnNotificationBody.setImage(UIImage(named: "iconAlert"), forState: .Normal)
-        btnNotificationBody.frame = CGRectMake(0, 0, 30, 40)
-        btnNotificationBody.addTarget(self, action: #selector(self.onPressNotification(_:)), forControlEvents: .TouchUpInside)
+        let btnNotificationBody = UIButton(type: .custom)
+        btnNotificationBody.setImage(UIImage(named: "iconAlert"), for: UIControlState())
+        btnNotificationBody.frame = CGRect(x: 0, y: 0, width: 30, height: 40)
+        btnNotificationBody.addTarget(self, action: #selector(self.onPressNotification(_:)), for: .touchUpInside)
         
         let btnNotification = ENMBadgedBarButtonItem(customView: btnNotificationBody, value: "3")
-        btnNotification.badgeBackgroundColor = UIColor.redColor()
-        btnNotification.badgeTextColor = UIColor.whiteColor()
+        btnNotification.badgeBackgroundColor = UIColor.red
+        btnNotification.badgeTextColor = UIColor.white
         self.btnNotification = btnNotification
         updateAlertBadgeCount()
 //        btnNotificationBody.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10)
@@ -94,51 +94,65 @@ class BE24MainBaseVC: BE24TableViewController {
     }
     
     internal func addCustomTitleView() {
-        let _titleView = BE24View(frame: CGRectMake(0, 0, self.tableView.frame.size.width, 40))
-        _titleView.backgroundColor = UIColor.whiteColor()
+        let _titleView = BE24View(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 40))
+        _titleView.backgroundColor = UIColor.white
+        _titleView.backgroundColor = UIColor.brown
         
-        let _lblTitle = UILabel()
+        let _lblTitle = UILabel(frame: CGRect(x: _titleView.frame.width/2 - 100, y: 5, width: 200, height: 30))
+        //_lblTitle.center = CGPoint(x: _titleView.frame.width/2, y: _titleView.frame.height/2)
+        
+        //_lblTitle.frame.size = CGSize(width: 150, height: 30)
         _lblTitle.text = "Health Summary"
-        _lblTitle.font = UIFont.boldSystemFontOfSize(16)
-        _lblTitle.textColor = APPCOLOR.TEXTCOLOR_DARK
+        _lblTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        _lblTitle.textColor = .black
+//        _lblTitle.backgroundColor = .red
+        _lblTitle.textAlignment = .center
         _titleView.addSubview(_lblTitle)
-        _lblTitle.snp_makeConstraints { (make) in
-            make.centerX.equalTo(20)
-            make.centerY.equalTo(0)
-        }
+        _titleView.backgroundColor = UIColor.white
         
-        let _imgPageIcon = UIImageView()
+//        _lblTitle.snp_makeConstraints { (make) in
+//            make.centerX.equalTo(20)
+//            make.centerY.equalTo(0)
+//        }
+        
+//        _lblTitle.snp.makeConstraints { (make) in
+//            make.centerX.equalTo(20)
+//            make.centerY.equalTo(0)
+//        }
+//
+        let _imgPageIcon = UIImageView(frame: CGRect(x: _lblTitle.frame.minX - 10, y: 5, width: 30, height: 30))
         _titleView.addSubview(_imgPageIcon)
-        _imgPageIcon.snp_makeConstraints { (make) in
-            make.width.equalTo(_titleView.snp_height).offset(-10)
-            make.height.equalTo(_imgPageIcon.snp_width).offset(0)
-            make.centerY.equalTo(0)
-            make.right.equalTo(_lblTitle.snp_left).offset(-15)
-        }
-        
+//        _imgPageIcon.snp.makeConstraints { (make) in
+//            make.width.equalTo(_titleView.snp.height).offset(-10)
+//            make.height.equalTo(_imgPageIcon.snp.width).offset(0)
+//            make.centerY.equalTo(0)
+//            make.right.equalTo(_lblTitle.snp.left).offset(-15)
+//        }
         self.tableView.tableHeaderView = _titleView
         
+        
         self.lblTitle = _lblTitle
+        
         self.imgPageIcon = _imgPageIcon
-
+        
     }
     
-    private func setPageTitle() {
+    fileprivate func setPageTitle() {
         var pageInfo: [String: String]?
         switch pageType! {
-            case .HealthSummary:
+            case .healthSummary:
                 pageInfo = appManager().menuItems[0]
                 break
-            case .HealthScoreDetails:
+            case .healthScoreDetails:
                 pageInfo = appManager().menuItems[1]
                 break
-            case .AlertSummary:
+            case .alertSummary:
                 pageInfo = appManager().menuItems[2]
                 break
-            case .HistoricalGraphs:
+            case .historicalGraphs:
                 pageInfo = appManager().menuItems[3]
                 break
-            case .ContactInfo:
+            case .contactInfo:
                 pageInfo = appManager().menuItems[4]
                 break
             default:
@@ -154,7 +168,7 @@ class BE24MainBaseVC: BE24TableViewController {
         }
     }
     
-    func onPressRefresh(sender: AnyObject) -> Void {
+    func onPressRefresh(_ sender: AnyObject) -> Void {
         print (#function)
         SVProgressHUD.show()
         
@@ -171,7 +185,7 @@ class BE24MainBaseVC: BE24TableViewController {
 
                     self.appManager().currentUser = BE24UserModel(data: json["data"])
                     self.appManager().token = json["token"].stringValue
-                    (UIApplication.sharedApplication().delegate as! AppDelegate).setTimeZone(self.appManager().currentUser!.personTimeZone!)
+                    (UIApplication.shared.delegate as! AppDelegate).setTimeZone(self.appManager().currentUser!.personTimeZone!)
                     
                     print ("userID : " + String(self.appManager().currentUser!.id) + "  <:::>  " + "token : " + self.appManager().token!)
                     
@@ -201,13 +215,13 @@ class BE24MainBaseVC: BE24TableViewController {
         
     }
     
-    func onPressNotification(sender: AnyObject) -> Void {
+    func onPressNotification(_ sender: AnyObject) -> Void {
         print (#function)
         appManager().selectedHealthType = nil
-        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoAlertSummaryVC, sender: self)
+        sideMenuController?.performSegue(withIdentifier: APPSEGUE_gotoAlertSummaryVC, sender: self)
     }
     
-    func updateAlertBadgeCount(count: Int? = nil) -> Void {
+    func updateAlertBadgeCount(_ count: Int? = nil) -> Void {
         if count == nil {
             if let stateData = appManager().stateData {
                 if let alerts = stateData.first!.alert {

@@ -18,10 +18,10 @@ extension UIViewController {
     }
     
     
-    func updateConstraintWithAnimate(animate: Bool) -> Void {
+    func updateConstraintWithAnimate(_ animate: Bool) -> Void {
         if animate == true {
             self.view.setNeedsUpdateConstraints()
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .CurveEaseOut, animations: {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.view.layoutIfNeeded()
                 }, completion: { (complete) in
                     
@@ -39,13 +39,13 @@ extension UIViewController {
         return BE24RequestManager.sharedManager
     }
 
-    func enableButton(button: UIButton) -> Void {
-        button.enabled = true
+    func enableButton(_ button: UIButton) -> Void {
+        button.isEnabled = true
         button.alpha = 1
     }
     
-    func disableButton(button: UIButton) -> Void {
-        button.enabled = false
+    func disableButton(_ button: UIButton) -> Void {
+        button.isEnabled = false
         button.alpha = 0.5
     }
     
@@ -60,36 +60,36 @@ extension UIViewController {
 //        NSNotificationCenter.defaultCenter().removeObserver(self, name: APPNOTIFICATION.POSTEDMEDIA, object: nil)
     }
 
-    func showSimpleAlert(title: String?, Message message: String?, CloseButton closeButton: String?, Completion completion:(() -> Void)?) -> Void {
-        let alertView = UIAlertController.init(title: title, message: message, preferredStyle: .Alert)
-        let closeAction = UIAlertAction.init(title: closeButton, style: .Cancel) { (alertAction: UIAlertAction) in
+    func showSimpleAlert(_ title: String?, Message message: String?, CloseButton closeButton: String?, Completion completion:(() -> Void)?) -> Void {
+        let alertView = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
+        let closeAction = UIAlertAction.init(title: closeButton, style: .cancel) { (alertAction: UIAlertAction) in
             if completion != nil {
                 completion!()
             }
         }
         alertView.addAction(closeAction)
-        presentViewController(alertView, animated: true) {
+        present(alertView, animated: true) {
         }
     }
     
-    func validateEmail(enteredEmail:String?) -> Bool {
+    func validateEmail(_ enteredEmail:String?) -> Bool {
         
         let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
-        return emailPredicate.evaluateWithObject(enteredEmail)
+        return emailPredicate.evaluate(with: enteredEmail)
         
     }
     
-    @IBAction func onBack(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBAction func onBack(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func onCancel(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onCancel(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func onCancleNavigationController(sender: AnyObject) {
-        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func onCancleNavigationController(_ sender: AnyObject) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
 
 }

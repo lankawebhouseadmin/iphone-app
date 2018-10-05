@@ -18,7 +18,7 @@ class BE24AlertFooterCell: BE24TableViewCell {
     
     @IBOutlet weak var btnBack: UIButton!
 
-    @IBAction func onPressBack(sender: AnyObject) {
+    @IBAction func onPressBack(_ sender: AnyObject) {
         delegate?.alertFooterCellPressBack(sender)
     }
     
@@ -26,5 +26,5 @@ class BE24AlertFooterCell: BE24TableViewCell {
 
 @objc
 protocol BE24AlertFooterCellDelegate {
-    func alertFooterCellPressBack(sender: AnyObject) -> Void
+    func alertFooterCellPressBack(_ sender: AnyObject) -> Void
 }

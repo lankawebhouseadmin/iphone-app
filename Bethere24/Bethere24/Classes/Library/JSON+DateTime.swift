@@ -10,19 +10,19 @@ import SwiftyJSON
 
 extension JSON {
     
-    public func dateFromFormat(dateFormat: String = "yyyy-MM-dd") -> NSDate? {
+    public func dateFromFormat(_ dateFormat: String = "yyyy-MM-dd") -> Date? {
         switch self.type {
-        case .String:
-            let dateFormatter = NSDateFormatter()
+        case .string:
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = dateFormat
-            let date = dateFormatter.dateFromString(self.object as! String)
+            let date = dateFormatter.date(from: self.object as! String)
             return date
         default:
             return nil
         }
     }
     
-    public func dateTime() -> NSDate? {
+    public func dateTime() -> Date? {
         return dateFromFormat("yyyy-MM-dd'T'HH:mm:ss")
     }
 }

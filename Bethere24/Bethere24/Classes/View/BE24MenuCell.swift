@@ -17,7 +17,7 @@ class BE24MenuCell: UITableViewCell {
     @IBOutlet weak var imgMenuIcon: UIImageView!
     @IBOutlet weak var lblMenuTitle: UILabel!
     
-    private var _menuItem: [String: String]!
+    fileprivate var _menuItem: [String: String]!
     
     var menuItem: [String: String] {
         set {

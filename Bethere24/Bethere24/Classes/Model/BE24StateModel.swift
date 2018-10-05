@@ -14,23 +14,23 @@ class BE24StateModel: BE24Model {
     var stateType       : Int!
     var personLocation  : Int!
     var sensor          : Int!
-    var startTime       : NSDate!
-    var endTime         : NSDate!
+    var startTime       : Date!
+    var endTime         : Date!
     var score           : Int!
     var normalTime      : Int!
     var actualTime      : Int!
     
-    private var virtualTime: String = "00:00:00"
-    var virtualStartTime: NSDate!
-    var virtualEndTime: NSDate!
+    fileprivate var virtualTime: String = "00:00:00"
+    var virtualStartTime: Date!
+    var virtualEndTime: Date!
     
     override init(data: JSON) {
         super.init(data: data)
         stateType       = data["state_type"].intValue
         personLocation  = data["person_location"].intValue
         sensor          = data["sensor"].intValue
-        startTime       = NSDate(timeIntervalSince1970: data["start_time"].doubleValue)
-        endTime         = NSDate(timeIntervalSince1970: data["end_time"].doubleValue)
+        startTime       = Date(timeIntervalSince1970: data["start_time"].doubleValue)
+        endTime         = Date(timeIntervalSince1970: data["end_time"].doubleValue)
         score           = data["score"].intValue
         normalTime      = data["normal_time"].intValue
         actualTime      = data["actual_time"].intValue
@@ -39,19 +39,19 @@ class BE24StateModel: BE24Model {
         virtualEndTime   = endTime
     }
     
-    func setVirtualDayTime(virtualTime: String) -> Void {
+    func setVirtualDayTime(_ virtualTime: String) -> Void {
         self.virtualTime = virtualTime
         
-        let virtualElems = virtualTime.componentsSeparatedByString(":")
+        let virtualElems = virtualTime.components(separatedBy: ":")
         let virtualSeconds = Double(virtualElems[0])! * 3600 + Double(virtualElems[1])! * 60 + Double(virtualElems[2])!
         
-        virtualStartTime = NSDate(timeIntervalSince1970: (startTime.timeIntervalSince1970 - virtualSeconds))
-        virtualEndTime   = NSDate(timeIntervalSince1970: (endTime.timeIntervalSince1970 - virtualSeconds))
+        virtualStartTime = Date(timeIntervalSince1970: (startTime.timeIntervalSince1970 - virtualSeconds))
+        virtualEndTime   = Date(timeIntervalSince1970: (endTime.timeIntervalSince1970 - virtualSeconds))
     }
     
-    func dateString(virtualTime: String) -> String {
+    func dateString(_ virtualTime: String) -> String {
         
-        return DATE_FORMATTER.Default.stringFromDate(virtualStartTime)
+        return DATE_FORMATTER.Default.string(from: virtualStartTime)
         
         /*
         let timeString = DATE_FORMATTER.OnlyTime.stringFromDate(startTime)

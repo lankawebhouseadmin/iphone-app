@@ -15,11 +15,11 @@ class BE24UserModel: BE24Model {
     var gender      : String?
     var firstName   : String?
     var lastName    : String?
-    var dateOfBirth : NSDate?
+    var dateOfBirth : Date?
     var recentState : String?
     var activity    : Bool = true
     var apiKey      : String?
-    var loginTime   : NSDate?
+    var loginTime   : Date?
 //    var currentTime : NSDate?
     var personTimeZone : String?
     

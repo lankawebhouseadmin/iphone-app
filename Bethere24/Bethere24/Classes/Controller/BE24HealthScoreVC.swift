@@ -17,12 +17,12 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     @IBOutlet weak var btnHealthSummary: UIButton!
     @IBOutlet weak var btnHistoricalGraphs: UIButton!
     
-    private var categories: [[String: String]]!
+    fileprivate var categories: [[String: String]]!
     
 //    private var currentDateIndex: Int = 0
 //    private var selectedHealthType: HealthType = .InBathroom
 
-    private var currentStatesForHealtyType: [BE24StateModel] = []
+    fileprivate var currentStatesForHealtyType: [BE24StateModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +42,12 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
 
     override func setupLayout() {
         super.setupLayout()
-        self.pageType = .HealthScoreDetails
+        self.pageType = .healthScoreDetails
         self.viewMainPieClockView.delegate = self
 //        self.viewMainPieCircleView.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
@@ -60,23 +60,25 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         return 2
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == graphCellIndex() {
-            var height = UIScreen.mainScreen().bounds.size.height - 360
-            if height > UIScreen.mainScreen().bounds.width {
-                height = UIScreen.mainScreen().bounds.width
+            var height = UIScreen.main.bounds.size.height - 360
+            if height > UIScreen.main.bounds.width {
+                height = UIScreen.main.bounds.width
             }
+//            let rowAspectRatio: CGFloat = 1/1
+            
             return height
         } else {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == graphCellIndex() {
             viewMainPieClockView.arrangeSublayout()
         }
-        return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        return super.tableView(tableView, cellForRowAt: indexPath)
     }
 
     override func refreshData() {
@@ -85,40 +87,40 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     }
     
     // MARK: - HealthType selecting
-    @IBAction func onPressSelectHealthType(sender: AnyObject) -> Void {
+    @IBAction func onPressSelectHealthType(_ sender: AnyObject) -> Void {
 //        print("select Health type")
         
-        let healthTypeMenuVC = self.storyboard!.instantiateViewControllerWithIdentifier("BE24HealthTypeMenuVC") as! BE24HealthTypeMenuVC
+        let healthTypeMenuVC = self.storyboard!.instantiateViewController(withIdentifier: "BE24HealthTypeMenuVC") as! BE24HealthTypeMenuVC
         healthTypeMenuVC.delegate = self
         let formSheetController = MZFormSheetPresentationViewController(contentViewController: healthTypeMenuVC)
         formSheetController.presentationController?.portraitTopInset = 170
-        var dialogSize = CGSizeMake(220, 360)
+        var dialogSize = CGSize(width: 220, height: 360)
         if self.view.frame.height < dialogSize.height + 170 {
             dialogSize.height = self.view.frame.size.height - 190
         }
         formSheetController.presentationController?.contentViewSize = dialogSize  // or pass in UILayoutFittingCompressedSize to size automatically with auto-layout
 //        formSheetController.presentationController?.shouldApplyBackgroundBlurEffect = true
-        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.Dark
+        formSheetController.presentationController?.blurEffectStyle = UIBlurEffectStyle.dark
         formSheetController.presentationController?.shouldDismissOnBackgroundViewTap = true
-        formSheetController.contentViewControllerTransitionStyle = .Fade
+        formSheetController.contentViewControllerTransitionStyle = .fade
         
-        self.presentViewController(formSheetController, animated: true, completion: nil)
+        self.present(formSheetController, animated: true, completion: nil)
 
     }
 
-    func healthTypeSelected(index: Int) {
+    func healthTypeSelected(_ index: Int) {
         self.selectHealthType(healthTypeForIndex[index], dateIndex: currentDateIndex)
     }
     
-    @IBAction func onPressLeftState(sender: AnyObject) {
+    @IBAction func onPressLeftState(_ sender: AnyObject) {
         self.viewMainPieClockView.nextSelect()
     }
     
-    @IBAction func onPressRightState(sender: AnyObject) {
+    @IBAction func onPressRightState(_ sender: AnyObject) {
         self.viewMainPieClockView.prevSelect()
     }
     
-    @IBAction func onPressHealthSummaryButton(sender: AnyObject) {
+    @IBAction func onPressHealthSummaryButton(_ sender: AnyObject) {
         appManager().selectedHealthType = selectedHealthType
         appManager().selectedDayIndex   = currentDateIndex
         var segueName: String!
@@ -127,13 +129,13 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         } else {
             segueName = APPSEGUE_gotoHistoricalGraphsVC
         }
-        sideMenuController?.performSegueWithIdentifier(segueName, sender: self)
+        sideMenuController?.performSegue(withIdentifier: segueName, sender: self)
 
 //        sideMenuController?.performSegueWithIdentifier(APPSEGUE_gotoHealthSummaryVC, sender: self)
     }
     
     // MARK: - Select Date and health type
-    override func selectDateIndex(index: Int) {
+    override func selectDateIndex(_ index: Int) {
         super.selectDateIndex(index)
         if statesData != nil {
             
@@ -151,23 +153,23 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
 
     }
     
-    override func dateString(dateString: String) -> String {
+    override func dateString(_ dateString: String) -> String {
 
-        if let date = DATE_FORMATTER.Default.dateFromString(dateString) {
-            let calendar = NSCalendar.currentCalendar()
-            if let aDaysNextday = calendar.dateByAddingUnit(.Day, value: 1, toDate: date, options: []) {
+        if let date = DATE_FORMATTER.Default.date(from: dateString) {
+            let calendar = Calendar.current
+            if let aDaysNextday = (calendar as NSCalendar).date(byAdding: .day, value: 1, to: date, options: []) {
                 
-                let nextDayString = DATE_FORMATTER.MonthDay.stringFromDate(aDaysNextday)
-                let selectedDayString = DATE_FORMATTER.MonthDay.stringFromDate(date)
+                let nextDayString = DATE_FORMATTER.MonthDay.string(from: aDaysNextday)
+                let selectedDayString = DATE_FORMATTER.MonthDay.string(from: date)
                 let currentTimeString = statesData!.clientInfo.currentTimeDayString() //  BE24AppManager.defaultDayString(appManager().currentUser!.loginTime!)
                 
                 var resultString: String!
                 if dateString == currentTimeString {
                     
                     let virtualDayStartTime = statesData!.clientInfo.getFormattedVirtualDayStartTime()
-                    let currentTimeString = DATE_FORMATTER.TimeA.stringFromDate(statesData!.clientInfo.currentTime)
-                    let currentDayString  = DATE_FORMATTER.MonthDay.stringFromDate(statesData!.clientInfo.currentTime)
-                    resultString = "\(selectedDayString) \(virtualDayStartTime) - \(currentDayString) \(currentTimeString)"
+                    let currentTimeString = DATE_FORMATTER.TimeA.string(from: statesData!.clientInfo.currentTime)
+                    let currentDayString  = DATE_FORMATTER.MonthDay.string(from: statesData!.clientInfo.currentTime)
+                    resultString = "\(selectedDayString) \(virtualDayStartTime) to \(currentDayString) \(currentTimeString)"
                     /*
                     let currentTimeString = statesData!.clientInfo.currentTimeString // DATE_FORMATTER.StandardISO.stringFromDate(NSDate())
                     let stringVirtualToday: String = currentTimeString.substringToIndex(currentTimeString.startIndex.advancedBy(11)) + statesData!.clientInfo.virtualDayStartOriginal
@@ -184,7 +186,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
                     
                 } else {
                     let virtualDayStartTime = statesData!.clientInfo.getFormattedVirtualDayStartTime()
-                    resultString = "\(selectedDayString) \(virtualDayStartTime) - \(nextDayString) \(virtualDayStartTime)"
+                    resultString = "\(selectedDayString) \(virtualDayStartTime) to \(nextDayString) \(virtualDayStartTime)"
                 }
                 return resultString
             }
@@ -192,19 +194,27 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         return dateString
     }
     
-    func selectHealthType(type: HealthType, dateIndex: Int) -> Void {
+    func selectHealthType(_ type: HealthType, dateIndex: Int) -> Void {
         
         selectedHealthType  = type
         currentDateIndex    = dateIndex
         
-        let healthTypeData = appManager().categories[healthTypeForIndex.indexOf(type)!]
+        let healthTypeData = appManager().categories[healthTypeForIndex.index(of: type)!]
         self.lblHealthTitle.text = healthTypeData[kMenuTitleKeyName]
-        self.lblHealthTitle.textColor = UIColor(rgba: healthTypeData[kMenuColorKeyName]!)
+//        self.lblHealthTitle.textColor = UIColor(rgba: healthTypeData[kMenuColorKeyName]!)
+        do {
+            self.lblHealthTitle.textColor = try UIColor(rgba_throws: healthTypeData[kMenuColorKeyName]!)
+        }
+        catch {
+            print("error thrown")
+        }
+        
         self.imgHealthIcon.image = UIImage(named: healthTypeData[kMenuIconKeyName]!)
         
-        self.btnSelectHealthType.setImage(self.imgHealthIcon.image, forState: .Normal)
-        self.btnSelectHealthType.setTitle(self.lblHealthTitle.text, forState: .Normal)
-        self.btnSelectHealthType.setTitleColor(self.lblHealthTitle.textColor, forState: .Normal)
+        self.btnSelectHealthType.setImage(self.imgHealthIcon.image, for: UIControlState())
+        self.btnSelectHealthType.setTitle(self.lblHealthTitle.text, for: UIControlState())
+        self.btnSelectHealthType.setTitleColor(self.lblHealthTitle.textColor, for: UIControlState())
+        
         
         currentStatesForHealtyType.removeAll()
         
@@ -236,7 +246,7 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     }
     
     // MARK: - BE24PieClockView delegate
-    func statesForPieCount(view: BE24PieClockView) -> [BE24StateModel]? {
+    func statesForPieCount(_ view: BE24PieClockView) -> [BE24StateModel]? {
         if currentStatesForHealtyType.count == 0 {
             showStateInfo(nil)
         }
@@ -252,17 +262,17 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         return count
     } */
 
-    func pieClockView(view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel {
+    func pieClockView(_ view: BE24PieClockView, stateForIndex: Int) -> BE24StateModel {
         let state = currentStatesForHealtyType[stateForIndex]
 //        showStateInfo(state)
         return state
     }
     
-    func pieClockView(view: BE24PieClockView, selectedStateIndex: Int) {
+    func pieClockView(_ view: BE24PieClockView, selectedStateIndex: Int) {
         showStateInfo(currentStatesForHealtyType[selectedStateIndex])
     }
     
-    func shouldShowLoginTimeClockView(view: BE24PieClockView) -> Bool {
+    func shouldShowLoginTimeClockView(_ view: BE24PieClockView) -> Bool {
         let dateString = statesData!.state.days[currentDateIndex]
 //        let loginTimeString = BE24AppManager.defaultDayString(appManager().currentUser!.loginTime!) // DATE_FORMATTER.Default.stringFromDate(appManager().currentUser!.loginTime!)
         let currentTimeString = statesData!.clientInfo.currentTimeDayString()
@@ -271,15 +281,15 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
     }
     
     // MARK: - Show Health infomation
-    private func showStateInfo(state: BE24StateModel?) {
+    fileprivate func showStateInfo(_ state: BE24StateModel?) {
         
         if state != nil {
             
 //            self.btnHealthSummary.hidden = false
-            self.btnHistoricalGraphs.hidden  = false
+            self.btnHistoricalGraphs.isHidden  = false
 //            self.btnAlert.hidden             = true
             
-            self.lblTimes.hidden = false
+            self.lblTimes.isHidden = false
             var timesString: String = "1 time"
             if currentStatesForHealtyType.count > 1 {
                 timesString = String(currentStatesForHealtyType.count) + " times"
@@ -287,9 +297,26 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
             self.lblTimes.text = timesString
             
             var totalTimes = 0
-            currentStatesForHealtyType.forEach({ (state: BE24StateModel) in
-                totalTimes += state.actualTime
-            })
+            
+            
+            
+            
+            if(state!.type() == HealthType.TakingMedication)
+            {
+                totalTimes  = state!.actualTime
+            }
+            else
+            {
+                currentStatesForHealtyType.forEach({ (state: BE24StateModel) in
+                    totalTimes += state.actualTime
+                })
+            }
+            
+
+            
+//            currentStatesForHealtyType.forEach({ (state: BE24StateModel) in
+//                totalTimes += state.actualTime
+//            })
 
             let isMedication = (state!.type() == HealthType.TakingMedication)
             let normalTitle = "Normal: "
@@ -299,22 +326,24 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
             let actualTitle = "Actual: "
             let detailString = normalTitle + timeString(state!.normalTime, isMedication: isMedication) + ",  " +
                 totalTitle  + timeString(totalTimes, isMedication: isMedication) + "\n" +
-                fromTitle   + timeString(state!.startTime) + ", " + toTitle + timeString(state!.endTime) + ", " + actualTitle + timeString(state!.actualTime) + "\n" +
+                fromTitle   + timeString(state!.startTime) + ", " + toTitle + timeString(state!.endTime) + ", " + actualTitle + timeString(state!.actualTime, isMedication: isMedication) + "\n" +
                 healthDetailReportString(state!.type(), score: state!.score)
-            let attrDetailString = NSMutableAttributedString(string: detailString, attributes: nil)
+            let actualString = detailString.replacingOccurrences(of: ",,", with: ",")
+            let attrDetailString = NSMutableAttributedString(string: actualString, attributes: nil)
             
-            let boldFont = UIFont.boldSystemFontOfSize(12)
+            let boldFont = UIFont.boldSystemFont(ofSize: 12)
             let firstRange = NSMakeRange(0, normalTitle.characters.count)
-            let secondRange = NSMakeRange(detailString.startIndex.distanceTo(detailString.rangeOfString(totalTitle)!.startIndex), totalTitle.characters.count)
-            let thirdRange  = NSMakeRange(detailString.startIndex.distanceTo(detailString.rangeOfString(fromTitle)!.startIndex), fromTitle.characters.count)
-            let fourthRange = NSMakeRange(detailString.startIndex.distanceTo(detailString.rangeOfString(toTitle)!.startIndex), toTitle.characters.count)
-            let fivethRange = NSMakeRange(detailString.startIndex.distanceTo(detailString.rangeOfString(actualTitle)!.startIndex), actualTitle.characters.count)
             
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: firstRange)
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: secondRange)
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: thirdRange)
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: fourthRange)
-            attrDetailString.addAttributes([NSFontAttributeName : boldFont], range: fivethRange)
+            let secondRange = NSMakeRange(actualString.characters.distance(from: actualString.startIndex, to: actualString.range(of: totalTitle)!.lowerBound), totalTitle.characters.count)
+            let thirdRange  = NSMakeRange(actualString.characters.distance(from: actualString.startIndex, to: actualString.range(of: fromTitle)!.lowerBound), fromTitle.characters.count)
+            let fourthRange = NSMakeRange(actualString.characters.distance(from: actualString.startIndex, to: actualString.range(of: toTitle)!.lowerBound), toTitle.characters.count)
+            let fivethRange = NSMakeRange(actualString.characters.distance(from: actualString.startIndex, to: actualString.range(of: actualTitle)!.lowerBound), actualTitle.characters.count)
+            
+            attrDetailString.addAttributes([kCTFontAttributeName as NSAttributedStringKey : boldFont], range: firstRange)
+            attrDetailString.addAttributes([NSAttributedStringKey.font : boldFont], range: secondRange)
+            attrDetailString.addAttributes([NSAttributedStringKey.font : boldFont], range: thirdRange)
+            attrDetailString.addAttributes([NSAttributedStringKey.font : boldFont], range: fourthRange)
+            attrDetailString.addAttributes([NSAttributedStringKey.font : boldFont], range: fivethRange)
             
             //            self.lblHealthDetail.text = detailString
             self.lblHealthDetail.attributedText = attrDetailString
@@ -322,19 +351,19 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
         } else {
             
 //            self.btnHealthSummary.hidden     = true
-            self.btnHistoricalGraphs.hidden  = true
+            self.btnHistoricalGraphs.isHidden  = true
 //            self.btnAlert.hidden             = true
-            self.lblTimes.hidden             = true
+            self.lblTimes.isHidden             = true
             self.constraintLeftOfFirstButton.constant = 0
             
             self.lblHealthDetail.text = "No data available"
         }
     }
     
-    private func timeString(time: NSDate, formatString: String = "h:mm a") -> String {
-        let dateFormatter = NSDateFormatter()
+    fileprivate func timeString(_ time: Date, formatString: String = "h:mm a") -> String {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatString
-        return dateFormatter.stringFromDate(time)
+        return dateFormatter.string(from: time)
     }
 
     /*
