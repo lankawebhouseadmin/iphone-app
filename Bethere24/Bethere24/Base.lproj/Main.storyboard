@@ -216,18 +216,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgZ-ZV-AxT" customClass="BE24PieCircleView" customModule="Bethere24" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="12" width="343" height="369.5"/>
+                                                    <rect key="frame" x="8" y="12" width="359" height="369.5"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="NgZ-ZV-AxT" firstAttribute="trailing" secondItem="C1I-gQ-UMu" secondAttribute="trailingMargin" id="2YW-7f-3oG"/>
                                                 <constraint firstItem="NgZ-ZV-AxT" firstAttribute="top" secondItem="C1I-gQ-UMu" secondAttribute="topMargin" id="5CR-Wo-AIJ"/>
+                                                <constraint firstItem="NgZ-ZV-AxT" firstAttribute="leading" secondItem="C1I-gQ-UMu" secondAttribute="leading" constant="8" id="7BP-MK-Tfx"/>
                                                 <constraint firstItem="NgZ-ZV-AxT" firstAttribute="bottom" secondItem="C1I-gQ-UMu" secondAttribute="bottomMargin" id="N7G-eZ-gfU"/>
+                                                <constraint firstAttribute="trailing" secondItem="NgZ-ZV-AxT" secondAttribute="trailing" constant="8" id="hDu-x7-4YV"/>
                                                 <constraint firstItem="NgZ-ZV-AxT" firstAttribute="top" secondItem="C1I-gQ-UMu" secondAttribute="top" constant="12" id="muJ-iW-Qb1"/>
                                                 <constraint firstAttribute="bottom" secondItem="NgZ-ZV-AxT" secondAttribute="bottom" constant="4" id="waR-Hm-ZNU"/>
-                                                <constraint firstItem="NgZ-ZV-AxT" firstAttribute="leading" secondItem="C1I-gQ-UMu" secondAttribute="leadingMargin" id="ySF-qC-opt"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">

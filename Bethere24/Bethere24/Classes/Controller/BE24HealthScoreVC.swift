@@ -33,9 +33,14 @@ class BE24HealthScoreVC: BE24HealthBaseVC, BE24HealthTypeMenuVCDelegate, BE24Pie
             selectedHealthType = appManager().selectedHealthType!
             currentDateIndex = appManager().selectedDayIndex!
             self.selectDateIndex(currentDateIndex)
+            
 //            selectHealthType(appManager().selectedHealthType!, dateIndex: appManager().selectedDayIndex!)
         } else {
             selectHealthType(.InBathroom, dateIndex: 0)
+        }
+        
+        if let timeZoneSecond = statesData?.clientInfo.timezoneDouble {
+            self.viewMainPieClockView.timezoneSeconds = timeZoneSecond
         }
 //        showStateInfo(nil)
     }

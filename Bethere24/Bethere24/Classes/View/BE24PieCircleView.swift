@@ -114,7 +114,7 @@ class BE24PieCircleView: BE24PieBaseView {
         
         let twoPI = 2.0 * .pi
         let angleDelta = twoPI / 8
-        var start:CGFloat = CGFloat(-(twoPI / 4))
+        var start:CGFloat = -CGFloat((twoPI / 4))
         
         self.categoryIcons.forEach { (imageView: UIImageView) in
             let ox = centerPoint.x + cos(start) * radius

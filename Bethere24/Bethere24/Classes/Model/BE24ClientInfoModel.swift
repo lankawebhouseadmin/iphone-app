@@ -23,6 +23,7 @@ class BE24ClientInfoModel: BE24Model {
     var dateOfBirth: String
     var country: String
     var zipcode: String
+    var timezoneDouble: Double = 0
     
     override init(data: JSON) {
         username    = data["username"].stringValue
@@ -30,6 +31,8 @@ class BE24ClientInfoModel: BE24Model {
         lastName    = data["lastname"].stringValue
         gender      = data["gender"].stringValue
         timeZone    = data["time_zone"].stringValue
+       
+        
         currentTimeString = data["current_time"].stringValue
         if let _currentTime = data["current_time"].dateTime() {
             currentTime = _currentTime
@@ -47,6 +50,15 @@ class BE24ClientInfoModel: BE24Model {
         }
 
         super.init(data: data)
+        
+        for key in NSTimeZone.abbreviationDictionary.keys {
+            if let val = NSTimeZone.abbreviationDictionary[key] {
+                if val == timeZone {
+                    timezoneDouble = Double((NSTimeZone.init(abbreviation: key)?.secondsFromGMT)!)
+                    //                    print(test)
+                }
+            }
+        }
     }
     
     func currentTimeDayString() -> String {

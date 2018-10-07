@@ -11,7 +11,8 @@ import SwiftyJSON
 
 class BE24PieClockView: BE24PieBaseView {
 
-    let timezoneSeconds = Double(NSTimeZone.local.secondsFromGMT())
+    var timezoneSeconds = Double(NSTimeZone.local.secondsFromGMT())
+//    let testSeconds = Double(NSTimeZone.init(abbreviation: <#T##String#>))
     
     var delegate: BE24PieClockViewDelegate?
     
@@ -141,22 +142,24 @@ class BE24PieClockView: BE24PieBaseView {
             if stateCount > 0 {
                 for index in 0...(stateCount - 1) {
                     let state = states![index]
-
-                    
-                    if(state.startTime == state.endTime)
-                    {
+                    if(state.startTime == state.endTime) {
                         state.endTime = state.endTime.addingTimeInterval(1) // To create white line for very less time interval i.e start time = end time
                     }
                     
+                    
+//                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay
+//                    let testVal = Int(state.startTime.timeIntervalSince1970 + timezoneSeconds) % Int(secondsOfOneDay)
+                    
                     let startSeconds = (state.startTime.timeIntervalSince1970 + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay) // seconds of a day
-                    let endSeconds   = (state.endTime.timeIntervalSince1970   + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay)   // seconds of a day
-                    let start: CGFloat = angleOfSecond * CGFloat(startSeconds) + CGFloat(M_PI * 1.5)
-                    var end:CGFloat    = angleOfSecond * CGFloat(endSeconds )  + CGFloat(M_PI * 1.5)
+                    let endSeconds = (state.endTime.timeIntervalSince1970 + timezoneSeconds).truncatingRemainder(dividingBy: secondsOfOneDay)   // seconds of a day
+                    
+                    let start: CGFloat = angleOfSecond * CGFloat(startSeconds) + CGFloat(.pi * 1.5)
+                    var end:CGFloat    = angleOfSecond * CGFloat(endSeconds )  + CGFloat(.pi * 1.5)
                     if endSeconds > startSeconds && endSeconds - startSeconds < 60 {
                         end = start + angleOfSecond * 60
                     }
 //                    let colorValue = BE24AppManager.sharedManager.categories[index][kMenuColorKeyName]!
-                    let pieColor = colorWithHexString(hexString: "#ffff88")
+                    let pieColor = colorWithHexString(hexString: "#ffffff", alpha: 0.5)
                     context?.setFillColor(pieColor.cgColor)
                     context?.move(to: CGPoint(x: centerPoint.x, y: centerPoint.y))
                     context?.addArc(center: centerPoint, radius: radius, startAngle: start, endAngle: end, clockwise: false)
@@ -177,7 +180,7 @@ class BE24PieClockView: BE24PieBaseView {
             let component = (Calendar.current as NSCalendar).components([.hour, .minute, .second], from: time)
             
             let totalSeconds = component.hour! * 3600 + component.minute! * 60 + component.second!
-            let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)
+            let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(.pi * 1.5)
             let bx = centerPoint.x + radius * cos(angle)
             let by = centerPoint.y + radius * sin(angle)
             
@@ -200,7 +203,7 @@ class BE24PieClockView: BE24PieBaseView {
                 let component = (Calendar.current as NSCalendar).components([.hour, .minute, .second], from: stateData.clientInfo.currentTime as Date)
                 
                 let totalSeconds = component.hour! * 3600 + component.minute! * 60 + component.second!
-                let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(M_PI * 1.5)
+                let angle: CGFloat = angleOfSecond * CGFloat(totalSeconds) + CGFloat(.pi * 1.5)
                 let bx = centerPoint.x + radius * cos(angle)
                 let by = centerPoint.y + radius * sin(angle)
                 
@@ -257,12 +260,12 @@ class BE24PieClockView: BE24PieBaseView {
 //                let endSeconds   = CGFloat((state.endTime.timeIntervalSince1970   + timezoneSeconds) % secondsOfOneDay)   // seconds of a day
 //                let middleSeconds = startSeconds + (endSeconds - startSeconds) / 2
                 
-                var angle = angleOfSecond * CGFloat(startSeconds) // - twoPI / 4 - twoPI / 24
+                let angle = angleOfSecond * CGFloat(startSeconds) // - twoPI / 4 - twoPI / 24
                 if directionToNext == false {
 //                    angle = angle - twoPI
                 }
                 let originTransform = CGAffineTransform(rotationAngle: originAngle)
-                let newTransform = originTransform.rotated(by: (angle - originAngle).truncatingRemainder(dividingBy: CGFloat(secondsOfOneDay)))
+                _ = originTransform.rotated(by: (angle - originAngle).truncatingRemainder(dividingBy: CGFloat(secondsOfOneDay)))
 //                print (angle)
                 UIView.animate(withDuration: 0.3, animations: {
                     
